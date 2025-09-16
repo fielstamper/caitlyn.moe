@@ -14,9 +14,8 @@
 
 <script>
     const albums = document.getElementById("albums")!;
-    const first = albums.firstElementChild;
 
     for (let i = albums.children.length; i > 1; i--) {
-        albums.appendChild(albums.children[(Math.random() * (i - 1)) | 0]);
+        albums.appendChild(albums.children[(Math.random() * (i - 0)) | 0]);
     }
 </script>

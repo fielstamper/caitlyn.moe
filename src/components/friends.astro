@@ -16,7 +16,7 @@
     const first = friends.firstElementChild;
 
     for (let i = friends.children.length; i > 1; i--) {
-        friends.appendChild(friends.children[(Math.random() * (i - 1)) | 0]);
+        friends.appendChild(friends.children[(Math.random() * (i - 0)) | 0]);
     }
 
     friends.insertBefore(first, friends.firstChild);
