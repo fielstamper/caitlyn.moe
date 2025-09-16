@@ -1,0 +1,20 @@
+<div id="albums">
+    <slot />
+</div>
+<style>
+    #albums {
+        height: 6em;
+        display: flex;
+        gap: 0.6em;
+        margin-bottom: 10px;
+    }
+</style>
+
+<script>
+    const albums = document.getElementById("albums")!;
+    const first = albums.firstElementChild;
+
+    for (let i = albums.children.length; i > 1; i--) {
+        albums.appendChild(albums.children[(Math.random() * (i - 1)) | 0]);
+    }
+</script>

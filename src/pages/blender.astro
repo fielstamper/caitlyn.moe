@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro"
+import modelView from "../components/modelView.astro"
+---
+<script src="../components/blenderScript.js" />
+<Layout>
+	<div slot="below-header">
+		<h2>Blender Projects</h2>
+		<p></p>
+	</div>
+
+	{/*<modelView
+		model="zutomayo.glb"	
+	/>*/}
+	<div id="blender-container"/>
+</Layout>
+<style>
+	#blender-container {
+		height: 30em;
+        width: 46.875em;
+	}
+</style>

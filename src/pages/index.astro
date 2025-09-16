@@ -1,17 +1,174 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<link rel="canonical" href="https://caitlyn.moe">
-<meta name="robots" content="index, follow">
-<meta content="https://github.com/fielstamper.png" name="twitter:image"><meta content="caitlyn's site" name="twitter:title"><meta content="loser" name="twitter:description">
-</head>
-<body>
+---
+import Layout from "../layouts/Layout.astro";
+import ProfilePicture from "../components/profilePicture.astro";
+import Friend from "../components/friend.astro";
+import Friends from "../components/friends.astro";
+import Album from "../components/album.astro"
+import Albums from "../components/albums.astro"
+---
 
-<h1>hi</h1>
+<Layout>
+	<div slot="below-header">
+		<h2>caitlyn's site</h2>
+		<p>19 years old, Australia</p>
+	</div>
+	<div slot="beside-header">
+		<ProfilePicture />
+	</div>
 
-<p>im caitlyn </p>
+	<hr />
+	<br />
+	<p>A girl who can't program but can do some other stuff decently well. You can find me around the web</p>
+	<br />	
 
-</body>
-</html>
+	<h3>Recent Manga</h3>
+<br />
+	<h3>Recent Tracks</h3>
+<br />
+	<h3>Favorite Albums</h3>
+
+	<Albums>
+		<Album
+			href="https://www.last.fm/music/Marjorie+-W.C.+Sinclair/Beimax+Chessclub"
+			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/ecb7a2390e7de803e9aec8462c0d9210.jpg"
+		/>
+				<Album
+			href="https://www.last.fm/music/%E7%BC%BA%E7%9C%81/Life+In+A+Vacuum"
+			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/f9fe8cb4fd02858c92d703b4195e5e4e.jpg#f9fe8cb4fd02858c92d703b4195e5e4ejpg"
+		/>
+				<Album
+			href="https://www.last.fm/music/Kendrick+Lamar/Mr.+Morale+&+the+Big+Steppers"
+			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/98050f67524ffee7af6edd314b767ac4.jpg#98050f67524ffee7af6edd314b767ac4.jpg"
+		/>
+				<Album
+			href="https://www.last.fm/music/lexycat/heartstrings"
+			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/561836d28f32ffcb1bbe4dcfaf37127c.jpg#561836d28f32ffcb1bbe4dcfaf37127c.jpg"
+		/>
+				<Album
+			href="https://www.last.fm/music/Lupe+Fiasco/Tetsuo+&+Youth"
+			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/2b2fd2822b1e4f59cfc2550582150109.jpg#2b2fd2822b1e4f59cfc2550582150109.jpg"
+		/>
+				<Album
+			href="https://www.last.fm/music/Kendrick+Lamar/To+Pimp+a+Butterfly"
+			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/86b35c4eb3c479da49c915d8771bbd1a.jpg#86b35c4eb3c479da49c915d8771bbd1a"
+		/>
+				<Album
+			href="https://www.last.fm/music/abriction/Interstates"
+			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/6015ab5a8a183506bf2090df3ff4c808.jpg#6015ab5a8a183506bf2090df3ff4c808.jpg"
+		/>
+		
+	</Albums>
+
+<p id="subText">
+You can find more on my</p>
+	<a class="hyperlink" href="https://ibb.co/rCq9b3t">Topster</a>
+<br />
+	<h3>Projects</h3>
+
+<div class="grid">
+         <a href="https://github.com/fielstamper/caitlyn.moe">
+			<div class="gridHeader"> 
+				<img src="../src/assets/caitlynFrieren.png">
+				This website
+			</div>
+			<div class="gridDescription">
+				<p>This poorly built site.</p>
+			</div>
+			<div class="gridFooter">
+			</div>
+		 </a>
+
+<a href="https://github.com/fielstamper/kosuka.dev">
+			<div class="gridHeader">
+				<img src="../src/assets/old_site_favicon.jpg">
+kosuka.dev
+			</div>
+			<div class="gridDescription">
+				<p>My first (now down) site.</p>
+			</div>
+			<div class="gridFooter">
+			</div>
+		 </a>
+		 <a href="...">
+			<div class="gridHeader">
+<p>n/a</p>
+			</div>
+			<div class="gridDescription">
+				
+			</div>
+			<div class="gridFooter">
+			</div>
+		 </a>
+		 <a href="...">
+			<div class="gridHeader">
+<p>n/a</p>
+			</div>
+			<div class="gridDescription">
+				
+			</div>
+			<div class="gridFooter">
+			</div>
+		 </a>
+</div>
+
+</div>
+
+	<h3>Miscellaneous Creations</h3>
+<div class="grid">
+         <a href="../blender">
+			<div class="gridHeader"> 
+				<img src="../src/assets/nira_chan_by_chelliopee.jpg" title="chelliopee on newgrounds">
+				Nira Zutomayo 3D Model
+			</div>
+			<div class="gridDescription">
+				<p>My first self-made model on Blender.</p>
+			</div>
+			<div class="gridFooter">
+
+			</div>
+		 </a>
+		 
+         <a href="...">
+			<div class="gridHeader">
+				<p>n/a</p>
+			</div>
+		</a>
+</div>
+	</div>
+
+	<h3>Cute People</h3>
+
+	<Friends>
+		<Friend
+			title="ilmp"
+			href="https://codeberg.org/paige"
+			pfp="https://codeberg.org/paige.png"
+		/>
+		<Friend
+			title="my favorite chud"
+			href="https://vendicated.dev/"
+			pfp="https://github.com/Vendicated.png"
+		/>
+		<Friend
+			title="alyalyalyalyalyalyalyalyalya"
+			href="https://www.ankle.lol/"
+			pfp="https://pbs.twimg.com/profile_images/1889542468942565376/hX20Do-F_400x400.png"
+		/>
+		<Friend
+			title="I just kept on retyping something to get a name which sounded good to me"
+			href="https://khcrysalis.dev/"
+			pfp="https://github.com/khcrysalis.png"
+		/>
+		<Friend
+			title="-# the :rini:"
+			href="https://github.com/rniii"
+			pfp="https://github.com/rniii.png"
+		/>
+		<Friend
+			title="6k hours tf2"
+			href="https://x.com/1tabris"
+			pfp="https://pbs.twimg.com/profile_images/1947444886581440512/4TlbLsc__400x400.jpg"
+		/>
+	</Friends>
+	
+</Layout>
