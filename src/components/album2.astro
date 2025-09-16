@@ -1,0 +1,35 @@
+---
+const { href, pfp } = Astro.props;
+---
+<a href={href}>
+	<img src={pfp}>
+</a>
+
+<style>
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: fill;
+        border-radius: 0em;
+        box-shadow: 1px 1px 2px #0000005b;
+        border: 1px solid #2a2a2a;
+        transition: all 0.25s linear(0, 0.0014 0.52%, 0.0066 1.14%, 0.0248 2.27%, 0.0553 3.51%, 0.1016 4.96%, 0.1988 7.44%, 0.4395 12.92%, 0.5468 15.5%, 0.6508 18.29%, 0.7369 20.98%, 0.8114, 0.8711 26.56%, 0.8967 28.01%, 0.9204, 0.9406, 0.9576 32.66%, 0.982 35.55%, 0.9998 38.76%, 1.0112 42.37%, 1.0167 46.51%, 1.0165 52.61%, 1.0062 67.18%, 1.0021 76.07%, 0.9997 99.94%);
+        opacity: 100%;
+    }
+
+    @media (max-width: 768px) {
+
+    img {
+        display: none;
+
+    }
+
+
+}
+
+    img:hover {
+        background-color: rgba(12, 12, 12, 0.336);
+        transform: scale(1.04);
+        opacity: 50%;
+    }
+</style>
