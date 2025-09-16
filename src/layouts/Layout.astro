@@ -1,9 +1,10 @@
 ---
-import "../styles/global.css"
-import Header from "../components/header.astro"
-import HeaderItem from "../components/headerItem.astro"
+import "../styles/global.css";
+import Header from "../components/header.astro";
+import HeaderItem from "../components/headerItem.astro";
 import { ClientRouter } from "astro:transitions";
 ---
+
 <!doctype html>
 <html>
 	<head>
@@ -18,9 +19,9 @@ import { ClientRouter } from "astro:transitions";
 			content="loser"
 			name="twitter:description"
 		/>
-		   <title>caitlyn's site</title>
-		   <link rel="icon" href="/src/assets/zhezhi.png">
-<ClientRouter />
+		<title>caitlyn's site</title>
+		<link rel="icon" href="/assets/favicon.png" />
+		<ClientRouter />
 	</head>
 
 	<body>
@@ -35,15 +36,12 @@ import { ClientRouter } from "astro:transitions";
 			</div>
 			<slot name="beside-header" />
 		</div>
-		<slot/>
-	</body>
-
-	<style>
+		<slot />
+	</body><style>
 		#header-box {
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
 		}
 	</style>
-
 </html>
