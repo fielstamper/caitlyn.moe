@@ -4,7 +4,12 @@ import Image from "astro/components/Image.astro";
 ---
 
 <a href={href}>
-    <Image src={pfp} alt="Album Cover" />
+    <Image
+        src={pfp}
+        alt="Album Cover"
+        widths={[240, 540, 720, pfp.width]}
+        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${pfp.width}px`}
+    />
 </a>
 
 <style>
