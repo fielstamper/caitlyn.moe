@@ -4,6 +4,7 @@ import Header from "../components/header.astro";
 import HeaderItem from "../components/headerItem.astro";
 import { ClientRouter } from "astro:transitions";
 import Caitlyn from "../assets/caitlyn.png";
+import ProfilePicture from "../components/profilePicture.astro";
 ---
 
 <!doctype html>
@@ -30,12 +31,22 @@ import Caitlyn from "../assets/caitlyn.png";
 				<Header>
 					<HeaderItem title="Home" href="/" />
 					<HeaderItem title="About" href="/about" />
-					<HeaderItem title="Contact" href="/contact" />
+					<HeaderItem title="Contact" href="/contacts" />
 				</Header>
 				<slot name="below-header" />
 			</div>
 			<slot name="beside-header" />
+			<div slot="beside-header">
+				<ProfilePicture />
+			</div>
 		</div>
+
+		<hr />
+		<br />
+		<p>
+			A girl who can't program but can do some other stuff decently well.
+			You can find me around the web.
+		</p>
 		<slot />
 	</body><style>
 		#header-box {
