@@ -1,19 +1,43 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Album from "../components/album.astro";
+import Albums from "../components/albums.astro";
+import Beimax from "../assets/beimax.webp";
+import Heartstrings from "../assets/heartstrings.webp";
+import Interstates from "../assets/interstates.webp";
+import LifeInAVaccum from "../assets/life in a vaccum.webp";
+import MrMorale from "../assets/mr morale.webp";
+import Tetsuo from "../assets/tetsuo.webp";
+import Tpab from "../assets/tpab.webp";
 ---
 
 <Layout>
 	<div slot="below-header">
-		<h2>about me</h2>
+		<h2
+			style="color: rgb(185, 223, 255); font-weight: bold; font-size: 30px; margin-top: 16px;"
+		>
+			About me
+		</h2>
 		<p>19 years old, Australia</p>
 	</div>
-	<p>
-		<br />
-		<video width="128" height="128" autoplay>
-			<source
-				src="https://files.catbox.moe/2mtfwo.webm"
-				type="video/webm"
-			/>
-		</video>
-	</p>
+	<br />
+	<br />
+	<div id="aboutContainer">
+		<p class="aboutText">
+			New to any sort of programming, so please bear with me as I try to
+			figure out what I'm doing. I hope to get better at Javascript
+			specifically. <br /><br />
+			I'm a huge music nerd and love discovering and listening to new music
+			constantly, it's one of my biggest hobbies. Some of my favorite artists
+			include: Default(缺省), Marjorie -W.C.Sinclair, Kendrick Lamar, lexycat
+			& Linkin Park! <br />
+			<br />
+			I'm also quite into manga, and super into One Piece specifically, talk
+			to me about it. You can find out other stuff I read on <a
+				href="https://myanimelist.net/profile/clairegaming942"
+				class="hyperlink"
+				>MyAnimeList
+			</a> :)
+		</p>
+	</div>
 </Layout>

@@ -174,7 +174,6 @@ p {
 }
 
 #contactHeader a {
-    border: 2px solid rgba(255, 0, 0, 0.308);
     width: 84px;
     height: 56px;
     display: flex;
@@ -199,4 +198,18 @@ p {
 #contactHeader a:hover {
     background-color: rgba(12, 12, 12, 0.336);
     transform: scale(1.02);
+}
+
+#aboutContainer {
+    display: flex;
+    width: 46.875em;
+    height: 14em;
+    background-color: #1e1e1e;
+    border: 1px solid rgba(126, 163, 194, 0.733);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#aboutContainer p {
+    color: white;
 }
