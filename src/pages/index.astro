@@ -8,6 +8,8 @@ import Album2 from "../components/album2.astro";
 import Albums from "../components/albums.astro";
 import Caitlyn from "../assets/caitlyn.png";
 import Nira from "../assets/nira_chan_by_chelliopee.jpg";
+import Image from "astro/components/Image.astro";
+import oldFavi from "../assets/old_site_favicon.jpg";
 ---
 
 <Layout>
@@ -83,7 +85,7 @@ import Nira from "../assets/nira_chan_by_chelliopee.jpg";
 
 		<a href="https://github.com/fielstamper/kosuka.dev">
 			<div class="gridHeader">
-				<img src="/assets/old_site_favicon.jpg" />
+				<Image src={oldFavi} alt="My old site" width={24} />
 				kosuka.dev
 			</div>
 			<div class="gridDescription">
@@ -112,7 +114,12 @@ import Nira from "../assets/nira_chan_by_chelliopee.jpg";
 <div class="grid2">
 	<a href="../blender">
 		<div class="gridHeader">
-			<img src={Nira.src} title="chelliopee on newgrounds" />
+			<Image
+				src={Nira}
+				alt="Nira"
+				title="chelliopee on newgrounds"
+				width={24}
+			/>
 			Nira Zutomayo 3D Model
 		</div>
 		<div class="gridDescription">
