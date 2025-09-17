@@ -4,7 +4,14 @@ import Image from "astro/components/Image.astro";
 ---
 
 <a href="https://x.com/lililjiliijili/status/996590059968081920">
-    <Image src={Caitlyn} alt="My pfp" width={500} fetchpriority="high" />
+    <Image
+        src={Caitlyn}
+        alt="My pfp"
+        width={500}
+        fetchpriority="high"
+        widths={[240, 540, 720, Caitlyn.width]}
+        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 152px, ${Caitlyn.width}px`}
+    />
 </a>
 <style>
     img {
