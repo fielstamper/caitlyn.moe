@@ -152,16 +152,22 @@ p {
     opacity: 50%;
 }
 
+#contactBody {
+    display: flex;
+    justify-content: center;
+}
+
 #contactHeader {
     display: flex;
     flex-wrap: wrap;
     height: 8em;
     width: 32em;
     padding-top: 20px;
-    margin-left: 7.4375em;
     justify-content: center;
     gap: 1em;
 }
+
+
 
 #contactHeader a {
     border: 2px solid rgba(255, 0, 0, 0.308);
