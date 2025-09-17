@@ -1,9 +1,10 @@
 ---
 const { href, pfp } = Astro.props;
+import Image from "astro/components/Image.astro";
 ---
 
 <a href={href}>
-    <img src={pfp} />
+    <Image src={pfp} alt="Album Cover" />
 </a>
 
 <style>

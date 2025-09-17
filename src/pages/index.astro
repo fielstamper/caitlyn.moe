@@ -9,7 +9,14 @@ import Albums from "../components/albums.astro";
 import Caitlyn from "../assets/caitlyn.png";
 import Nira from "../assets/nira_chan_by_chelliopee.jpg";
 import Image from "astro/components/Image.astro";
-import oldFavi from "../assets/old_site_favicon.jpg";
+import OldFavi from "../assets/old_site_favicon.jpg";
+import Beimax from "../assets/beimax.webp";
+import Heartstrings from "../assets/heartstrings.webp";
+import Interstates from "../assets/interstates.webp";
+import LifeInAVaccum from "../assets/life in a vaccum.webp";
+import MrMorale from "../assets/mr morale.webp";
+import Tetsuo from "../assets/tetsuo.webp";
+import Tpab from "../assets/tpab.webp";
 ---
 
 <Layout>
@@ -38,31 +45,31 @@ import oldFavi from "../assets/old_site_favicon.jpg";
 	<Albums>
 		<Album
 			href="https://www.last.fm/music/Marjorie+-W.C.+Sinclair/Beimax+Chessclub"
-			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/ecb7a2390e7de803e9aec8462c0d9210.jpg"
+			pfp={Beimax}
 		/>
 		<Album
 			href="https://www.last.fm/music/%E7%BC%BA%E7%9C%81/Life+In+A+Vacuum"
-			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/f9fe8cb4fd02858c92d703b4195e5e4e.jpg#f9fe8cb4fd02858c92d703b4195e5e4ejpg"
+			pfp={LifeInAVaccum}
 		/>
 		<Album
 			href="https://www.last.fm/music/Kendrick+Lamar/Mr.+Morale+&+the+Big+Steppers"
-			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/98050f67524ffee7af6edd314b767ac4.jpg#98050f67524ffee7af6edd314b767ac4.jpg"
+			pfp={MrMorale}
 		/>
 		<Album
 			href="https://www.last.fm/music/lexycat/heartstrings"
-			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/561836d28f32ffcb1bbe4dcfaf37127c.jpg#561836d28f32ffcb1bbe4dcfaf37127c.jpg"
+			pfp={Heartstrings}
 		/>
 		<Album2
 			href="https://www.last.fm/music/Lupe+Fiasco/Tetsuo+&+Youth"
-			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/2b2fd2822b1e4f59cfc2550582150109.jpg#2b2fd2822b1e4f59cfc2550582150109.jpg"
+			pfp={Tetsuo}
 		/>
 		<Album2
 			href="https://www.last.fm/music/Kendrick+Lamar/To+Pimp+a+Butterfly"
-			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/86b35c4eb3c479da49c915d8771bbd1a.jpg#86b35c4eb3c479da49c915d8771bbd1a"
+			pfp={Tpab}
 		/>
 		<Album2
 			href="https://www.last.fm/music/abriction/Interstates"
-			pfp="https://lastfm.freetls.fastly.net/i/u/770x0/6015ab5a8a183506bf2090df3ff4c808.jpg#6015ab5a8a183506bf2090df3ff4c808.jpg"
+			pfp={Interstates}
 		/>
 	</Albums>
 
@@ -85,7 +92,7 @@ import oldFavi from "../assets/old_site_favicon.jpg";
 
 		<a href="https://github.com/fielstamper/kosuka.dev">
 			<div class="gridHeader">
-				<Image src={oldFavi} alt="My old site" width={24} />
+				<Image src={OldFavi} alt="My old site" width={24} />
 				kosuka.dev
 			</div>
 			<div class="gridDescription">
