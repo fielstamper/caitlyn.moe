@@ -200,14 +200,26 @@ p {
     transform: scale(1.02);
 }
 
-#aboutContainer {
+#aboutContainerParent {
     display: flex;
+    justify-content: center;
+}
+
+#aboutContainer {
+    display: inline-flex;
     width: 46.875em;
     height: 14em;
     background-color: #1e1e1e;
     border: 1px solid rgba(126, 163, 194, 0.733);
     padding: 10px;
     border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    #aboutContainer {
+        height: auto;
+        width: auto;
+    }
 }
 
 #aboutContainer p {
