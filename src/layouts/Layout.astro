@@ -5,6 +5,7 @@ import HeaderItem from "../components/headerItem.astro";
 import { ClientRouter } from "astro:transitions";
 import Caitlyn from "../assets/caitlyn.png";
 import ProfilePicture from "../components/profilePicture.astro";
+import Flower from "../assets/flowers.png";
 ---
 
 <!doctype html>
@@ -21,7 +22,7 @@ import ProfilePicture from "../components/profilePicture.astro";
 			name="twitter:title"
 		/><meta content="loser" name="twitter:description" />
 		<title>caitlyn's site</title>
-		<link rel="icon" href="/assets/flowers.png" />
+		<link rel="icon" href={Flower.src} />
 		<ClientRouter />
 	</head>
 
