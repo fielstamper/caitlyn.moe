@@ -226,3 +226,22 @@ p {
 #aboutContainer p {
     color: white;
 }
+
+#h2titleindex,
+#h2titlecontacts,
+#h2titleabout,
+#h2titleblender {
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+
+    #h2titleindex,
+    #h2titlecontacts,
+    #h2titleabout,
+    #h2titleblender {
+        font-size: 24px;
+    }
+}

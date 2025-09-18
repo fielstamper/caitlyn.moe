@@ -6,9 +6,7 @@ import modelView from "../components/modelView.astro";
 <script src="../components/blenderScript.js"></script>
 <Layout>
 	<div slot="below-header">
-		<h2
-			style="color: rgb(185, 223, 255); font-weight: bold; font-size: 30px; margin-top: 16px;"
-		>
+		<h2 id="h2titleblender" style="color: rgb(185, 223, 255)">
 			Blender Projects
 		</h2>
 		<p>19 years old, Australia</p>
@@ -27,5 +25,12 @@ import modelView from "../components/modelView.astro";
 	#blender-container {
 		height: 30em;
 		width: 46.875em;
+	}
+
+	@media (max-width: 768px) {
+		#blender-container {
+			height: 20em;
+			width: 100%;
+		}
 	}
 </style>
