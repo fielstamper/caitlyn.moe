@@ -15,8 +15,32 @@ import LifeInAVaccum from "../assets/life in a vaccum.webp";
 import MrMorale from "../assets/mr morale.webp";
 import Tetsuo from "../assets/tetsuo.webp";
 import Tpab from "../assets/tpab.webp";
+import BigFish from "../assets/bigfish.webp";
 import Tabris from "../assets/1tabris.webp";
 import April from "../assets/april.webp";
+
+const covers = [
+	{ url: Beimax, alt: "Beimax" },
+	{ url: Heartstrings, alt: "Heartstrings" },
+	{ url: Interstates, alt: "Interstates" },
+	{ url: LifeInAVaccum, alt: "LifeInAVaccum" },
+	{ url: MrMorale, alt: "MrMorale" },
+	{ url: Tetsuo, alt: "Tetsuo" },
+	{ url: Tpab, alt: "Tpab" },
+	{ url: BigFish, alt: "Bigfish" },
+];
+
+shuffle(covers);
+function shuffle(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+		covers.sort(() => Math.random() - 0.5);
+	}
+
+	return array;
+}
+
+const shuffledCovers = shuffle(covers);
+const currentCovers = shuffledCovers.slice(0, 7);
 ---
 
 <Layout>
@@ -33,36 +57,13 @@ import April from "../assets/april.webp";
 	<br />
 	<h3>Favorite Albums</h3>
 
-	<Albums>
-		<Album
-			href="https://www.last.fm/music/Marjorie+-W.C.+Sinclair/Beimax+Chessclub"
-			pfp={Beimax}
-		/>
-		<Album
-			href="https://www.last.fm/music/%E7%BC%BA%E7%9C%81/Life+In+A+Vacuum"
-			pfp={LifeInAVaccum}
-		/>
-		<Album
-			href="https://www.last.fm/music/Kendrick+Lamar/Mr.+Morale+&+the+Big+Steppers"
-			pfp={MrMorale}
-		/>
-		<Album
-			href="https://www.last.fm/music/lexycat/heartstrings"
-			pfp={Heartstrings}
-		/>
-		<Album
-			href="https://www.last.fm/music/Lupe+Fiasco/Tetsuo+&+Youth"
-			pfp={Tetsuo}
-		/>
-		<Album
-			href="https://www.last.fm/music/Kendrick+Lamar/To+Pimp+a+Butterfly"
-			pfp={Tpab}
-		/>
-		<Album
-			href="https://www.last.fm/music/abriction/Interstates"
-			pfp={Interstates}
-		/>
-	</Albums>
+	<div id="albums">
+		{
+			currentCovers.map((cover) => (
+				<Image src={cover.url} alt={cover.alt} />
+			))
+		}
+	</div>
 
 	<p id="subText">You can find more on my</p>
 	<a class="hyperlink" href="https://ibb.co/rCq9b3t">Topster</a>

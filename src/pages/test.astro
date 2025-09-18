@@ -1,0 +1,46 @@
+---
+import Beimax from "../assets/beimax.webp";
+import Heartstrings from "../assets/heartstrings.webp";
+import Interstates from "../assets/interstates.webp";
+import LifeInAVaccum from "../assets/life in a vaccum.webp";
+import MrMorale from "../assets/mr morale.webp";
+import Tetsuo from "../assets/tetsuo.webp";
+import Tpab from "../assets/tpab.webp";
+import BigFish from "../assets/bigfish.webp";
+import Layout from "../layouts/Layout.astro";
+import Image from "astro/components/Image.astro";
+
+const covers = [
+    { url: Beimax, alt: "Beimax" },
+    { url: Heartstrings, alt: "Heartstrings" },
+    { url: Interstates, alt: "Interstates" },
+    { url: LifeInAVaccum, alt: "LifeInAVaccum" },
+    { url: MrMorale, alt: "MrMorale" },
+    { url: Tetsuo, alt: "Tetsuo" },
+    { url: Tpab, alt: "Tpab" },
+    { url: BigFish, alt: "Bigfish" },
+];
+
+shuffle(covers);
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        covers.sort(() => Math.random() - 0.5);
+    }
+
+    return array;
+}
+
+const shuffledCovers = shuffle(covers);
+const currentCovers = shuffledCovers.slice(0, 7);
+---
+
+<Layout>
+    <h3>Favorite albums</h3>
+    <div id="testDiv">
+        {
+            currentCovers.map((cover) => (
+                <Image src={cover.url} alt={cover.alt} />
+            ))
+        }
+    </div>
+</Layout>
