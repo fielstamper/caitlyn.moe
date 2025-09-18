@@ -1,0 +1,50 @@
+<div id="lastfm-grid">
+    <slot />
+</div>
+
+<script>
+    const LASTFM_KEY = "e2567caa43c5b556780a6470968e8bb1";
+
+    fetch(
+        "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=lightafterruin&api_key=e2567caa43c5b556780a6470968e8bb1&extended=1&format=json&limit=4",
+    )
+        .then((response) => response.json())
+        .then((jsonData) => {
+            const lastfmGrid = document.getElementById("lastfm-grid");
+
+            for (let i = jsonData.recenttracks.track.length; i > 0; i--) {
+                const trackDiv = document.createElement("div");
+                trackDiv.className = "track";
+
+                const trackNameP = document.createElement("p");
+                trackNameP.textContent = "Track Name";
+
+                const trackImg = document.createElement("img");
+                trackImg.src = "imageurl";
+
+                trackDiv.append(trackNameP, trackImg);
+                lastfmGrid.append(trackDiv);
+            }
+
+            // 1. use a for loop to loop over your recent tracks
+            // 2. use document.createElement() to create each element
+            // 3. lastfmGrid.append(theElement);
+        });
+</script>
+
+<style>
+    #lastfm-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    #track {
+        height: 4.75em;
+        background-color: #1e1e1e;
+        box-shadow: 1px 1px 2px #0000005b;
+        border: 1px solid #2a2a2a;
+    }
+</style>
