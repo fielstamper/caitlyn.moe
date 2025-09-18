@@ -1,12 +1,10 @@
-<div id="lastfm-grid">
-    <slot />
-</div>
+<div id="lastfm-grid"></div>
 
 <script>
     const LASTFM_KEY = "e2567caa43c5b556780a6470968e8bb1";
 
     fetch(
-        "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=lightafterruin&api_key=e2567caa43c5b556780a6470968e8bb1&extended=1&format=json&limit=4",
+        "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=lightafterruin&api_key=e2567caa43c5b556780a6470968e8bb1&extended=1&format=json&limit=3",
     )
         .then((response) => response.json())
         .then((jsonData) => {
@@ -19,9 +17,11 @@
 
                 const trackNameP = document.createElement("p");
                 trackNameP.textContent = track.name;
+                trackNameP.classList.add("example");
+                console.log(trackNameP.classList);
 
                 const trackImg = document.createElement("img");
-                trackImg.src = track.url;
+                trackImg.src = track.image[1]["#text"];
 
                 trackDiv.append(trackNameP, trackImg);
                 lastfmGrid.append(trackDiv);
@@ -36,12 +36,7 @@
         grid-template-rows: 1fr;
         grid-column-gap: 0px;
         grid-row-gap: 0px;
-    }
-
-    .track {
-        height: 4.75em;
-        background-color: #1e1e1e;
-        box-shadow: 1px 1px 2px #0000005b;
-        border: 1px solid #2a2a2a;
+        width: 46.875em;
+        align-items: center;
     }
 </style>
