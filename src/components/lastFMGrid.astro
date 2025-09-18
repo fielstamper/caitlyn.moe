@@ -11,8 +11,13 @@
         .then((response) => response.json())
         .then((jsonData) => {
             const lastfmGrid = document.getElementById("lastfm-grid");
+            const tracks = jsonData.recenttracks.track;
 
-            for (let i = jsonData.recenttracks.track.length; i > 0; i--) {
+            for (const track of tracks) {
+                const p = document.createElement("p");
+                p.textContent = track;
+                lastfmGrid.append(p);
+
                 const trackDiv = document.createElement("div");
                 trackDiv.className = "track";
 
@@ -41,7 +46,7 @@
         grid-row-gap: 0px;
     }
 
-    #track {
+    .track {
         height: 4.75em;
         background-color: #1e1e1e;
         box-shadow: 1px 1px 2px #0000005b;
