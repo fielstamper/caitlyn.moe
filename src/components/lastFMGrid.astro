@@ -14,18 +14,14 @@
             const tracks = jsonData.recenttracks.track;
 
             for (const track of tracks) {
-                const p = document.createElement("p");
-                p.textContent = track;
-                lastfmGrid.append(p);
-
                 const trackDiv = document.createElement("div");
                 trackDiv.className = "track";
 
                 const trackNameP = document.createElement("p");
-                trackNameP.textContent = "Track Name";
+                trackNameP.textContent = track.name;
 
                 const trackImg = document.createElement("img");
-                trackImg.src = "imageurl";
+                trackImg.src = track.url;
 
                 trackDiv.append(trackNameP, trackImg);
                 lastfmGrid.append(trackDiv);
