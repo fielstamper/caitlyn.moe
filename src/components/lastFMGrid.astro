@@ -27,11 +27,22 @@
                 trackNameP.textContent = track.name;
                 trackNameP.classList.add("redColor");
 
+                function truncateText(text, length) {
+                    if (text.length <= length) {
+                        return text;
+                    }
+
+                    return text.substr(0, length) + "\u2026";
+                }
+
+                let trackNamePT;
+                trackNamePT = truncateText(track.name, 31);
+
                 const trackImg = document.createElement("img");
                 trackImg.src = track.image[2]["#text"];
                 trackImg.classList.add("trackImg");
 
-                trackAnchor.append(trackImg, trackNameP, artistName);
+                trackAnchor.append(trackImg, trackNamePT, artistName);
                 lastfmGrid.append(trackAnchor);
             }
         });
@@ -111,7 +122,8 @@
 
     .redColor {
         color: #dbdbdbcb;
-        display: block;
+        display: inline-block;
+        font-size: 16px;
     }
 
     @media (max-width: 768px) {
@@ -123,6 +135,8 @@
 
     .artistName {
         font-weight: 200px;
-        color: #dbdbdb66;
+        color: #dbdbdb4b;
+        font-size: 14px;
+        display: block;
     }
 </style>
