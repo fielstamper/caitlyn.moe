@@ -66,7 +66,8 @@
         #lastfm-grid {
             max-width: 100%;
             overflow-x: scroll;
-            height: 12;
+            height: 13em;
+            font-size: 14px;
         }
     }
 
@@ -128,17 +129,16 @@
         font-size: 16px;
     }
 
-    @media (max-width: 768px) {
-        .redColor,
-        .artistName {
-            font-size: 12px;
-        }
-    }
-
     .artistName {
         font-weight: 200px;
         color: #dbdbdb4b;
         font-size: 14px;
         display: block;
+    }
+
+    @media (max-width: 768px) {
+        .artistName {
+            font-size: 12px;
+        }
     }
 </style>
