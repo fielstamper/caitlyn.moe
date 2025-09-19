@@ -5,7 +5,7 @@
 }
 
 :root {
-    --background: #151515;
+    --background: #181818;
     --foreground: #f0f0f0;
     --separator: #303030;
     scrollbar-gutter: stable;
@@ -143,7 +143,7 @@ p {
 
 .hyperlink {
     text-decoration: none;
-    color: rgb(185, 223, 255);
+    color: rgb(255, 185, 255);
     transition-property: opacity;
     transition-duration: 0.125s;
 }
