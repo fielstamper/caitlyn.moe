@@ -23,7 +23,7 @@ html {
 
 body {
     margin: 0 auto;
-    max-width: 46.875em;
+    max-width: 50em;
     color: var(--foreground);
 }
 

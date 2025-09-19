@@ -50,16 +50,11 @@
 
 <style is:global>
     #lastfm-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: 1fr;
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
-        width: 46.875em;
-        height: 13em;
-        gap: 20px;
+        display: flex;
+        width: 50em;
         overflow: hidden;
         text-align: center;
+        gap: 43px;
     }
 
     @media (max-width: 768px) {
@@ -75,6 +70,7 @@
     .track {
         text-decoration: none;
         height: 300px;
+        width: 125px;
     }
 
     .trackImg {
