@@ -18,6 +18,7 @@ import Tpab from "../assets/tpab.webp";
 import Tabris from "../assets/1tabris.webp";
 import April from "../assets/april.webp";
 import LastFMGrid from "../components/lastFMGrid.astro";
+import AniListAPI from "../components/aniListAPI.astro";
 ---
 
 <Layout>
@@ -29,14 +30,18 @@ import LastFMGrid from "../components/lastFMGrid.astro";
 	</div>
 
 	<h3>Recent Manga</h3>
-	<br />
+	<AniListAPI />
+	<br /><br />
+	<p class="bgText">You can find more on my</p>
+	<a class="hyperlink" href="https://anilist.co/user/aussieauntie/">AniList</a
+	><br /><br />
 	<h3>Recent Tracks</h3>
 	<LastFMGrid />
 	<br />
-	<p id="subText">You can find more on my</p>
+	<p class="bgText">You can find more on my</p>
 	<a class="hyperlink" href="https://www.last.fm/user/lightafterruin"
 		>Last.fm</a
-	>
+	><br /><br />
 
 	<h3>Projects</h3>
 
