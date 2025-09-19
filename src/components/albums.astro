@@ -24,9 +24,11 @@
 </style>
 
 <script>
-    const albums = document.getElementById("albums")!;
+    document.addEventListener("astro:page-load", () => {
+        const albums = document.getElementById("albums")!;
 
-    for (let i = albums.children.length; i > 1; i--) {
-        albums.appendChild(albums.children[(Math.random() * (i - 0)) | 0]);
-    }
+        for (let i = albums.children.length; i > 1; i--) {
+            albums.appendChild(albums.children[(Math.random() * (i - 0)) | 0]);
+        }
+    });
 </script>
