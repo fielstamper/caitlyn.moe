@@ -1,51 +1,53 @@
 <div id="lastfm-grid"><slot /></div>
 
 <script>
-    const LASTFM_KEY = "e2567caa43c5b556780a6470968e8bb1";
+    document.addEventListener("astro:page-load", () => {
+        const LASTFM_KEY = "e2567caa43c5b556780a6470968e8bb1";
 
-    fetch(
-        "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=lightafterruin&api_key=e2567caa43c5b556780a6470968e8bb1&extended=1&format=json&limit=5",
-    )
-        .then((response) => response.json())
-        .then((jsonData) => {
-            const lastfmGrid = document.getElementById("lastfm-grid");
-            const tracks = jsonData.recenttracks.track;
+        fetch(
+            "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=lightafterruin&api_key=e2567caa43c5b556780a6470968e8bb1&extended=1&format=json&limit=5",
+        )
+            .then((response) => response.json())
+            .then((jsonData) => {
+                const lastfmGrid = document.getElementById("lastfm-grid");
+                const tracks = jsonData.recenttracks.track;
 
-            for (const track of tracks) {
-                const trackURL = document.createElement("p");
-                trackURL.textContent = track.url;
+                for (const track of tracks) {
+                    const trackURL = document.createElement("p");
+                    trackURL.textContent = track.url;
 
-                const trackAnchor = document.createElement("a");
-                trackAnchor.className = "track";
-                trackAnchor.setAttribute("href", track.url);
+                    const trackAnchor = document.createElement("a");
+                    trackAnchor.className = "track";
+                    trackAnchor.setAttribute("href", track.url);
 
-                const artistName = document.createElement("p");
-                artistName.textContent = track.artist.name;
-                artistName.classList.add("artistName");
+                    const artistName = document.createElement("p");
+                    artistName.textContent = track.artist.name;
+                    artistName.classList.add("artistName");
 
-                const trackNameP = document.createElement("p");
-                trackNameP.textContent = track.name;
-                trackNameP.classList.add("redColor");
+                    const trackNameP = document.createElement("p");
+                    trackNameP.textContent = track.name;
+                    trackNameP.classList.add("redColor");
 
-                function truncateText(text, length) {
-                    if (text.length <= length) {
-                        return text;
+                    function truncateText(text, length) {
+                        if (text.length <= length) {
+                            return text;
+                        }
+
+                        return text.substr(0, length) + "\u2026";
                     }
 
-                    return text.substr(0, length) + "\u2026";
+                    let trackNamePT;
+                    trackNamePT = truncateText(track.name, 27);
+
+                    const trackImg = document.createElement("img");
+                    trackImg.src = track.image[2]["#text"];
+                    trackImg.classList.add("trackImg");
+
+                    trackAnchor.append(trackImg, trackNamePT, artistName);
+                    lastfmGrid.append(trackAnchor);
                 }
-
-                let trackNamePT;
-                trackNamePT = truncateText(track.name, 27);
-
-                const trackImg = document.createElement("img");
-                trackImg.src = track.image[2]["#text"];
-                trackImg.classList.add("trackImg");
-
-                trackAnchor.append(trackImg, trackNamePT, artistName);
-                lastfmGrid.append(trackAnchor);
-            }
-        });
+            });
+    });
 </script>
 
 <style is:global>

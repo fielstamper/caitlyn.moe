@@ -1,11 +1,12 @@
 <div id="aniList-grid"><slot /></div>
 
 <script>
-    fetch("https://graphql.anilist.co", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-            query: `{
+    document.addEventListener("astro:page-load", () => {
+        fetch("https://graphql.anilist.co", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+                query: `{
             Page(perPage: 50) {
                 activities(userId: 7495217, type: MEDIA_LIST, sort: ID_DESC) {
                     ... on ListActivity {
@@ -20,48 +21,49 @@
                 }
             }
         }`,
-        }),
-    })
-        .then((response) => response.json())
-        .then((jsonData) => {
-            console.log(jsonData);
-            const aniListGrid = document.getElementById("aniList-grid");
-            const mangas = jsonData.data.Page.activities.slice(0, 5);
+            }),
+        })
+            .then((response) => response.json())
+            .then((jsonData) => {
+                console.log(jsonData);
+                const aniListGrid = document.getElementById("aniList-grid");
+                const mangas = jsonData.data.Page.activities.slice(0, 5);
 
-            for (const manga of mangas) {
-                const mangaAnchor = document.createElement("a");
-                mangaAnchor.classList.add("mangaAnchor");
+                for (const manga of mangas) {
+                    const mangaAnchor = document.createElement("a");
+                    mangaAnchor.classList.add("mangaAnchor");
 
-                const mangaURL = document.createElement("p");
-                mangaURL.textContent = manga.media.siteUrl;
+                    const mangaURL = document.createElement("p");
+                    mangaURL.textContent = manga.media.siteUrl;
 
-                const mangaCover = document.createElement("img");
-                mangaCover.src = manga.media.coverImage.extraLarge;
-                mangaCover.classList.add("mangaCover");
+                    const mangaCover = document.createElement("img");
+                    mangaCover.src = manga.media.coverImage.extraLarge;
+                    mangaCover.classList.add("mangaCover");
 
-                mangaAnchor.setAttribute("href", manga.media.siteUrl);
-                mangaAnchor.classList.add("mangaText");
+                    mangaAnchor.setAttribute("href", manga.media.siteUrl);
+                    mangaAnchor.classList.add("mangaText");
 
-                const mangaStatus = document.createElement("span");
-                mangaStatus.textContent = manga.status + " ";
-                mangaStatus.classList.add("mangaText");
+                    const mangaStatus = document.createElement("span");
+                    mangaStatus.textContent = manga.status + " ";
+                    mangaStatus.classList.add("mangaText");
 
-                const mangaChapter = document.createElement("span");
-                mangaChapter.textContent = manga.progress;
+                    const mangaChapter = document.createElement("span");
+                    mangaChapter.textContent = manga.progress;
 
-                const mangaTitle = document.createElement("p");
-                mangaTitle.textContent = manga.media.title.romaji;
-                mangaTitle.classList.add("mangaTitle");
+                    const mangaTitle = document.createElement("p");
+                    mangaTitle.textContent = manga.media.title.romaji;
+                    mangaTitle.classList.add("mangaTitle");
 
-                mangaAnchor.append(
-                    mangaCover,
-                    mangaStatus,
-                    mangaChapter,
-                    mangaTitle,
-                );
-                aniListGrid.append(mangaAnchor);
-            }
-        });
+                    mangaAnchor.append(
+                        mangaCover,
+                        mangaStatus,
+                        mangaChapter,
+                        mangaTitle,
+                    );
+                    aniListGrid.append(mangaAnchor);
+                }
+            });
+    });
 </script>
 
 <style is:global>
