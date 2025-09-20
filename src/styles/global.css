@@ -22,6 +22,7 @@
 	--hover-opacity: red;
 	--contact-link: black;
 	--friend-highlight: #ff8c9e;
+	--active-header-item: #ff8c9d34;
 	scrollbar-gutter: stable;
 }
 
@@ -43,6 +44,7 @@
 	--hover-opacity: rgba(12, 12, 12, 0.322);
 	--contact-link: white;
 	--friend-highlight: rgba(255, 255, 255, 0.514);
+	--active-header-item: rgba(88, 88, 88, 0.144);
 	scrollbar-gutter: stable;
 }
 
@@ -273,6 +275,7 @@ p {
 
 .hyperlink:hover {
 	opacity: 50%;
+	text-decoration: underline;
 }
 
 #contactBody {
