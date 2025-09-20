@@ -107,7 +107,7 @@
 	display: none;
 }
 
-.lightmode #theme-switch svg:last-child {
+.lightmode #theme-switch svg:first-child {
 	display: block;
 }
 
