@@ -49,13 +49,50 @@
 	width: 50px;
 	padding: 0;
 	border-radius: 8px;
-	background-color: var(--foreground-item);
+	background-color: var(--background);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	position: fixed;
-	top: 20px;
-	right: 20px;
+	border: 1px solid var(--border-color);
+	transition: all 0.2s linear(0,
+			0.0014 0.52%,
+			0.0066 1.14%,
+			0.0248 2.27%,
+			0.0553 3.51%,
+			0.1016 4.96%,
+			0.1988 7.44%,
+			0.4395 12.92%,
+			0.5468 15.5%,
+			0.6508 18.29%,
+			0.7369 20.98%,
+			0.8114,
+			0.8711 26.56%,
+			0.8967 28.01%,
+			0.9204,
+			0.9406,
+			0.9576 32.66%,
+			0.982 35.55%,
+			0.9998 38.76%,
+			1.0112 42.37%,
+			1.0167 46.51%,
+			1.0165 52.61%,
+			1.0062 67.18%,
+			1.0021 76.07%,
+			0.9997 99.94%);
+}
+
+#theme-switch:hover {
+	background-color: rgba(12, 12, 12, 0.336);
+	cursor: pointer;
+}
+
+@media (max-width: 768px) {
+	#theme-switch {
+		position: relative;
+		top: 0px;
+		right: 0px;
+		height: 40px;
+	}
 }
 
 #theme-switch svg {
@@ -176,9 +213,7 @@ p {
 	border-radius: 8px;
 	overflow: hidden;
 	text-decoration: none;
-	transition: all 0.2s
-		linear(
-			0,
+	transition: all 0.2s linear(0,
 			0.0014 0.52%,
 			0.0066 1.14%,
 			0.0248 2.27%,
@@ -202,8 +237,7 @@ p {
 			1.0165 52.61%,
 			1.0062 67.18%,
 			1.0021 76.07%,
-			0.9997 99.94%
-		);
+			0.9997 99.94%);
 }
 
 .grid a:hover,
@@ -272,9 +306,7 @@ p {
 	border-radius: 5px;
 	overflow: hidden;
 	text-decoration: none;
-	transition: all 0.2s
-		linear(
-			0,
+	transition: all 0.2s linear(0,
 			0.0014 0.52%,
 			0.0066 1.14%,
 			0.0248 2.27%,
@@ -298,8 +330,7 @@ p {
 			1.0165 52.61%,
 			1.0062 67.18%,
 			1.0021 76.07%,
-			0.9997 99.94%
-		);
+			0.9997 99.94%);
 }
 
 @media (max-width: 768px) {
@@ -349,6 +380,7 @@ p {
 }
 
 @media (max-width: 768px) {
+
 	#h2titleindex,
 	#h2titlecontacts,
 	#h2titleabout,
