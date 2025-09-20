@@ -21,6 +21,7 @@
 	--about-text: black;
 	--hover-opacity: red;
 	--contact-link: black;
+	--friend-highlight: #ff8c9e;
 	scrollbar-gutter: stable;
 }
 
@@ -41,6 +42,7 @@
 	--about-text: rgba(255, 255, 255, 0.8);
 	--hover-opacity: rgba(12, 12, 12, 0.322);
 	--contact-link: white;
+	--friend-highlight: rgba(255, 255, 255, 0.514);
 	scrollbar-gutter: stable;
 }
 
