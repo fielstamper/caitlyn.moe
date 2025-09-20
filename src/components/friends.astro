@@ -1,23 +1,23 @@
 <div id="friends">
-    <slot />
+	<slot />
 </div>
 <style>
-    #friends {
-        height: 50px;
-        display: flex;
-        gap: 0.7em;
-        justify-content: flex-start;
-        flex: 1;
-    }
+	#friends {
+		height: 50px;
+		display: flex;
+		gap: 0.7em;
+		justify-content: flex-start;
+		flex: 1;
+	}
 </style>
 
 <script>
-    const friends = document.getElementById("friends")!;
-    const first = friends.firstElementChild;
+	const friends = document.getElementById("friends")!;
+	const first = friends.firstElementChild;
 
-    for (let i = friends.children.length; i > 1; i--) {
-        friends.appendChild(friends.children[(Math.random() * (i - 0)) | 0]);
-    }
+	for (let i = friends.children.length; i > 1; i--) {
+		friends.appendChild(friends.children[(Math.random() * (i - 0)) | 0]);
+	}
 
-    friends.insertBefore(first, friends.firstChild);
+	friends.insertBefore(first, friends.firstChild);
 </script>
