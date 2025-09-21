@@ -9,7 +9,7 @@
 		)
 			.then((response) => response.json())
 			.then((jsonData) => {
-				const lastfmGrid = document.getElementById("lastfm-grid");
+				const lastfmGrid = document.getElementById("lastfm-grid")!;
 				const tracks = jsonData.recenttracks.track;
 
 				for (const track of tracks) {
@@ -28,22 +28,11 @@
 					trackNameP.textContent = track.name;
 					trackNameP.classList.add("redColor");
 
-					function truncateText(text, length) {
-						if (text.length <= length) {
-							return text;
-						}
-
-						return text.substr(0, length) + "\u2026";
-					}
-
-					let trackNamePT;
-					trackNamePT = truncateText(track.name, 27);
-
 					const trackImg = document.createElement("img");
 					trackImg.src = track.image[2]["#text"];
 					trackImg.classList.add("trackImg");
 
-					trackAnchor.append(trackImg, trackNamePT, artistName);
+					trackAnchor.append(trackImg, trackNameP, artistName);
 					lastfmGrid.append(trackAnchor);
 				}
 			});
@@ -132,8 +121,13 @@
 
 	.redColor {
 		color: var(--track-name);
-		display: inline-block;
+		display: -webkit-box;
 		font-size: 16px;
+		text-overflow: ellipsis;
+		max-width: 7.3rem;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
 	}
 
 	.artistName {
