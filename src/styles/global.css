@@ -45,7 +45,7 @@ body {
 	position: relative;
 }
 
-#system-theme {
+#theme-system {
 	position: absolute;
 	opacity: 0;
 }
@@ -60,7 +60,7 @@ body {
 	opacity: 0;
 }
 
-#system-theme:hover {
+#theme-system:hover {
 	cursor: pointer;
 }
 
