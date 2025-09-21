@@ -26,6 +26,50 @@
 	scrollbar-gutter: stable;
 }
 
+.body {
+	--background: #fdf8ff;
+	--foreground: #2e2e2e;
+	--accent-color: #ff8c9e;
+	--separator: #6a6a6a;
+	--background-text: #181818;
+	--h3-color: #363636;
+	--border-color: #b9b9b9;
+	--foreground-item: #ffe8eb;
+	--manga-text: #181818;
+	--manga-title: #6c6c6c;
+	--track-name: #181818;
+	--artist-name: #6c6c6c;
+	--grid-header: black;
+	--about-text: black;
+	--hover-opacity: red;
+	--contact-link: black;
+	--friend-highlight: #ff8c9e;
+	--active-header-item: #ff8c9d34;
+	scrollbar-gutter: stable;
+}
+
+.body.dark {
+	--background: #181818;
+	--foreground: #c3c3c3;
+	--accent-color: rgb(247, 205, 247);
+	--separator: #303030;
+	--background-text: #e5e5e59f;
+	--h3-color: #acacac;
+	--border-color: #2a2a2a;
+	--foreground-item: #1e1e1e;
+	--manga-text: #dbdbdbe7;
+	--manga-title: #dbdbdb6e;
+	--track-name: #dbdbdbcb;
+	--artist-name: #dbdbdb4b;
+	--grid-header: white;
+	--about-text: rgba(255, 255, 255, 0.8);
+	--hover-opacity: rgba(12, 12, 12, 0.322);
+	--contact-link: white;
+	--friend-highlight: rgba(255, 255, 255, 0.514);
+	--active-header-item: rgba(88, 88, 88, 0.144);
+	scrollbar-gutter: stable;
+}
+
 .darkmode {
 	--background: #181818;
 	--foreground: #c3c3c3;

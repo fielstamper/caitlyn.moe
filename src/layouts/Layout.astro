@@ -24,7 +24,7 @@ import CherryBlossom from "../assets/cherryblossom.png";
 		/><meta content="loser" name="twitter:description" />
 		<title>caitlyn's site</title>
 		<link rel="icon" href={CherryBlossom.src} />
-		<script src="../components/darkmode.js"></script>
+		<script src="../components/darkmode.ts"></script>
 		<ClientRouter />
 	</head>
 
@@ -74,7 +74,13 @@ import CherryBlossom from "../assets/cherryblossom.png";
 		<hr />
 		<br />
 		<slot />
-	</body><style>
+	</body><script>
+		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			document.body.classList.add("dark");
+			document.querySelector("#dark").checked = true;
+		}
+	</script>
+	<style>
 		#header-box {
 			display: flex;
 			flex-direction: row;
