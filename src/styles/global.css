@@ -30,10 +30,6 @@ body {
 	scrollbar-gutter: stable;
 }
 
-#theme-light {
-	color: red;
-	background-color: red;
-}
 
 #theme-switch {
 	display: flex;
@@ -45,35 +41,21 @@ body {
 	position: relative;
 }
 
+
 #system-theme {
 	position: absolute;
-	opacity: 0;
+	display: none;
 }
 
 #theme-light {
 	position: absolute;
-	opacity: 0;
+	display: none;
 }
 
 #theme-dark {
 	position: absolute;
-	opacity: 0;
+	display: none;
 }
-
-#system-theme:hover {
-	cursor: pointer;
-}
-
-#theme-light:hover {
-	cursor: pointer;
-}
-
-#theme-dark:hover {
-	cursor: pointer;
-}
-
-
-
 
 @media (max-width: 768px) {
 	#theme-switch {
@@ -84,13 +66,13 @@ body {
 	}
 }
 
-#theme-switch svg {
+#theme-switch svg path {
 	fill: var(--contact-link);
 	margin-top: 5px;
 }
 
-#theme-switch svg:hover {
-	cursor: pointer;
+#theme-switch svg:hover path {
+	fill: red;
 }
 
 * {
