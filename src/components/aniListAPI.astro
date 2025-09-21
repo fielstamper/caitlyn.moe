@@ -1,6 +1,8 @@
 <div id="aniList-grid"><slot /></div>
 
 <script>
+	import { ANILIST_USER } from "../constants";
+
 	document.addEventListener("astro:page-load", () => {
 		fetch("https://graphql.anilist.co", {
 			method: "POST",
@@ -8,7 +10,7 @@
 			body: JSON.stringify({
 				query: `{
             Page(perPage: 50) {
-                activities(userId: 7495217, type: MEDIA_LIST, sort: ID_DESC) {
+                activities(userId: ${ANILIST_USER}, type: MEDIA_LIST, sort: ID_DESC) {
                     ... on ListActivity {
                         media {
                             siteUrl
@@ -26,7 +28,7 @@
 			.then((response) => response.json())
 			.then((jsonData) => {
 				console.log(jsonData);
-				const aniListGrid = document.getElementById("aniList-grid");
+				const aniListGrid = document.getElementById("aniList-grid")!;
 				const mangas = jsonData.data.Page.activities.slice(0, 5);
 
 				for (const manga of mangas) {
