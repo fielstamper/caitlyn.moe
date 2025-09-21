@@ -30,10 +30,6 @@ body {
 	scrollbar-gutter: stable;
 }
 
-#theme-light {
-	color: red;
-	background-color: red;
-}
 
 #theme-switch {
 	display: flex;
@@ -72,9 +68,6 @@ body {
 	cursor: pointer;
 }
 
-
-
-
 @media (max-width: 768px) {
 	#theme-switch {
 		position: relative;
@@ -84,13 +77,13 @@ body {
 	}
 }
 
-#theme-switch svg {
+#theme-switch svg path {
 	fill: var(--contact-link);
 	margin-top: 5px;
 }
 
-#theme-switch svg:hover {
-	cursor: pointer;
+#theme-switch svg:hover path {
+	fill: red;
 }
 
 * {
