@@ -61,7 +61,7 @@ import CherryBlossom from "../assets/cherryblossom.png";
 								value="light"
 								id="theme-light"
 							/>
-
+	
 							<svg
 								height="24px"
 								viewBox="0 -960 960 960"
@@ -92,7 +92,7 @@ import CherryBlossom from "../assets/cherryblossom.png";
 							>
 						</label>
 					</div>
-
+	
 					<style>
 						:root:has(#theme-dark:checked) {
 							color-scheme: dark;
@@ -102,12 +102,11 @@ import CherryBlossom from "../assets/cherryblossom.png";
 						}
 					</style>
 				</Header>
+				<slot name="below-header" />
 			</div>
-			<slot name="below-header" />
-		</div>
-		<slot name="beside-header" />
-		<div slot="beside-header">
-			<ProfilePicture />
+			<div>
+				<ProfilePicture />
+			</div>
 		</div>
 
 		<br />
