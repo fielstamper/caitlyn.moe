@@ -16,6 +16,7 @@ body {
 	--separator: light-dark(#6a6a6a, #303030);
 	--background-text: light-dark(#181818, #e5e5e59f);
 	--border-color: light-dark(#b9b9b9, #2a2a2a);
+	--img-border-color: light-dark(#b9b9b9, #2a2a2a00);
 	--foreground-item: light-dark(#ffe8eb, #1e1e1e);
 	--manga-text: light-dark(#181818, #dbdbdbe7);
 	--manga-title: light-dark(#6c6c6c, dbdbdb6e);
