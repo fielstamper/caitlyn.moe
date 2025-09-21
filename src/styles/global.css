@@ -41,20 +41,31 @@ body {
 	position: relative;
 }
 
-
-#system-theme {
+#theme-system {
 	position: absolute;
-	display: none;
+	opacity: 0;
 }
 
 #theme-light {
 	position: absolute;
-	display: none;
+	opacity: 0;
 }
 
 #theme-dark {
 	position: absolute;
-	display: none;
+	opacity: 0;
+}
+
+#theme-system:hover {
+	cursor: pointer;
+}
+
+#theme-light:hover {
+	cursor: pointer;
+}
+
+#theme-dark:hover {
+	cursor: pointer;
 }
 
 @media (max-width: 768px) {
