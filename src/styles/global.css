@@ -217,8 +217,13 @@ p {
 
 .gridHeader {
 	display: flex;
-	padding: 10px 0px 0 10px;
+	padding: 10px 10px 0 10px;
 	color: var(--grid-header);
+}
+
+.gridHeader svg:last-child {
+	margin-left: auto;
+	fill: var(--background-text);
 }
 
 .gridHeader img {
