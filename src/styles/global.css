@@ -5,134 +5,75 @@
 }
 
 :root {
-	--background: #fdf8ff;
-	--foreground: #2e2e2e;
-	--accent-color: #ff8c9e;
-	--separator: #6a6a6a;
-	--background-text: #181818;
-	--h3-color: #363636;
-	--border-color: #b9b9b9;
-	--foreground-item: #ffe8eb;
-	--manga-text: #181818;
-	--manga-title: #6c6c6c;
-	--track-name: #181818;
-	--artist-name: #6c6c6c;
-	--grid-header: black;
-	--about-text: black;
-	--hover-opacity: red;
-	--contact-link: black;
-	--friend-highlight: #ff8c9e;
-	--active-header-item: #ff8c9d34;
+	color-scheme: light dark;
 	scrollbar-gutter: stable;
 }
 
-.body {
-	--background: #fdf8ff;
-	--foreground: #2e2e2e;
-	--accent-color: #ff8c9e;
-	--separator: #6a6a6a;
-	--background-text: #181818;
-	--h3-color: #363636;
-	--border-color: #b9b9b9;
-	--foreground-item: #ffe8eb;
-	--manga-text: #181818;
-	--manga-title: #6c6c6c;
-	--track-name: #181818;
-	--artist-name: #6c6c6c;
-	--grid-header: black;
-	--about-text: black;
-	--hover-opacity: red;
-	--contact-link: black;
-	--friend-highlight: #ff8c9e;
-	--active-header-item: #ff8c9d34;
+body {
+	--background: light-dark(#fdf8ff, #181818);
+	--foreground: light-dark(#2e2e2e, #c3c3c3);
+	--accent-color: light-dark(#ff8c9e, rgb(247, 205, 247));
+	--separator: light-dark(#6a6a6a, #303030);
+	--background-text: light-dark(#181818, #e5e5e59f);
+	--border-color: light-dark(#b9b9b9, #2a2a2a);
+	--foreground-item: light-dark(#ffe8eb, #1e1e1e);
+	--manga-text: light-dark(#181818, #dbdbdbe7);
+	--manga-title: light-dark(#6c6c6c, dbdbdb6e);
+	--track-name: light-dark(#181818, #dbdbdbcb);
+	--artist-name: light-dark(#6c6c6c, #dbdbdb4b);
+	--grid-header: light-dark(black, white);
+	--about-text: light-dark(black, rgba(255, 255, 255, 0.8));
+	--hover-opacity: light-dark(red, rgba(12, 12, 12, 0.322));
+	--contact-link: light-dark(black, white);
+	--friend-highlight: light-dark(#ff8c9e, rgba(255, 255, 255, 0.514));
+	--active-header-item: light-dark(#ff8c9d34, rgba(88, 88, 88, 0.144));
 	scrollbar-gutter: stable;
 }
 
-.body.dark {
-	--background: #181818;
-	--foreground: #c3c3c3;
-	--accent-color: rgb(247, 205, 247);
-	--separator: #303030;
-	--background-text: #e5e5e59f;
-	--h3-color: #acacac;
-	--border-color: #2a2a2a;
-	--foreground-item: #1e1e1e;
-	--manga-text: #dbdbdbe7;
-	--manga-title: #dbdbdb6e;
-	--track-name: #dbdbdbcb;
-	--artist-name: #dbdbdb4b;
-	--grid-header: white;
-	--about-text: rgba(255, 255, 255, 0.8);
-	--hover-opacity: rgba(12, 12, 12, 0.322);
-	--contact-link: white;
-	--friend-highlight: rgba(255, 255, 255, 0.514);
-	--active-header-item: rgba(88, 88, 88, 0.144);
-	scrollbar-gutter: stable;
-}
-
-.darkmode {
-	--background: #181818;
-	--foreground: #c3c3c3;
-	--accent-color: rgb(247, 205, 247);
-	--separator: #303030;
-	--background-text: #e5e5e59f;
-	--h3-color: #acacac;
-	--border-color: #2a2a2a;
-	--foreground-item: #1e1e1e;
-	--manga-text: #dbdbdbe7;
-	--manga-title: #dbdbdb6e;
-	--track-name: #dbdbdbcb;
-	--artist-name: #dbdbdb4b;
-	--grid-header: white;
-	--about-text: rgba(255, 255, 255, 0.8);
-	--hover-opacity: rgba(12, 12, 12, 0.322);
-	--contact-link: white;
-	--friend-highlight: rgba(255, 255, 255, 0.514);
-	--active-header-item: rgba(88, 88, 88, 0.144);
-	scrollbar-gutter: stable;
+#theme-light {
+	color: red;
+	background-color: red;
 }
 
 #theme-switch {
-	height: 50px;
-	width: 50px;
-	padding: 0;
-	border-radius: 8px;
-	background-color: var(--background);
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	border: 1px solid var(--border-color);
-	transition: all 0.2s linear(0,
-			0.0014 0.52%,
-			0.0066 1.14%,
-			0.0248 2.27%,
-			0.0553 3.51%,
-			0.1016 4.96%,
-			0.1988 7.44%,
-			0.4395 12.92%,
-			0.5468 15.5%,
-			0.6508 18.29%,
-			0.7369 20.98%,
-			0.8114,
-			0.8711 26.56%,
-			0.8967 28.01%,
-			0.9204,
-			0.9406,
-			0.9576 32.66%,
-			0.982 35.55%,
-			0.9998 38.76%,
-			1.0112 42.37%,
-			1.0167 46.51%,
-			1.0165 52.61%,
-			1.0062 67.18%,
-			1.0021 76.07%,
-			0.9997 99.94%);
+	gap: 10px;
 }
 
-#theme-switch:hover {
-	background-color: rgba(12, 12, 12, 0.336);
+.theme-label {
+	position: relative;
+}
+
+#system-theme {
+	position: absolute;
+	opacity: 0;
+}
+
+#theme-light {
+	position: absolute;
+	opacity: 0;
+}
+
+#theme-dark {
+	position: absolute;
+	opacity: 0;
+}
+
+#system-theme:hover {
 	cursor: pointer;
 }
+
+#theme-light:hover {
+	cursor: pointer;
+}
+
+#theme-dark:hover {
+	cursor: pointer;
+}
+
+
+
 
 @media (max-width: 768px) {
 	#theme-switch {
@@ -145,18 +86,11 @@
 
 #theme-switch svg {
 	fill: var(--contact-link);
+	margin-top: 5px;
 }
 
-#theme-switch svg:last-child {
-	display: none;
-}
-
-.darkmode #theme-switch svg:first-child {
-	display: none;
-}
-
-.darkmode #theme-switch svg:last-child {
-	display: block;
+#theme-switch svg:hover {
+	cursor: pointer;
 }
 
 * {
