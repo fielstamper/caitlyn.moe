@@ -57,17 +57,6 @@ body {
 	display: none;
 }
 
-#theme-system:hover {
-	cursor: pointer;
-}
-
-#theme-light:hover {
-	cursor: pointer;
-}
-
-#theme-dark:hover {
-	cursor: pointer;
-}
 
 @media (max-width: 768px) {
 	#theme-switch {
@@ -84,7 +73,11 @@ body {
 }
 
 #theme-switch svg:hover path {
-	fill: var(--theme-switch-icon)
+	fill: var(--theme-switch-icon);
+}
+
+.theme-label:hover {
+	cursor: pointer;
 }
 
 * {
