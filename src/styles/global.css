@@ -27,6 +27,7 @@ body {
 	--contact-link: light-dark(black, white);
 	--friend-highlight: light-dark(#ff8c9e, rgba(255, 255, 255, 0.514));
 	--active-header-item: light-dark(#ff8c9d34, rgba(88, 88, 88, 0.144));
+	--theme-switch-icon: light-dark(#ff8c9e, rgb(247, 205, 247));
 	scrollbar-gutter: stable;
 }
 
@@ -35,6 +36,7 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	margin-top: 5px;
 }
 
 .theme-label {
@@ -43,17 +45,17 @@ body {
 
 #theme-system {
 	position: absolute;
-	opacity: 0;
+	display: none;
 }
 
 #theme-light {
 	position: absolute;
-	opacity: 0;
+	display: none;
 }
 
 #theme-dark {
 	position: absolute;
-	opacity: 0;
+	display: none;
 }
 
 #theme-system:hover {
@@ -83,7 +85,7 @@ body {
 }
 
 #theme-switch svg:hover path {
-	fill: red;
+	fill: var(--theme-switch-icon)
 }
 
 * {
