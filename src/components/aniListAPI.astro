@@ -43,11 +43,14 @@
 					mangaCover.classList.add("mangaCover");
 
 					mangaAnchor.setAttribute("href", manga.media.siteUrl);
-					mangaAnchor.classList.add("mangaText");
+
+					function capitaliseFirstLetter(name: string): string {
+						return name.charAt(0).toUpperCase() + name.slice(1);
+					}
 
 					const mangaStatus = document.createElement("span");
-					mangaStatus.textContent = manga.status + " ";
-					mangaStatus.classList.add("mangaText");
+					mangaStatus.textContent =
+						capitaliseFirstLetter(manga.status) + " ";
 
 					const mangaChapter = document.createElement("span");
 					mangaChapter.textContent = manga.progress;
@@ -56,12 +59,15 @@
 					mangaTitle.textContent = manga.media.title.romaji;
 					mangaTitle.classList.add("mangaTitle");
 
-					mangaAnchor.append(
-						mangaCover,
-						mangaStatus,
-						mangaChapter,
-						mangaTitle,
-					);
+					const mangaTextFront = document.createElement("p");
+					mangaTextFront.append(mangaStatus, mangaChapter);
+					mangaTextFront.classList.add("mangaTextFront");
+
+					const mangaText = document.createElement("p");
+					mangaText.append(mangaTextFront, mangaTitle);
+					mangaText.classList.add("mangaText");
+
+					mangaAnchor.append(mangaCover, mangaText);
 					aniListGrid.append(mangaAnchor);
 				}
 			});
@@ -69,6 +75,10 @@
 </script>
 
 <style is:global>
+	.mangaText:hover {
+		opacity: 50%;
+		cursor: pointer;
+	}
 	#aniList-grid {
 		display: flex;
 		width: 50em;
@@ -86,7 +96,7 @@
 		}
 	}
 
-	.mangaText {
+	.mangaTextFront {
 		color: var(--manga-text);
 		font-size: 16px;
 		text-decoration: none;
@@ -97,8 +107,13 @@
 		width: 125px;
 	}
 
+	.mangaAnchor:hover {
+		cursor: default;
+	}
+
 	.mangaTitle {
-		color: var(--manga-title);
+		color: var(--artist-name);
+		font-size: 14px;
 	}
 
 	.mangaAnchor img {
@@ -146,5 +161,6 @@
 	.mangaAnchor img:hover {
 		background-color: var(--hover-opacity);
 		opacity: 40%;
+		cursor: pointer;
 	}
 </style>
