@@ -213,6 +213,8 @@ p {
 .grid a:hover,
 .grid2 a:hover {
 	background-color: rgba(12, 12, 12, 0.336);
+	box-shadow: 1px 1px 4px #000000cb;
+	transform: translateY(-2px);
 }
 
 .gridHeader {
