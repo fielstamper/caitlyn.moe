@@ -1,37 +1,37 @@
 ---
+import { Image } from "astro:assets";
 import Caitlyn from "../assets/caitlyn.png";
-import Image from "astro/components/Image.astro";
 ---
 
 <a href="https://x.com/lililjiliijili/status/996590059968081920">
-    <Image
-        src={Caitlyn}
-        alt="My pfp"
-        width={500}
-        fetchpriority="high"
-        widths={[240, 540, 720, Caitlyn.width]}
-        sizes={`(max-width: 360px) 240px, (max-width: 720px) 152px, (max-width: 1600px) 152px, ${Caitlyn.width}px`}
-    />
+	<Image
+		src={Caitlyn}
+		alt="My pfp"
+		width={500}
+		fetchpriority="high"
+		widths={[240, 540, 720, Caitlyn.width]}
+		sizes={`(max-width: 360px) 240px, (max-width: 720px) 152px, (max-width: 1600px) 152px, ${Caitlyn.width}px`}
+	/>
 </a>
 <style>
-    img {
-        width: 9.5em;
-        height: 9.5em;
-        margin-top: 1em;
-        border-radius: 8px;
-        opacity: 100%;
-        transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-    }
+	img {
+		width: 9.5em;
+		height: 9.5em;
+		margin-top: 1em;
+		border-radius: 8px;
+		opacity: 100%;
+		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+	}
 
-    @media (max-width: 768px) {
-        img {
-            height: 6em;
-            width: 6em;
-            margin-top: 5em;
-            margin-left: -6.25em;
-        }
-    }
-    img:hover {
-        opacity: 40%;
-    }
+	@media (max-width: 768px) {
+		img {
+			height: 6em;
+			width: 6em;
+			margin-top: 5em;
+			margin-left: -6.25em;
+		}
+	}
+	img:hover {
+		opacity: 40%;
+	}
 </style>

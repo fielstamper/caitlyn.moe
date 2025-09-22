@@ -1,37 +1,37 @@
 ---
 const { href, pfp } = Astro.props;
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 ---
 
 <a href={href}>
-    <Image
-        src={pfp}
-        alt="Album Cover"
-        widths={[240, 540, 720, pfp.width]}
-        sizes={`(max-width: 360px) 240px, (max-width: 720px) 110px, (max-width: 1600px) 97px, ${pfp.width}px`}
-    />
+	<Image
+		src={pfp}
+		alt="Album Cover"
+		widths={[240, 540, 720, pfp.width]}
+		sizes={`(max-width: 360px) 240px, (max-width: 720px) 110px, (max-width: 1600px) 97px, ${pfp.width}px`}
+	/>
 </a>
 
 <style>
-    img {
-        height: 100%;
-        width: 100%;
-        object-fit: fill;
-        border: 1px solid var(--img-border-color);
-        transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-        opacity: 100%;
-        border-radius: 8px;
-    }
+	img {
+		height: 100%;
+		width: 100%;
+		object-fit: fill;
+		border: 1px solid var(--img-border-color);
+		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+		opacity: 100%;
+		border-radius: 8px;
+	}
 
-    img:hover {
-        background-color: rgba(12, 12, 12, 0.336);
-        opacity: 50%;
-    }
+	img:hover {
+		background-color: rgba(12, 12, 12, 0.336);
+		opacity: 50%;
+	}
 
-    @media (max-width: 768px) {
-        a {
-            min-width: 97px;
-            min-height: 97px;
-        }
-    }
+	@media (max-width: 768px) {
+		a {
+			min-width: 97px;
+			min-height: 97px;
+		}
+	}
 </style>

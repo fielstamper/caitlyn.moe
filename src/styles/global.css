@@ -59,7 +59,6 @@ body {
 	display: none;
 }
 
-
 @media (max-width: 768px) {
 	#theme-switch {
 		position: relative;
@@ -82,9 +81,7 @@ body {
 
 #theme-switch svg:hover path {
 	fill: var(--theme-switch-icon);
-
 }
-
 
 .theme-label:hover {
 	cursor: pointer;
@@ -228,7 +225,6 @@ p {
 	color: var(--accent-color);
 	opacity: 100%;
 	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-
 }
 
 .hyperlink:hover {
@@ -320,7 +316,6 @@ p {
 }
 
 @media (max-width: 768px) {
-
 	#h2titleindex,
 	#h2titlecontacts,
 	#h2titleabout,
