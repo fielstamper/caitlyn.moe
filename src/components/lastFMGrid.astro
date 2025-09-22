@@ -1,137 +1,73 @@
-<div id="lastfm-grid"><slot /></div>
+<div id="lastfm-grid"></div>
 
 <script>
-	document.addEventListener("astro:page-load", () => {
-		const LASTFM_KEY = "e2567caa43c5b556780a6470968e8bb1";
+	import type { AudioscrobblerTrack } from "../types";
+	import { LASTFM_KEY, LASTFM_USER } from "../constants";
 
+	function truncate(str: string, maxLength: number): string {
+		if (str.length <= maxLength) return str;
+		return str.slice(0, maxLength) + "...";
+	}
+
+	function makeDisplayFromTrack(
+		track: AudioscrobblerTrack,
+	): HTMLAnchorElement {
+		const container = document.createElement("a");
+		const art = document.createElement("img");
+		const title = document.createElement("p");
+		const artist = document.createElement("footer");
+
+		container.href = track.url;
+		art.src = track.image[2]["#text"];
+		title.textContent = truncate(track.name, 27);
+		artist.textContent = truncate(track.artist.name, 15);
+
+		container.append(art, title, artist);
+		return container;
+	}
+
+	document.addEventListener("astro:page-load", () => {
 		fetch(
-			"https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=lightafterruin&api_key=e2567caa43c5b556780a6470968e8bb1&extended=1&format=json&limit=5",
+			`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_KEY}&extended=1&format=json&limit=5`,
 		)
 			.then((response) => response.json())
 			.then((jsonData) => {
 				const lastfmGrid = document.getElementById("lastfm-grid")!;
-				const tracks = jsonData.recenttracks.track;
-
-				for (const track of tracks) {
-					const trackURL = document.createElement("p");
-					trackURL.textContent = track.url;
-
-					const trackAnchor = document.createElement("a");
-					trackAnchor.className = "track";
-					trackAnchor.setAttribute("href", track.url);
-					trackAnchor.classList.add("trackAnchor");
-
-					const artistName = document.createElement("p");
-					artistName.textContent = track.artist.name;
-					artistName.classList.add("artistName");
-
-					const trackNameP = document.createElement("p");
-					trackNameP.textContent = track.name;
-					trackNameP.classList.add("redColor");
-
-					const trackImg = document.createElement("img");
-					trackImg.src = track.image[2]["#text"];
-					trackImg.classList.add("trackImg");
-
-					const fmText = document.createElement("p");
-					fmText.append(trackNameP, artistName);
-					fmText.classList.add("fmText");
-
-					trackAnchor.append(trackImg, fmText);
-					lastfmGrid.append(trackAnchor);
-				}
+				const tracks: AudioscrobblerTrack[] =
+					jsonData.recenttracks.track;
+				tracks
+					.map(makeDisplayFromTrack)
+					.forEach((track) => lastfmGrid.append(track));
 			});
 	});
 </script>
 
-<style is:global>
-	.trackAnchor {
-		opacity: 100%;
-		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-	}
-
-	.trackAnchor:hover {
-		opacity: 40%;
-	}
-	#lastfm-grid {
+<style>
+	div {
 		display: flex;
-		width: 50em;
-		overflow: hidden;
+		justify-content: space-between;
 		text-align: center;
-		height: 13em;
-		gap: 43px;
+		overflow-x: scroll;
+		gap: 1rem;
 	}
-
-	.fmText:hover {
-		cursor: pointer;
-	}
-
-	@media (max-width: 768px) {
-		#lastfm-grid {
-			width: 100%;
-			padding-left: 10px;
-			overflow-x: scroll;
-			height: 13em;
-			font-size: 14px;
-			gap: 20px;
-		}
-	}
-
-	.track {
+	div > :global(a) {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
 		text-decoration: none;
-		height: 300px;
-		width: 125px;
+		align-items: center;
+		width: 7.813rem;
 	}
-
-	.track:hover {
-		cursor: default;
-	}
-
-	@media (max-wdith: 768px) {
-		.track {
-			max-width: 100px !important;
-		}
-	}
-
-	.trackImg {
-		height: 125px;
-		width: 125px;
+	div :global(img) {
+		width: 7.813rem;
+		height: 7.813rem;
 		border-radius: 8px;
 	}
-
-	@media (max-width: 768px) {
-		.trackImg {
-			height: 100px;
-			width: 100px;
-		}
+	div :global(p) {
+		color: var(--foreground);
 	}
-
-	.trackImg:hover {
-		cursor: pointer;
-	}
-
-	.redColor {
-		color: var(--track-name);
-		display: -webkit-box;
-		font-size: 16px;
-		text-overflow: ellipsis;
-		max-width: 7.3rem;
-		overflow: hidden;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-	}
-
-	.artistName {
-		font-weight: 200px;
-		color: var(--artist-name);
-		font-size: 14px;
-		display: block;
-		text-overflow: ellipsis;
-	}
-
-	@media (max-width: 768px) {
-		.artistName {
-			font-size: 12px;
-		}
+	div :global(footer) {
+		color: var(--background-text);
+		font-size: 0.8rem;
 	}
 </style>
