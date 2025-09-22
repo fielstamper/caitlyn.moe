@@ -1,0 +1,30 @@
+<div>
+	<slot />
+</div>
+<style>
+	div {
+		display: flex;
+		gap: 1rem;
+		margin: auto;
+		max-width: 520px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	div :global(a) {
+		display: flex;
+		padding: 0.4rem 1.4rem;
+		background-color: var(--foreground-item);
+		box-shadow: 1px 1px 2px #0000005b;
+		border: 1px solid var(--border-color);
+		border-radius: 5px;
+		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+	}
+	div :global(a:hover) {
+		background-color: rgba(12, 12, 12, 0.336);
+	}
+	div :global(svg) {
+		width: 40px;
+		height: 40px;
+		fill: var(--foreground);
+	}
+</style>

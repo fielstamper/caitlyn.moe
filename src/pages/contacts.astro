@@ -9,58 +9,57 @@ import Osu from "@assets/icons/brands/osu.svg";
 import Steam from "@assets/icons/brands/steam.svg";
 import X from "@assets/icons/brands/x.svg";
 import Layout from "../layouts/Layout.astro";
+import Socials from "@components/socials.astro";
 ---
 
 <Layout>
 	<div slot="below-header">
-		<h2 id="h2titlecontacts" class="accent-color" );>My Links</h2>
+		<h2 id="h2titlecontacts" class="accent-color">My Links</h2>
 	</div>
-	<div id="contactBody">
-		<div id="contactHeader">
-			<a href="https://osu.ppy.sh/users/38439190" title="osu!">
-				<Osu width={40} height={40} fill="var(--contact-link)" />
-			</a>
-			<a
-				href="https://discord.com/users/1274066499786768416 "
-				title="Discord"
-			>
-				<Discord width={40} height={40} fill="var(--contact-link)" />
-			</a>
-			<a href="https://github.com/fielstamper" title="Github">
-				<Github width={40} height={40} fill="var(--contact-link)" />
-			</a>
-			<a href="https://codeberg.org/caitlyn" title="Codeberg">
-				<Codeberg
-					width={40}
-					height={40}
-					fill="var(--contact-link)"
-				/></a
-			>
-			<a href="https://www.last.fm/user/lightafterruin" title="Last.fm">
-				<LastFm width={40} height={40} fill="var(--contact-link)" />
-			</a>
-			<a
-				href="https://myanimelist.net/profile/clairegaming942"
-				title="MyAnimeList"
-			>
-				<MyAnimeList
-					width={40}
-					height={40}
-					fill="var(--contact-link)"
-				/>
-			</a>
-			<a href="https://anilist.co/user/aussieauntie/" title="AniList">
-				<AniList width={40} height={40} fill="var(--contact-link)" />
-			</a>
-			<a href="https://x.com/goodsoulsthrive" title="X">
-				<X width={36} height={36} fill="var(--contact-link)" />
-			</a>
-			<a
-				href="https://steamcommunity.com/profiles/76561198787864710/"
-				title="Steam"
-			>
-				<Steam width={40} height={40} fill="var(--contact-link)" /></a
-			>
-		</div>
-	</div>
+	<Socials>
+		<a href="https://osu.ppy.sh/users/38439190" title="osu!">
+			<Osu width={40} height={40} fill="var(--contact-link)" />
+		</a>
+		<a
+			href="https://discord.com/users/1274066499786768416 "
+			title="Discord"
+		>
+			<Discord width={40} height={40} fill="var(--contact-link)" />
+		</a>
+		<a href="https://github.com/fielstamper" title="Github">
+			<Github width={40} height={40} fill="var(--contact-link)" />
+		</a>
+		<a href="https://codeberg.org/caitlyn" title="Codeberg">
+			<Codeberg
+				width={40}
+				height={40}
+				fill="var(--contact-link)"
+			/></a
+		>
+		<a href="https://www.last.fm/user/lightafterruin" title="Last.fm">
+			<LastFm width={40} height={40} fill="var(--contact-link)" />
+		</a>
+		<a
+			href="https://myanimelist.net/profile/clairegaming942"
+			title="MyAnimeList"
+		>
+			<MyAnimeList
+				width={40}
+				height={40}
+				fill="var(--contact-link)"
+			/>
+		</a>
+		<a href="https://anilist.co/user/aussieauntie/" title="AniList">
+			<AniList width={40} height={40} fill="var(--contact-link)" />
+		</a>
+		<a href="https://x.com/goodsoulsthrive" title="X">
+			<X width={36} height={36} fill="var(--contact-link)" />
+		</a>
+		<a
+			href="https://steamcommunity.com/profiles/76561198787864710/"
+			title="Steam"
+		>
+			<Steam width={40} height={40} fill="var(--contact-link)" /></a
+		>
+	</Socials>
 </Layout>

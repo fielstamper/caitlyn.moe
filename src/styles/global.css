@@ -232,53 +232,6 @@ p {
 	text-decoration: underline;
 }
 
-#contactBody {
-	display: flex;
-	justify-content: center;
-}
-
-#contactHeader {
-	display: flex;
-	flex-wrap: wrap;
-	height: 8em;
-	width: 32em;
-	padding-top: 20px;
-	justify-content: center;
-	gap: 1em;
-}
-
-@media (max-width: 768px) {
-	#contactHeader {
-		margin-left: 0;
-	}
-}
-
-#contactHeader a {
-	width: 84px;
-	height: 56px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: var(--foreground-item);
-	box-shadow: 1px 1px 2px #0000005b;
-	border: 1px solid var(--border-color);
-	border-radius: 5px;
-	overflow: hidden;
-	text-decoration: none;
-	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-}
-
-@media (max-width: 768px) {
-	#contactHeader a {
-		width: 76px;
-		height: 48px;
-	}
-}
-
-#contactHeader a:hover {
-	background-color: rgba(12, 12, 12, 0.336);
-}
-
 #aboutContainerParent {
 	display: flex;
 	justify-content: center;

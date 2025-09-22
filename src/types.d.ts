@@ -11,3 +11,17 @@ export interface AudioscrobblerTrack {
 		{ size: "extralarge"; "#text": string },
 	];
 }
+
+export interface AnilistActivity {
+	status: string;
+	progress: string;
+	media: {
+		siteUrl: string;
+		coverImage: {
+			extraLarge: string;
+		};
+		title: {
+			romaji: string;
+		};
+	};
+}

@@ -1,4 +1,8 @@
-<div id="lastfm-grid"></div>
+---
+import ScrollingGrid from "@components/scrollingGrid.astro";
+---
+
+<ScrollingGrid id="lastfm-grid" />
 
 <script>
 	import type { AudioscrobblerTrack } from "../types";
@@ -26,7 +30,7 @@
 		return container;
 	}
 
-	document.addEventListener("astro:page-load", () => {
+	document.addEventListener("astro:page-load", () =>
 		fetch(
 			`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_KEY}&extended=1&format=json&limit=5`,
 		)
@@ -38,36 +42,6 @@
 				tracks
 					.map(makeDisplayFromTrack)
 					.forEach((track) => lastfmGrid.append(track));
-			});
-	});
+			}),
+	);
 </script>
-
-<style>
-	div {
-		display: flex;
-		justify-content: space-between;
-		text-align: center;
-		overflow-x: scroll;
-		gap: 1rem;
-	}
-	div > :global(a) {
-		display: flex;
-		flex-direction: column;
-		gap: 4px;
-		text-decoration: none;
-		align-items: center;
-		width: 7.813rem;
-	}
-	div :global(img) {
-		width: 7.813rem;
-		height: 7.813rem;
-		border-radius: 8px;
-	}
-	div :global(p) {
-		color: var(--foreground);
-	}
-	div :global(footer) {
-		color: var(--background-text);
-		font-size: 0.8rem;
-	}
-</style>
