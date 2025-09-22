@@ -14,7 +14,8 @@ body {
 	--foreground: light-dark(#2e2e2e, #c3c3c3);
 	--accent-color: light-dark(#ff8c9e, rgb(247, 205, 247));
 	--separator: light-dark(#6a6a6a, #303030);
-	--background-text: light-dark(#181818, #e5e5e59f);
+	--background-text: light-dark(#181818, #e5e5e594);
+	--navi-color: light-dark(#181818, #e5e5e5ad);
 	--border-color: light-dark(#b9b9b9, #2a2a2a);
 	--img-border-color: light-dark(#b9b9b9, #2a2a2a00);
 	--foreground-item: light-dark(#ffe8eb, #1e1e1e);
@@ -35,7 +36,7 @@ body {
 #theme-switch {
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	gap: 8px;
 	margin-top: 5px;
 }
 
@@ -69,7 +70,7 @@ body {
 }
 
 #theme-switch svg path {
-	fill: var(--contact-link);
+	fill: var(--background-text);
 	margin-top: 5px;
 }
 
@@ -354,6 +355,7 @@ p {
 	font-weight: bold;
 	font-size: 30px;
 	margin-top: 16px;
+	margin-bottom: 0;
 }
 
 @media (max-width: 768px) {
