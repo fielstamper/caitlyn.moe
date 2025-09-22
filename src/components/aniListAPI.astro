@@ -7,6 +7,7 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 <script>
 	import type { AnilistActivity } from "types";
 	import { ANILIST_USER } from "../constants";
+	import { gql } from "graphql-tag";
 
 	function makeDisplayFromActivity(
 		activity: AnilistActivity,
@@ -31,21 +32,24 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 			method: "POST",
 			headers: { "content-type": "application/json" },
 			body: JSON.stringify({
-				query: `{
-					Page(perPage: 5) {
-						activities(userId: ${ANILIST_USER}, type: MEDIA_LIST, sort: ID_DESC) {
-							... on ListActivity {
-								media {
-									siteUrl
-									title { romaji }
-									coverImage { extraLarge }
-									type
+				query: gql`
+					query($userId: Int) {
+						Page(perPage: 5) {
+							activities(userId: $userId, type: MEDIA_LIST, sort: ID_DESC) {
+								... on ListActivity {
+									media {
+										siteUrl
+										title { romaji }
+										coverImage { extraLarge }
+										type
+									}
+									status progress createdAt
 								}
-								status progress createdAt
 							}
 						}
 					}
-				}`,
+				`.loc.source.body,
+				variables: { userId: ANILIST_USER }
 			}),
 		})
 			.then((response) => response.json())

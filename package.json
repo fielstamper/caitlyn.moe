@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "astro": "^5.13.7",
+    "graphql-tag": "^2.12.6",
     "three": "^0.180.0"
   },
   "devDependencies": {
