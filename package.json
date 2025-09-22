@@ -1,19 +1,19 @@
 {
-  "name": "caitlyn-moe",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^5.13.7",
-    "graphql-tag": "^2.12.6",
-    "three": "^0.180.0"
-  },
-  "devDependencies": {
-    "@types/three": "^0.180.0"
-  }
+	"name": "caitlyn.moe",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"astro": "^5.13.7",
+		"graphql-tag": "^2.12.6",
+		"three": "^0.180.0"
+	},
+	"devDependencies": {
+		"@types/three": "^0.180.0"
+	}
 }
