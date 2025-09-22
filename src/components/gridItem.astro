@@ -1,0 +1,64 @@
+---
+import ExternalIcon from "@assets/icons/external.svg";
+interface Props {
+	link?: string;
+	icon?: string;
+	title?: string;
+	description?: string;
+}
+const { link, icon, title, description = "" } = Astro.props as Props;
+---
+
+<a
+	href={link}
+	class={!title ? "disabled" : ""}
+	aria-hidden={!title}
+	aria-label={title ? `A link to “${title}”` : "Grid item"}
+>
+	<div class="heading">
+		{icon && <img aria-hidden src={icon} />}
+		<span class="grid-title">{title ?? "n/a"}</span>
+		<ExternalIcon aria-hidden fill="var(--background-text)" />
+	</div>
+	{description}
+</a>
+<style>
+	a {
+		background-color: var(--foreground-item);
+		box-shadow: 1px 1px 2px #0000005b;
+		border: 1px solid var(--border-color);
+		border-radius: 8px;
+		overflow: hidden;
+		text-decoration: none;
+		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+		padding: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		min-height: 4.5rem;
+		color: var(--background-text);
+	}
+	a.disabled,
+	a.disabled * {
+		color: var(--background-text) !important;
+		cursor: not-allowed;
+		user-select: none;
+	}
+	a * {
+		font-size: 1rem;
+	}
+	a .heading {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+	a .heading .grid-title {
+		flex: 1;
+		color: var(--grid-header);
+	}
+	a .heading img {
+		border-radius: 9999px;
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+</style>
