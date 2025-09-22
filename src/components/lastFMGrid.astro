@@ -19,6 +19,7 @@
 					const trackAnchor = document.createElement("a");
 					trackAnchor.className = "track";
 					trackAnchor.setAttribute("href", track.url);
+					trackAnchor.classList.add("trackAnchor");
 
 					const artistName = document.createElement("p");
 					artistName.textContent = track.artist.name;
@@ -44,6 +45,14 @@
 </script>
 
 <style is:global>
+	.trackAnchor {
+		opacity: 100%;
+		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+	}
+
+	.trackAnchor:hover {
+		opacity: 40%;
+	}
 	#lastfm-grid {
 		display: flex;
 		width: 50em;
@@ -53,16 +62,8 @@
 		gap: 43px;
 	}
 
-	.fmText {
-		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-		border-radius: 8px;
-		opacity: 100%;
-	}
-
 	.fmText:hover {
 		cursor: pointer;
-		opacity: 50%;
-		opacity: 40%;
 	}
 
 	@media (max-width: 768px) {
@@ -95,9 +96,7 @@
 	.trackImg {
 		height: 125px;
 		width: 125px;
-		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
 		border-radius: 8px;
-		opacity: 100%;
 	}
 
 	@media (max-width: 768px) {
@@ -108,8 +107,6 @@
 	}
 
 	.trackImg:hover {
-		background-color: rgba(12, 12, 12, 0.336);
-		opacity: 40%;
 		cursor: pointer;
 	}
 
