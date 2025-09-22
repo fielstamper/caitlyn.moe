@@ -63,9 +63,14 @@ body {
 @media (max-width: 768px) {
 	#theme-switch {
 		position: relative;
-		top: 0px;
-		right: 0px;
 		height: 40px;
+		gap: 5px;
+	}
+}
+
+@media (max-width: 768px) {
+	#splash-subtext {
+		font-size: 14px;
 	}
 }
 
