@@ -3,11 +3,16 @@
 </div>
 <style>
 	#friends {
-		height: 50px;
 		display: flex;
 		gap: 0.7em;
 		justify-content: flex-start;
 		flex: 1;
+	}
+
+	@media (max-width: 768px) {
+		#friends {
+			flex-wrap: wrap;
+		}
 	}
 </style>
 
