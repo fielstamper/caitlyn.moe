@@ -40,6 +40,7 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 				const tracks: AudioscrobblerTrack[] =
 					jsonData.recenttracks.track;
 				tracks
+					.slice(0,5)
 					.map(makeDisplayFromTrack)
 					.forEach((track) => lastfmGrid.append(track));
 			}),
