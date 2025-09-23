@@ -1,35 +1,35 @@
 <div id="albums">
-    <slot />
+	<slot />
 </div>
 <style>
-    #albums {
-        height: 6em;
-        display: flex;
-        gap: 0.6em;
-        margin-bottom: 10px;
-        align-items: center;
-        justify-content: space-around;
-    }
+	#albums {
+		height: 6em;
+		display: flex;
+		gap: 0.6em;
+		margin-bottom: 10px;
+		align-items: center;
+		justify-content: space-around;
+	}
 
-    @media (max-width: 768px) {
-        #albums {
-            height: 7em;
-            display: flex;
-            justify-content: center;
-            gap: 0.25em;
-            flex-wrap: none;
-            overflow-x: scroll;
-            overflow-y: none;
-        }
-    }
+	@media (max-width: 768px) {
+		#albums {
+			height: 7em;
+			display: flex;
+			justify-content: center;
+			gap: 0.25em;
+			flex-wrap: none;
+			overflow-x: scroll;
+			overflow-y: none;
+		}
+	}
 </style>
 
 <script>
-    document.addEventListener("astro:page-load", () => {
-        const albums = document.getElementById("albums")!;
+	document.addEventListener("astro:page-load", () => {
+		const albums = document.getElementById("albums")!;
 
-        for (let i = albums.children.length; i > 1; i--) {
-            albums.appendChild(albums.children[(Math.random() * (i - 0)) | 0]);
-        }
-    });
+		for (let i = albums.children.length; i > 1; i--) {
+			albums.appendChild(albums.children[(Math.random() * (i - 0)) | 0]);
+		}
+	});
 </script>

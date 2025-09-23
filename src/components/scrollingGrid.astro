@@ -1,0 +1,35 @@
+---
+const { height = "7.813rem", id } = Astro.props;
+---
+
+<div id={id}></div>
+<style define:vars={{ height }}>
+	div {
+		display: flex;
+		justify-content: space-between;
+		text-align: center;
+		overflow-x: scroll;
+		gap: 1rem;
+	}
+	div > :global(a) {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		text-decoration: none;
+		align-items: center;
+		width: 7.813rem;
+	}
+	div :global(img) {
+		width: 7.813rem;
+		height: var(--height);
+		border-radius: 8px;
+		object-fit: cover;
+	}
+	div :global(p) {
+		color: var(--foreground);
+	}
+	div :global(footer) {
+		color: var(--background-text);
+		font-size: 0.8rem;
+	}
+</style>

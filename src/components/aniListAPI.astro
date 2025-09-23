@@ -1,77 +1,67 @@
-<div id="aniList-grid"><slot /></div>
+---
+import ScrollingGrid from "@components/scrollingGrid.astro";
+---
+
+<ScrollingGrid height="14rem" id="anilist-grid" />
 
 <script>
+	import type { AnilistActivity } from "types";
 	import { ANILIST_USER } from "../constants";
+	import { gql } from "graphql-tag";
 
-	document.addEventListener("astro:page-load", () => {
+	function makeDisplayFromActivity(
+		activity: AnilistActivity,
+	): HTMLAnchorElement {
+		const container = document.createElement("a");
+		const art = document.createElement("img");
+		const progress = document.createElement("p");
+		const title = document.createElement("footer");
+		container.href = activity.media.siteUrl;
+		art.src = activity.media.coverImage.extraLarge;
+		progress.textContent = [activity.status, activity.progress]
+			.filter((i) => i)
+			.join(" ");
+		progress.style = "text-transform: capitalize;"
+		title.textContent = activity.media.title.romaji;
+		container.append(art, progress, title);
+		return container;
+	}
+
+	document.addEventListener("astro:page-load", () =>
 		fetch("https://graphql.anilist.co", {
 			method: "POST",
 			headers: { "content-type": "application/json" },
 			body: JSON.stringify({
-				query: `{
-            Page(perPage: 50) {
-                activities(userId: ${ANILIST_USER}, type: MEDIA_LIST, sort: ID_DESC) {
-                    ... on ListActivity {
-                        media {
-                            siteUrl
-                            title { romaji }
-                            coverImage { extraLarge }
-                            type
-                        }
-                        status progress createdAt
-                    }
-                }
-            }
-        }`,
+				query: gql`
+					query($userId: Int) {
+						Page(perPage: 5) {
+							activities(userId: $userId, type: MEDIA_LIST, sort: ID_DESC) {
+								... on ListActivity {
+									media {
+										siteUrl
+										title { romaji }
+										coverImage { extraLarge }
+										type
+									}
+									status progress createdAt
+								}
+							}
+						}
+					}
+				`.loc.source.body,
+				variables: { userId: ANILIST_USER }
 			}),
 		})
 			.then((response) => response.json())
 			.then((jsonData) => {
-				console.log(jsonData);
-				const aniListGrid = document.getElementById("aniList-grid")!;
-				const mangas = jsonData.data.Page.activities.slice(0, 5);
-
-				for (const manga of mangas) {
-					const mangaAnchor = document.createElement("a");
-					mangaAnchor.classList.add("mangaAnchor");
-
-					const mangaURL = document.createElement("p");
-					mangaURL.textContent = manga.media.siteUrl;
-
-					const mangaCover = document.createElement("img");
-					mangaCover.src = manga.media.coverImage.extraLarge;
-					mangaCover.classList.add("mangaCover");
-
-					mangaAnchor.setAttribute("href", manga.media.siteUrl);
-
-					function capitaliseFirstLetter(name: string): string {
-						return name.charAt(0).toUpperCase() + name.slice(1);
-					}
-
-					const mangaStatus = document.createElement("span");
-					mangaStatus.textContent =
-						capitaliseFirstLetter(manga.status) + " ";
-
-					const mangaChapter = document.createElement("span");
-					mangaChapter.textContent = manga.progress;
-
-					const mangaTitle = document.createElement("p");
-					mangaTitle.textContent = manga.media.title.romaji;
-					mangaTitle.classList.add("mangaTitle");
-
-					const mangaTextFront = document.createElement("p");
-					mangaTextFront.append(mangaStatus, mangaChapter);
-					mangaTextFront.classList.add("mangaTextFront");
-
-					const mangaText = document.createElement("p");
-					mangaText.append(mangaTextFront, mangaTitle);
-					mangaText.classList.add("mangaText");
-
-					mangaAnchor.append(mangaCover, mangaText);
-					aniListGrid.append(mangaAnchor);
-				}
-			});
-	});
+				const grid = document.getElementById("anilist-grid")!;
+				const activities: AnilistActivity[] =
+					jsonData.data.Page.activities;
+				activities
+					.map(makeDisplayFromActivity)
+					.forEach((activity) => grid.append(activity));
+			}),
+	);
 </script>
 
 <style is:global>
