@@ -37,6 +37,13 @@ const { link, icon, title, description = "" } = Astro.props as Props;
 		gap: 0.75rem;
 		min-height: 4.5rem;
 		color: var(--background-text);
+		opacity: 100%;
+		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+	}
+
+	a:hover {
+		background-color: rgba(12, 12, 12, 0.336);
+		box-shadow: 1px 1px 4px #000000cb;
 	}
 	a.disabled,
 	a.disabled * {

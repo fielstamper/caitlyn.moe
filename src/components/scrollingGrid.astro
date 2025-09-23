@@ -18,13 +18,21 @@ const { height = "7.813rem", id } = Astro.props;
 		text-decoration: none;
 		align-items: center;
 		width: 7.813rem;
+		opacity: 100%;
+		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
 	}
+
+	div :global(a:hover) {
+		opacity: 40%;
+	}
+
 	div :global(img) {
 		width: 7.813rem;
 		height: var(--height);
 		border-radius: 8px;
 		object-fit: cover;
 	}
+
 	div :global(p) {
 		color: var(--foreground);
 	}
