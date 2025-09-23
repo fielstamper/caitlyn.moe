@@ -21,7 +21,7 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 		progress.textContent = [activity.status, activity.progress]
 			.filter((i) => i)
 			.join(" ");
-		progress.style = "text-transform: capitalize;"
+		progress.style = "text-transform: capitalize;";
 		title.textContent = activity.media.title.romaji;
 		container.append(art, progress, title);
 		return container;
@@ -33,23 +33,33 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 			headers: { "content-type": "application/json" },
 			body: JSON.stringify({
 				query: gql`
-					query($userId: Int) {
+					query ($userId: Int) {
 						Page(perPage: 5) {
-							activities(userId: $userId, type: MEDIA_LIST, sort: ID_DESC) {
+							activities(
+								userId: $userId
+								type: MEDIA_LIST
+								sort: ID_DESC
+							) {
 								... on ListActivity {
 									media {
 										siteUrl
-										title { romaji }
-										coverImage { extraLarge }
+										title {
+											romaji
+										}
+										coverImage {
+											extraLarge
+										}
 										type
 									}
-									status progress createdAt
+									status
+									progress
+									createdAt
 								}
 							}
 						}
 					}
 				`.loc.source.body,
-				variables: { userId: ANILIST_USER }
+				variables: { userId: ANILIST_USER },
 			}),
 		})
 			.then((response) => response.json())
@@ -71,7 +81,6 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 	#aniList-grid {
 		display: flex;
 		width: 50em;
-		overflow: hidden;
 		text-align: center;
 		gap: 20px;
 		justify-content: space-between;

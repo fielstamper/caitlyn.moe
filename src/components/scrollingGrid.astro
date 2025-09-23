@@ -26,6 +26,13 @@ const { height = "7.813rem", id } = Astro.props;
 		opacity: 40%;
 	}
 
+	@media (max-width: 768px) {
+		div > :global(a) {
+			max-height: 50%;
+			width: 50%;
+		}
+	}
+
 	div :global(img) {
 		width: 7.813rem;
 		height: var(--height);
