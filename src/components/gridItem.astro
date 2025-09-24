@@ -1,5 +1,6 @@
 ---
 import ExternalIcon from "@assets/icons/external.svg";
+import Card from "./card.astro";
 interface Props {
 	link?: string;
 	icon?: string;
@@ -9,63 +10,56 @@ interface Props {
 const { link, icon, title, description = "" } = Astro.props as Props;
 ---
 
-<a
+<Card
 	href={link}
-	class={!title ? "disabled" : ""}
+	disabled={!title}
 	aria-hidden={!title}
 	aria-label={title ? `A link to “${title}”` : "Grid item"}
+	draggable={false}
+	padding="0.5rem"
+	className="grid-item"
+	hoverable
 >
 	<div class="heading">
-		{icon && <img aria-hidden src={icon} />}
+		{icon && <img aria-hidden width={24} height={24} src={icon} />}
 		<span class="grid-title">{title ?? "n/a"}</span>
-		<ExternalIcon aria-hidden fill="var(--background-text)" />
+		<ExternalIcon aria-hidden />
 	</div>
 	{description}
-</a>
+</Card>
 <style>
-	a {
-		background-color: var(--foreground-item);
-		box-shadow: 1px 1px 2px #0000005b;
-		border: 1px solid var(--border-color);
-		border-radius: 8px;
-		overflow: hidden;
-		text-decoration: none;
-		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-		padding: 0.5rem;
+	.grid-item {
+		min-height: 4.5rem;
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
-		min-height: 4.5rem;
-		color: var(--background-text);
-		opacity: 100%;
 		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-	}
-
-	a:hover {
-		background-color: rgba(12, 12, 12, 0.336);
-		box-shadow: 1px 1px 4px #000000cb;
-	}
-	a.disabled,
-	a.disabled * {
-		color: var(--background-text) !important;
-		cursor: not-allowed;
 		user-select: none;
 	}
-	a * {
+
+	.grid-item:hover:active .heading {
+		scale: 0.99;
+	}
+	.grid-item * {
 		font-size: 1rem;
 	}
-	a .heading {
+	.grid-item .heading {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
 	}
-	a .heading .grid-title {
+	.grid-item .heading .grid-title {
 		flex: 1;
-		color: var(--grid-header);
+		color: var(--text);
+		font-weight: 450;
+		transition: scale 0.5s;
 	}
-	a .heading img {
+	.grid-item .heading img {
 		border-radius: 9999px;
 		width: 1.5rem;
 		height: 1.5rem;
+	}
+	.grid-item svg {
+		fill: var(--text-secondary);
 	}
 </style>

@@ -5,9 +5,19 @@ import HeaderItem from "@components/headerItem.astro";
 import { ClientRouter } from "astro:transitions";
 import ProfilePicture from "@components/profilePicture.astro";
 import CherryBlossom from "@assets/cherryblossom.png";
-import DarkIcon from "@assets/icons/theme_dark.svg";
-import LightIcon from "@assets/icons/theme_light.svg";
-import SystemIcon from "@assets/icons/theme_system.svg";
+import ThemeSelector from "@components/themeSelector.astro";
+
+interface Props {
+	title: string;
+	subtitle?: string;
+	showAvatar?: boolean;
+}
+
+const {
+	title,
+	subtitle,
+	showAvatar = true,
+} = Astro.props as Props;
 ---
 
 <!doctype html>
@@ -17,7 +27,18 @@ import SystemIcon from "@assets/icons/theme_system.svg";
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content="loser" />
 		<link rel="canonical" href="https://caitlyn.moe" />
-		<link rel="preload" href="/assets/fonts/Nunito.ttf" as="font" />
+		<link
+			rel="preload"
+			href="/assets/fonts/Nunito.ttf"
+			crossorigin="anonymous"
+			as="font"
+		/>
+		<link
+			rel="preload"
+			href="/assets/fonts/DMSans.ttf"
+			crossorigin="anonymous"
+			as="font"
+		/>
 		<meta name="robots" content="index, follow" />
 		<meta name="theme-color" content="#FFE0F9" />
 		<meta name="twitter:image" /><meta
@@ -37,67 +58,22 @@ import SystemIcon from "@assets/icons/theme_system.svg";
 					<HeaderItem title="Home" href="/" />
 					<HeaderItem title="About" href="/about" />
 					<HeaderItem title="Contact" href="/contacts" />
-					<div id="theme-switch">
-						<label class="theme-label">
-							<input
-								type="radio"
-								name="theme"
-								value="system"
-								id="theme-system"
-							/>
-							<SystemIcon />
-						</label>
-						<label class="theme-label">
-							<input
-								type="radio"
-								name="theme"
-								value="light"
-								id="theme-light"
-							/>
-							<LightIcon />
-						</label>
-						<label class="theme-label">
-							<input
-								type="radio"
-								name="theme"
-								value="dark"
-								id="theme-dark"
-							/>
-							<DarkIcon />
-						</label>
-					</div>
-
-					<style>
-						:root:has(#theme-dark:checked) {
-							color-scheme: dark;
-						}
-						:root:has(#theme-light:checked) {
-							color-scheme: light;
-						}
-					</style>
+					<ThemeSelector />
 				</Header>
-				<slot name="below-header" />
-				<p style="margin-top: -30px; margin-bottom: 0;">
-					19 years old, Australia
-				</p>
+				<div>
+					<h2 set:html={title} />
+					<sub set:html={subtitle} />
+				</div>
 			</div>
-			<div>
-				<ProfilePicture />
-			</div>
+			{showAvatar && <ProfilePicture />}
 		</div>
-
-		<p id="splash-subtext" style="width: 100%; margin-top: 15px;">
-			A girl who can't program but can do some other stuff decently well.
-			You can find me around the web.
-		</p>
-		<hr />
-		<br />
 		<slot />
 		<style>
 			#header-box {
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
+				margin-bottom: 1rem;
 			}
 		</style>
 	</body><script>

@@ -1,6 +1,5 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { GLTFLoader } from "three/addons";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -47,8 +46,6 @@ loader.load(
 		console.error(error);
 	},
 );
-
-const controls = new OrbitControls(camera, renderer.domElement);
 
 function animate() {
 	renderer.render(scene, camera);

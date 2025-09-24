@@ -15,7 +15,7 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 		const container = document.createElement("a");
 		const art = document.createElement("img");
 		const progress = document.createElement("p");
-		const title = document.createElement("footer");
+		const title = document.createElement("sub");
 		container.href = activity.media.siteUrl;
 		art.src = activity.media.coverImage.extraLarge;
 		progress.textContent = [activity.status, activity.progress]
@@ -27,7 +27,9 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 		return container;
 	}
 
-	document.addEventListener("astro:page-load", () =>
+	document.addEventListener("astro:page-load", () => {
+		const grid = document.getElementById("anilist-grid");
+		if (!grid) return;
 		fetch("https://graphql.anilist.co", {
 			method: "POST",
 			headers: { "content-type": "application/json" },
@@ -58,77 +60,17 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 							}
 						}
 					}
-				`.loc.source.body,
+				`.loc!.source.body,
 				variables: { userId: ANILIST_USER },
 			}),
 		})
 			.then((response) => response.json())
 			.then((jsonData) => {
-				const grid = document.getElementById("anilist-grid")!;
 				const activities: AnilistActivity[] =
 					jsonData.data.Page.activities;
 				activities
 					.map(makeDisplayFromActivity)
 					.forEach((activity) => grid.append(activity));
-			}),
-	);
+			});
+	});
 </script>
-
-<style is:global>
-	.mangaText:hover {
-		cursor: pointer;
-	}
-	#aniList-grid {
-		display: flex;
-		width: 50em;
-		overflow: hidden !important;
-		text-align: center;
-		gap: 20px;
-		justify-content: space-between;
-	}
-
-	@media (max-width: 768px) {
-		#aniList-grid {
-			overflow-x: scroll;
-			width: 100%;
-			padding-left: 10px;
-		}
-	}
-
-	.mangaTextFront {
-		color: var(--manga-text);
-		font-size: 16px;
-		text-decoration: none;
-	}
-
-	.mangaAnchor {
-		opacity: 100%;
-		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-	}
-
-	.mangaAnchor:hover {
-		cursor: default;
-		opacity: 40%;
-	}
-
-	.mangaTitle {
-		color: var(--artist-name);
-		font-size: 14px;
-	}
-
-	.mangaAnchor img {
-		border-radius: 8px;
-	}
-
-	.mangaAnchor img:hover {
-		background-color: var(--hover-opacity);
-		cursor: pointer;
-	}
-
-	@media (max-width: 768px) {
-		.mangaAnchor img {
-			height: 161px;
-			width: 100px;
-		}
-	}
-</style>

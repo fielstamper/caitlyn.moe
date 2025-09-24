@@ -1,8 +1,8 @@
 ---
-const { height = "7.813rem", id } = Astro.props;
+const { height = "7.813rem", id, ...props } = Astro.props;
 ---
 
-<div id={id}></div>
+<div id={id} {...props}></div>
 <style define:vars={{ height }}>
 	div {
 		display: flex;
@@ -10,6 +10,7 @@ const { height = "7.813rem", id } = Astro.props;
 		text-align: center;
 		overflow-x: auto;
 		gap: 1rem;
+		margin-bottom: 1.2rem;
 	}
 	div > :global(a) {
 		display: flex;
@@ -20,31 +21,20 @@ const { height = "7.813rem", id } = Astro.props;
 		width: 7.813rem;
 		opacity: 100%;
 		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+		text-shadow: var(--shadow-low);
 	}
-
 	div :global(a:hover) {
 		opacity: 40%;
 	}
-
-	@media (max-width: 768px) {
-		div > :global(a) {
-			max-height: 50%;
-			width: 50%;
-		}
-	}
-
 	div :global(img) {
 		width: 7.813rem;
 		height: var(--height);
 		border-radius: 8px;
+		box-shadow: var(--shadow-low);
 		object-fit: cover;
 	}
-
-	div :global(p) {
-		color: var(--foreground);
-	}
-	div :global(footer) {
-		color: var(--background-text);
+	div :global(sub) {
+		color: var(--text-secondary);
 		font-size: 0.8rem;
 	}
 </style>

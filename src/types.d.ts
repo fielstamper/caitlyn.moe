@@ -1,4 +1,4 @@
-export interface AudioscrobblerTrack {
+export interface FMTrack {
 	name: string;
 	url: string;
 	artist: {

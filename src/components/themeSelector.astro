@@ -1,0 +1,34 @@
+---
+import SystemIcon from "@assets/icons/theme_system.svg";
+import LightIcon from "@assets/icons/theme_light.svg";
+import DarkIcon from "@assets/icons/theme_dark.svg";
+---
+
+<input type="radio" name="theme" value="system" id="theme-system" />
+<input type="radio" name="theme" value="light" id="theme-light" />
+<input type="radio" name="theme" value="dark" id="theme-dark" />
+<label for="theme-system"> <SystemIcon /> </label>
+<label for="theme-light"> <LightIcon /> </label>
+<label for="theme-dark"> <DarkIcon /> </label>
+
+<style>
+	label {
+		align-self: center;
+		display: flex;
+		cursor: pointer;
+	}
+	svg {
+		fill: var(--text-secondary);
+		transition: all 0.1s;
+	}
+	svg:hover {
+		fill: var(--accent);
+		scale: 1.05;
+	}
+	svg:active {
+		scale: 0.9;
+	}
+	input[type="radio"] {
+		display: none;
+	}
+</style>

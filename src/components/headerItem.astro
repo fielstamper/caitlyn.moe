@@ -1,28 +1,18 @@
 ---
-const { title, href, icon } = Astro.props;
+import Card from "./card.astro";
+
+const { title, href } = Astro.props;
 const currentPage = Astro.url.pathname;
 ---
 
-<a href={href} class={currentPage == href ? "active" : ""}>
+<Card
+	padding="0.5em 0.8em"
+	href={currentPage !== href && href}
+	hoverable
+	clickable
+	draggable={false}
+	variant={currentPage == href ? "accent" : "border"}
+>
 	{title}
-</a>
+</Card>
 
-<style>
-	a {
-		border: 1px solid var(--border-color);
-		padding: 0.5em 0.6em;
-		border-radius: 8px;
-		color: var(--navi-color);
-		text-decoration: none;
-		display: flex;
-		align-items: center;
-		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-	}
-	a.active {
-		background-color: var(--active-header-item);
-	}
-
-	a:hover {
-		background-color: rgba(12, 12, 12, 0.336);
-	}
-</style>
