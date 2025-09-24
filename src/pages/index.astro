@@ -10,26 +10,35 @@ import Grid from "@components/grid.astro";
 import GridItem from "@components/gridItem.astro";
 ---
 
-<Layout>
-	<div slot="below-header">
-		<h2 id="h2titleindex">
-			hi, i'm <span class="accent-color">caitlyn!</span>
-		</h2>
-	</div>
-
-	<h3>Recent Manga</h3>
-	<AniListAPI />
-	<br /><br />
-	<p>You can find more on my</p>
-	<a class="hyperlink" href="https://anilist.co/user/aussieauntie/">AniList</a
-	><br /><br />
-	<h3>Recent Tracks</h3>
-	<LastFMGrid />
-	<br />
-	<p>You can find more on my</p>
-	<a class="hyperlink" href="https://www.last.fm/user/lightafterruin"
-		>Last.fm</a
-	><br /><br />
+<Layout
+	title="hi, i'm <mark>caitlyn!</mark>"
+	subtitle="19 years old, Australia"
+>
+	<sub>
+		A girl who can't program but can do some other stuff decently well. You
+		can find me around the web.
+	</sub>
+	<hr />
+	<section>
+		<h3>Recent Manga</h3>
+		<AniListAPI />
+		<sub>
+			You can find more on my
+			<a class="link" href="https://anilist.co/user/aussieauntie/"
+				>AniList</a
+			>
+		</sub>
+	</section>
+	<section>
+		<h3>Recent Tracks</h3>
+		<LastFMGrid />
+		<sub>
+			You can find more on my
+			<a class="link" href="https://www.last.fm/user/lightafterruin"
+				>Last.fm</a
+			>
+		</sub>
+	</section>
 
 	<Grid title="Projects">
 		<GridItem
@@ -57,8 +66,6 @@ import GridItem from "@components/gridItem.astro";
 		/>
 		<GridItem />
 	</Grid>
-
-	<h3>Cute People</h3>
 
 	<Friends>
 		<Friend

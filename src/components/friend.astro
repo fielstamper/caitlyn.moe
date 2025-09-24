@@ -3,27 +3,34 @@ const { href, pfp, title } = Astro.props;
 import { Image } from "astro:assets";
 ---
 
-<a href={href}>
+<a href={href} aria-label={`A link to “${title}”'s website`}>
 	<Image
 		src={pfp}
 		title={title}
 		alt="Friend"
-		inferSize={true}
-		widths={[240, 540, 720, pfp.width]}
-		sizes={`(max-width: 360px) 240px, (max-width: 720px) 44px, (max-width: 1600px) 44px, ${pfp.width}px`}
+		width={50}
+		height={50}
 	/>
 </a>
 <style>
-	img {
+	a {
 		height: 50px;
 		width: 50px;
 		border-radius: 8px;
+		overflow: hidden;
 		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-		box-shadow: 1px 1px 4px #ffffff00;
+		background: var(--gray-3);
+		box-shadow:
+			inset 0px 0px 0px 1px light-dark(#3c3c3c1f, #ffffff1f),
+			var(--shadow-low);
 	}
 
-	img:hover {
-		background-color: rgba(12, 12, 12, 0.336);
-		box-shadow: 1px 1px 10px 5px var(--friend-highlight);
+	a:hover {
+		box-shadow: 0 0 9px var(--accent-secondary);
+		scale: 1.05;
+	}
+
+	a:active {
+		scale: 0.9;
 	}
 </style>

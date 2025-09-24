@@ -1,110 +1,60 @@
 @font-face {
 	font-family: "Nunito";
-	src: url("/assets/fonts/Nunito.ttf");
+	src: local("Nunito"), url("/assets/fonts/Nunito.ttf");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "DMSans";
+	src: local("DM Sans"), url("/assets/fonts/DMSans.ttf");
 	font-display: swap;
 }
 
 :root {
 	color-scheme: light dark;
+	font-family: "Nunito", system-ui;
+	-webkit-font-smoothing: antialiased;
+
+	--grey-1: light-dark(#fcfcfc, #181818);
+	--grey-2: light-dark(#f8f8f8, #1e1e1e);
+	--grey-3: light-dark(#eaeaea, #272727);
+
+	--text: light-dark(#191919, #c3c3c3);
+	--text-secondary: light-dark(#272727, #8f8f8f);
+	--text-tertiary: light-dark(#272727, #505050);
+
+	--accent: light-dark(#ff8c9e, #f7cdf7);
+	--accent-secondary: light-dark(#a75360, #cb93cb);
+
+	--selection: light-dark(var(--grey-2));
+	--selection-primary: light-dark(var(--grey-3));
+
+	--shadow-low: 2px 2px 5px light-dark(#0000000f, #0000005b);
+
 	scrollbar-gutter: stable;
+	margin-bottom: 100px;
 }
 
-body {
-	--background: light-dark(#fdf8ff, #181818);
-	--foreground: light-dark(#2e2e2e, #c3c3c3);
-	--accent-color: light-dark(#ff8c9e, rgb(247, 205, 247));
-	--separator: light-dark(#6a6a6a, #303030);
-	--background-text: light-dark(#181818, #e5e5e594);
-	--navi-color: light-dark(#181818, #e5e5e5ad);
-	--border-color: light-dark(#b9b9b9, #2a2a2a);
-	--img-border-color: light-dark(#b9b9b9, #2a2a2a00);
-	--foreground-item: light-dark(#ffe8eb, #1e1e1e);
-	--manga-text: light-dark(#181818, #dbdbdbe7);
-	--manga-title: light-dark(#6c6c6c, dbdbdb6e);
-	--track-name: light-dark(#181818, #dbdbdbcb);
-	--artist-name: light-dark(#6c6c6c, #dbdbdb4b);
-	--grid-header: light-dark(black, white);
-	--about-text: light-dark(black, rgba(255, 255, 255, 0.8));
-	--hover-opacity: light-dark(red, rgba(12, 12, 12, 0.322));
-	--contact-link: light-dark(black, white);
-	--friend-highlight: light-dark(#ff8c9e, rgba(255, 255, 255, 0.514));
-	--active-header-item: light-dark(#ff8c9d34, rgba(88, 88, 88, 0.144));
-	--theme-switch-icon: light-dark(#ff8c9e, rgb(247, 205, 247));
-	scrollbar-gutter: stable;
+:root:has(#theme-dark:checked) {
+	color-scheme: dark;
 }
-
-#theme-switch {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	margin-top: 5px;
-}
-
-.theme-label {
-	position: relative;
-}
-
-#theme-system {
-	position: absolute;
-	display: none;
-}
-
-#theme-light {
-	position: absolute;
-	display: none;
-}
-
-#theme-dark {
-	position: absolute;
-	display: none;
-}
-
-@media (max-width: 768px) {
-	#theme-switch {
-		position: relative;
-		height: 40px;
-		gap: 5px;
-	}
-}
-
-@media (max-width: 768px) {
-	#splash-subtext {
-		font-size: 14px;
-	}
-}
-
-#theme-switch svg path {
-	fill: var(--background-text);
-	margin-top: 5px;
-	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-}
-
-#theme-switch svg:hover path {
-	fill: var(--theme-switch-icon);
-}
-
-.theme-label:hover {
-	cursor: pointer;
+:root:has(#theme-light:checked) {
+	color-scheme: light;
 }
 
 * {
 	box-sizing: border-box;
 }
 
-html {
-	font-family: "Nunito", system-ui;
-	-webkit-font-smoothing: antialiased;
-}
-
 body {
-	background-color: var(--background);
+	background-color: var(--grey-1);
 	margin: 0 auto;
 	max-width: 50em;
-	color: var(--foreground);
+	color: var(--text);
 }
 
-.accent-color {
-	color: var(--accent-color);
+section {
+	margin-bottom: 2.35rem;
 }
 
 @media (max-width: 768px) {
@@ -113,26 +63,16 @@ body {
 	}
 }
 
-.title {
-	padding-top: 0.4em;
-	font-size: 24px;
-}
-
-h1,
-h2,
-h3,
-h4 {
-	font-weight: normal;
-}
-
 hr {
-	background-color: var(--separator);
+	background-color: var(--grey-3);
 	height: 1px;
 	border: 0;
 }
 
-h3 {
-	color: var(--h3-color);
+mark {
+	color: var(--accent);
+	background: none;
+	font-weight: 700;
 }
 
 a {
@@ -143,93 +83,44 @@ a {
 p {
 	display: inline-block;
 	margin: 0;
-	color: var(--background-text);
 }
 
-.indent {
-	padding-left: 10px;
+sub {
+	all: inherit;
+	color: var(--text-secondary);
 }
 
-.grid {
-	padding: 0px;
-	gap: 10px;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(1, 1fr);
-}
-
-@media (max-width: 768px) {
-	.grid {
-		grid-template-columns: 1fr;
-		grid-template-rows: repeat(4, 1fr);
-	}
-}
-
-.grid2 {
-	padding: 0px;
-	gap: 10px;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(1, 1fr);
-}
-
-@media (max-width: 768px) {
-	.grid2 {
-		grid-template-columns: 1fr;
-		grid-template-rows: repeat(2, 1fr);
-	}
-}
-
-.grid a,
-.grid2 a {
-	height: 4.75em;
-	background-color: var(--foreground-item);
-	box-shadow: 1px 1px 2px #0000005b;
-	border: 1px solid var(--border-color);
-	border-radius: 8px;
-	overflow: hidden;
+a {
 	text-decoration: none;
-	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
 }
 
-.grid a:hover,
-.grid2 a:hover {
-	background-color: rgba(12, 12, 12, 0.336);
-	box-shadow: 1px 1px 4px #000000cb;
+h1,h2,h3,h4,h5,h6 {
+	font-family: "DMSans", system-ui;
 }
 
-.gridHeader {
-	display: flex;
-	padding: 10px 10px 0 10px;
-	color: var(--grid-header);
+h1,
+h2 {
+	margin: 0;
+	margin-top: 16px;
+	font-size: 30px;
+}
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 400;
 }
 
-.gridHeader svg:last-child {
-	margin-left: auto;
-	fill: var(--background-text);
-}
-
-.gridHeader img {
-	height: 1.5em;
-	margin-right: 0.4em;
-	border-radius: 20px;
-}
-
-.gridDescription {
-	padding: 10px 0 0 10px;
-	color: rgba(255, 255, 255, 0.6);
-}
-
-.hyperlink {
-	text-decoration: none;
-	color: var(--accent-color);
-	opacity: 100%;
-	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-}
-
-.hyperlink:hover {
-	opacity: 50%;
+.link {
 	text-decoration: underline;
+	text-decoration-style: wavy;
+	text-decoration-color: transparent;
+	color: var(--accent);
+	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+}
+
+.link:hover {
+	text-decoration-color: var(--accent);
 }
 
 #aboutContainerParent {
@@ -251,28 +142,5 @@ p {
 	#aboutContainer {
 		height: auto;
 		width: auto;
-	}
-}
-
-.about-text {
-	color: var(--about-text);
-}
-
-#h2titleindex,
-#h2titlecontacts,
-#h2titleabout,
-#h2titleblender {
-	font-weight: bold;
-	font-size: 30px;
-	margin-top: 16px;
-	margin-bottom: 0;
-}
-
-@media (max-width: 768px) {
-	#h2titleindex,
-	#h2titlecontacts,
-	#h2titleabout,
-	#h2titleblender {
-		font-size: 24px;
 	}
 }

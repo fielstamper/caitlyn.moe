@@ -5,7 +5,7 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 <ScrollingGrid id="lastfm-grid" />
 
 <script>
-	import type { AudioscrobblerTrack } from "../types";
+	import type { FMTrack } from "../types";
 	import { LASTFM_KEY, LASTFM_USER } from "../constants";
 
 	function truncate(str: string, maxLength: number): string {
@@ -13,16 +13,34 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 		return str.slice(0, maxLength) + "...";
 	}
 
-	function makeDisplayFromTrack(
-		track: AudioscrobblerTrack,
-	): HTMLAnchorElement {
+	// sometimes lastfm gives us a dead link lmfao
+	function setImage(img: HTMLImageElement, track: FMTrack) {
+		let urls = [3, 2, 1, 0]
+			.map((i) => track.image?.[i]?.["#text"])
+			.filter(Boolean);
+
+		let index = 0;
+
+		function tryNext() {
+			if (index >= urls.length) {
+				img.src = "";
+				return;
+			}
+			img.onerror = tryNext;
+			img.src = urls[index++];
+		}
+
+		tryNext();
+	}
+
+	function makeDisplayFromTrack(track: FMTrack): HTMLAnchorElement {
 		const container = document.createElement("a");
 		const art = document.createElement("img");
 		const title = document.createElement("p");
-		const artist = document.createElement("footer");
+		const artist = document.createElement("sub");
 
 		container.href = track.url;
-		art.src = track.image[2]["#text"];
+		setImage(art, track);
 		title.textContent = truncate(track.name, 27);
 		artist.textContent = truncate(track.artist.name, 15);
 
@@ -30,19 +48,19 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 		return container;
 	}
 
-	document.addEventListener("astro:page-load", () =>
+	document.addEventListener("astro:page-load", () => {
+		const grid = document.getElementById("lastfm-grid");
+		if (!grid) return;
 		fetch(
 			`https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_KEY}&extended=1&format=json&limit=5`,
 		)
 			.then((response) => response.json())
 			.then((jsonData) => {
-				const lastfmGrid = document.getElementById("lastfm-grid")!;
-				const tracks: AudioscrobblerTrack[] =
-					jsonData.recenttracks.track;
+				const tracks: FMTrack[] = jsonData.recenttracks.track;
 				tracks
-					.slice(0,5)
+					.slice(0, 5)
 					.map(makeDisplayFromTrack)
-					.forEach((track) => lastfmGrid.append(track));
-			}),
-	);
+					.forEach((track) => grid.append(track));
+			});
+	});
 </script>

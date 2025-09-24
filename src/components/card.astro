@@ -1,0 +1,78 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends Omit<HTMLAttributes<"div">, "class"> {
+	variant?: "primary" | "border" | "accent";
+	padding?: string;
+	hoverable?: boolean;
+	clickable?: boolean;
+	disabled?: boolean;
+	href?: string;
+	className?: string;
+}
+
+const {
+	variant = "primary",
+	padding = "0.7rem",
+	hoverable = false,
+	clickable = false,
+	disabled = false,
+	href,
+	className,
+	...props
+} = Astro.props as Props;
+const classes = [
+	"card",
+	variant,
+	hoverable && "hoverable",
+	disabled && "disabled",
+	className,
+]
+	.filter((c) => c)
+	.join(" ");
+---
+
+{
+	href ? (
+		<a href={href} class={classes} {...props}>
+			<slot />
+		</a>
+	) : (
+		<div class={classes} {...props}>
+			<slot />
+		</div>
+	)
+}
+<style define:vars={{ padding }}>
+	.card {
+		display: block;
+		border-radius: 8px;
+		border: 1px solid var(--grey-3);
+		padding: var(--padding);
+		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+		color: var(--text-secondary);
+		overflow: hidden;
+	}
+	.card.hoverable:hover {
+		background: var(--grey-3);
+	}
+	.card.clickable.hoverable:hover:active {
+		transform: scale(0.9);
+	}
+	.card.primary {
+		background: var(--grey-2);
+		box-shadow: var(--shadow-low);
+	}
+	.card.accent {
+		background: light-dark(var(--accent), var(--grey-2));
+		border: 1px solid light-dark(transparent, inherit);
+		color: light-dark(black, var(--text));
+	}
+	.card.accent.hoverable:hover {
+		background: light-dark(var(--accent-secondary), var(--grey-2));
+	}
+	.card.disabled,
+	.card.disabled :global(*) {
+		color: var(--text-secondary) !important;
+	}
+</style>
