@@ -1,0 +1,101 @@
+<div id="top-track"></div>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        fetch(
+            "https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=lightafterruin&api_key=e2567caa43c5b556780a6470968e8bb1&limit=1&period=7day&format=json",
+        )
+            .then((response) => response.json())
+            .then((jsonData) => {
+                const toptrack = jsonData.toptracks.track[0];
+
+                const topTrackContainer = document.getElementById("top-track");
+
+                const topTrackAnchor = document.createElement("a");
+                topTrackAnchor.classList.add("topTrackAnchor");
+
+                const t1 = document.createElement("span");
+                t1.textContent = "Caitlyn has listened to" + " ";
+
+                const toptrackName = document.createElement("a");
+                toptrackName.textContent = toptrack.name;
+                toptrackName.href = toptrack.url;
+
+                const t2 = document.createElement("span");
+                t2.textContent = " " + "by" + " ";
+
+                const topTrackAN = document.createElement("p");
+                topTrackAN.textContent = toptrack.artist.name;
+
+                const topTrackPlayCount = document.createElement("span");
+                topTrackPlayCount.textContent = " " + toptrack.playcount;
+
+                const t3 = document.createElement("span");
+                t3.textContent = " " + "times!";
+
+                toptrackName.classList.add("link");
+                topTrackPlayCount.style.color = "var(--accent)";
+
+                fetch(
+                    `https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=e2567caa43c5b556780a6470968e8bb1&artist=${topTrackAN.textContent}&track=${toptrackName.textContent}&format=json`,
+                )
+                    .then((response) => response.json())
+                    .then((jsonData) => {
+                        const trackinfo = jsonData.track.album;
+
+                        const topTrackImage = document.createElement("img");
+                        topTrackImage.src = trackinfo.image[3]["#text"];
+                        topTrackImage.classList.add("topTrackImage");
+                        topTrackImage.style.width = "125px";
+                        topTrackImage.style.height = "125px";
+
+                        topTrackAnchor.append(
+                            t1,
+                            toptrackName,
+                            t2,
+                            topTrackAN,
+                            topTrackPlayCount,
+                            t3,
+                        );
+
+                        topTrackContainer.append(topTrackImage, topTrackAnchor);
+                    });
+            });
+    });
+</script>
+
+<style is:global>
+    #top-track {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        overflow-x: auto;
+        gap: 1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+        #top-track {
+            justify-content: center;
+        }
+    }
+
+    #top-track img {
+        width: 7.813rem;
+        height: var(--height);
+        border-radius: 8px;
+        box-shadow: var(--shadow-low);
+        object-fit: cover;
+    }
+
+    .topTrackAnchor {
+        font-size: 20px;
+        width: 50%;
+    }
+
+    @media (max-width: 768px) {
+        .topTrackAnchor {
+            font-size: 18px;
+        }
+    }
+</style>
