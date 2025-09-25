@@ -38,6 +38,7 @@
 :root:has(#theme-dark:checked) {
 	color-scheme: dark;
 }
+
 :root:has(#theme-light:checked) {
 	color-scheme: light;
 }
@@ -94,7 +95,12 @@ a {
 	text-decoration: none;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-family: "DMSans", system-ui;
 }
 
@@ -104,6 +110,7 @@ h2 {
 	margin-top: 16px;
 	font-size: 30px;
 }
+
 h3,
 h4,
 h5,
