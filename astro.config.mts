@@ -5,3 +5,5 @@ export default defineConfig({
 		domains: ["github.com", "codeberg.org", "x.com", "avatars.githubusercontent.com"]
 	}
 });
+
+trailingSlash: "never"
