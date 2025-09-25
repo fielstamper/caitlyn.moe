@@ -22,6 +22,7 @@
 	--text: light-dark(#191919, #c3c3c3);
 	--text-secondary: light-dark(#272727, #8f8f8f);
 	--text-tertiary: light-dark(#272727, #505050);
+	--text-inverse: light-dark(white, black);
 
 	--accent: light-dark(#ff8c9e, #f7cdf7);
 	--accent-secondary: light-dark(#a75360, #cb93cb);
@@ -91,6 +92,11 @@ sub {
 	color: var(--text-secondary);
 }
 
+sub::selection {
+	background: var(--accent);
+	color: var(--text-inverse);
+}
+
 a {
 	text-decoration: none;
 }
@@ -109,6 +115,12 @@ h2 {
 	margin: 0;
 	margin-top: 16px;
 	font-size: 30px;
+}
+
+h2::selection,
+h3::selection {
+	background: var(--accent);
+	color: var(--text-inverse);
 }
 
 h3,
