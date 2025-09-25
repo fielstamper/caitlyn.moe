@@ -10,6 +10,7 @@ import Album from "@components/album.astro";
 import Albums from "@components/albums.astro";
 import Card from "@components/card.astro";
 import Layout from "@layouts/Layout.astro";
+import TopTrack from "@components/topTrack.astro";
 ---
 
 <Layout title="<mark>About Me</mark>" subtitle="19 years old, Australia">
@@ -67,4 +68,7 @@ import Layout from "@layouts/Layout.astro";
 			<a class="link" href="https://ibb.co/rCq9b3t">Topster</a>
 		</sub>
 	</section>
+	<h3>Weekly Top Track</h3>
+	<TopTrack />
+	<br />
 </Layout>
