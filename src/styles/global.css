@@ -163,3 +163,8 @@ h6 {
 		width: auto;
 	}
 }
+
+#container88x31 {
+	display: flex;
+	gap: 0.7rem;
+}

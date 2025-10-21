@@ -45,6 +45,9 @@
 
                         const topTrackImage = document.createElement("img");
                         topTrackImage.src = trackinfo.image[3]["#text"];
+                        if ((trackinfo.image = 0)) {
+                            console.log("hello");
+                        }
                         topTrackImage.classList.add("topTrackImage");
                         topTrackImage.style.width = "125px";
                         topTrackImage.style.height = "125px";

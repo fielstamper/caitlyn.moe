@@ -8,6 +8,7 @@ import LastFMGrid from "@components/lastFMGrid.astro";
 import Layout from "@layouts/Layout.astro";
 import Grid from "@components/grid.astro";
 import GridItem from "@components/gridItem.astro";
+import Image from "astro/components/Image.astro";
 ---
 
 <Layout
@@ -53,8 +54,6 @@ import GridItem from "@components/gridItem.astro";
 			icon="/old_avatar.jpg"
 			link="https://github.com/fielstamper/kosuka.dev"
 		/>
-		<GridItem />
-		<GridItem />
 	</Grid>
 
 	<Grid title="Miscellaneous Creations">
@@ -66,7 +65,26 @@ import GridItem from "@components/gridItem.astro";
 		/>
 		<GridItem />
 	</Grid>
-
+	<h3>Cute People</h3>
+	<div id="container88x31">
+		<a href="/88x31.png">
+			<Image src="/88x31.png" alt="my 88x31" width="88" height="31" />
+		</a>
+		<a href="https://vendicated.dev/">
+			<Image src="/ven88x31.gif" alt="vee" width="88" height="31" />
+		</a>
+		<a href="https://uncutified.moe/">
+			<Image
+				src="/recutified88x31.png"
+				alt="lexy"
+				width="88"
+				height="31"
+			/>
+		</a>
+		<a href="https://khcrysalis.dev/">
+			<Image src="/samara88x31.png" alt="samara" width="88" height="31" />
+		</a>
+	</div>
 	<Friends>
 		<Friend
 			title="ilmp"
