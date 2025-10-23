@@ -1,0 +1,16 @@
+---
+import Image from "astro/components/Image.astro";
+import Biboo from "@assets/biboo.webp";
+import { ClientRouter } from "astro:transitions";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout>
+    <head>
+        <ClientRouter />
+    </head>
+    <body>
+        <p>where are u</p>
+        <Image src={Biboo} alt="biboo" />
+    </body>
+</Layout>

@@ -166,7 +166,7 @@ h6 {
 
 #container88x31 {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 	background: var(--grey-2);
 	box-shadow: var(--shadow-low);

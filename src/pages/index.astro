@@ -9,6 +9,7 @@ import Layout from "@layouts/Layout.astro";
 import Grid from "@components/grid.astro";
 import GridItem from "@components/gridItem.astro";
 import Image from "astro/components/Image.astro";
+import Biboo from "@assets/biboo.webp";
 ---
 
 <Layout
@@ -66,6 +67,10 @@ import Image from "astro/components/Image.astro";
 		<GridItem />
 	</Grid>
 	<h3>Cute People</h3>
+	<sub style="padding-bottom: 8px;">
+		You can add my <a class="link" href="/88x31.png">88x31</a> if we are close
+		:)
+	</sub>
 	<div id="container88x31">
 		<a href="/88x31.png">
 			<Image src="/88x31.png" alt="my 88x31" width="88" height="31" />
@@ -103,43 +108,70 @@ import Image from "astro/components/Image.astro";
 		<a href="https://mugman.tech/">
 			<Image src="/mugman88x31.gif" alt="mugman" width="88" height="31" />
 		</a>
+		<a href="https://panbread.codeberg.page/">
+			<Image
+				src="/panbread88x31.png"
+				alt="panbread"
+				width="88"
+				height="31"
+			/>
+		</a>
+		<iframe
+			width="88"
+			height="31"
+			style="border:none"
+			sandbox="allow-scripts allow-popups"
+			srcdoc="<!doctype html><body onload=&quot;d=d.style,d.position=`absolute`,x=0,y=Math.random()*66|0,u=v=1,c=3
+setInterval`x+=u${166}y+=v,z=x<=0||x>=20,w=y<=0||y>=67
+z&&w?c=(c+3)%6-1:0,u^=-z-z,v^=-w-w
+d.background='hwb('+60*c+' 0 0)'
+d.top=x+'px',d.left=y+'px'`&quot;bgcolor=#000><a href=https://github.com/rniii target=_blank><img id=d src=data:image/gif;base64,R0lGODdhFQALAHcAACH5BAkKAAAALAAAAAAVAAsAgAAAAAAAAAInDI4Xa6m8EkNQPQtivnvuH3mc1pSlU3EUxJrtC8eig851Q2daTjMFADs>"
+		></iframe>
 	</div>
-
-	<Friends>
-		<Friend
-			title="ilmp"
-			href="https://codeberg.org/paige"
-			pfp="https://codeberg.org/paige.png"
-		/>
-		<Friend
-			title="my favorite chud"
-			href="https://vendicated.dev/"
-			pfp="https://github.com/Vendicated.png"
-		/>
-		<Friend
-			title="alyalyalyalyalyalyalyalyalya"
-			href="https://www.ankle.lol/"
-			pfp={April}
-		/>
-		<Friend
-			title="I just kept on retyping something to get a name which sounded good to me"
-			href="https://khcrysalis.dev/"
-			pfp="https://avatars.githubusercontent.com/u/97859147?v=4"
-		/>
-		<Friend
-			title="-# the :rini:"
-			href="https://github.com/rniii"
-			pfp="https://github.com/rniii.png"
-		/>
-		<Friend
-			title="6k hours tf2"
-			href="https://x.com/1tabris"
-			pfp={Tabris}
-		/>
-		<Friend
-			title="cutie"
-			href="https://uncutified.moe"
-			pfp="https://github.com/uncutified.png"
-		/>
-	</Friends>
 </Layout>
+
+<Friends>
+	<Friend
+		title="ilmp"
+		href="https://codeberg.org/paige"
+		pfp="https://codeberg.org/paige.png"
+	/>
+	<Friend
+		title="my favorite chud"
+		href="https://vendicated.dev/"
+		pfp="https://github.com/Vendicated.png"
+	/>
+	<Friend
+		title="alyalyalyalyalyalyalyalyalya"
+		href="https://www.ankle.lol/"
+		pfp={April}
+	/>
+	<Friend
+		title="I just kept on retyping something to get a name which sounded good to me"
+		href="https://khcrysalis.dev/"
+		pfp="https://avatars.githubusercontent.com/u/97859147?v=4"
+	/>
+	<Friend
+		title="-# the :rini:"
+		href="https://github.com/rniii"
+		pfp="https://github.com/rniii.png"
+	/>
+	<Friend title="6k hours tf2" href="https://x.com/1tabris" pfp={Tabris} />
+	<Friend
+		title="cutie"
+		href="https://uncutified.moe"
+		pfp="https://github.com/uncutified.png"
+	/>
+</Friends>
+<hr />
+<div id="footer">
+	<p>
+		Site licensed under <a
+			href="https://github.com/fielstamper/caitlyn.moe/blob/main/LICENSE"
+			class="link">AGPL v3</a
+		>∙<a href="https://github.com/fielstamper/caitlyn.moe" class="link"
+			>Source Code</a
+		>
+	</p>
+	<p>🌸</p>
+</div>
