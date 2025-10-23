@@ -177,6 +177,7 @@ h6 {
 	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
 	overflow: hidden;
 	gap: 0.5rem;
+	image-rendering: pixelated
 }
 
 @media (max-width: 768px) {
