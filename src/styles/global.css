@@ -166,6 +166,38 @@ h6 {
 
 #container88x31 {
 	display: flex;
-	gap: 0.7rem;
+	justify-content: space-between;
 	flex-wrap: wrap;
+	background: var(--grey-2);
+	box-shadow: var(--shadow-low);
+	color: light-dark(black, var(--text));
+	border-radius: 8px;
+	border: 1px solid var(--grey-3);
+	padding: 0.5rem;
+	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+	overflow: hidden;
+	gap: 0.5rem;
+}
+
+#container88x31 img {
+	display: block;
+	box-shadow:
+		inset 0px 0px 0px 1px light-dark(#3c3c3c1f, #ffffff1f),
+		var(--shadow-low);
+	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+}
+
+#container88x31.accent {
+	background: light-dark(var(--accent), var(--grey-2));
+	border: 1px solid light-dark(transparent, inherit);
+	color: light-dark(black, var(--text));
+}
+
+#container88x31 img:hover {
+	box-shadow: 0 0 9px var(--accent-secondary);
+	scale: 1.05;
+}
+
+#container88x31 img:active {
+	scale: 0.9;
 }

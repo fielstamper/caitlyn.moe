@@ -79,6 +79,13 @@ const classes = [
 	}
 	.card.disabled,
 	.card.disabled :global(*) {
-		color: var(--text-secondary) !important;
+		opacity: 0%;
+	}
+
+	@media (max-width: 768px) {
+		.card.disabled,
+		.card.disabled :global(*) {
+			display: none;
+		}
 	}
 </style>
