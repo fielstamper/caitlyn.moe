@@ -179,6 +179,13 @@ h6 {
 	gap: 0.5rem;
 }
 
+@media (max-width: 768px) {
+	#container88x31 {
+		display: flex;
+		justify-content: flex-start;
+	}
+}
+
 #container88x31 img {
 	display: block;
 	box-shadow:
