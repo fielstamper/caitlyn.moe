@@ -8,9 +8,10 @@
 		margin-bottom: 0.7rem;
 	}
 	#friends {
-		display: flex;
+		display: grid;
+		place-items: center;
 		gap: 0.7rem;
-		flex-wrap: wrap;
+		grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
 	}
 </style>
 
