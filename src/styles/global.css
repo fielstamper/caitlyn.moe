@@ -165,9 +165,10 @@ h6 {
 }
 
 .container88x31 {
-	display: flex;
-	justify-content: flex-start;
-	flex-wrap: wrap;
+	margin-bottom: 10px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+	gap: 10px;
 	background: var(--grey-2);
 	box-shadow: var(--shadow-low);
 	color: light-dark(black, var(--text));
@@ -176,15 +177,7 @@ h6 {
 	padding: 0.5rem;
 	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
 	overflow: hidden;
-	gap: 0.5rem;
-	image-rendering: pixelated
-}
-
-@media (max-width: 768px) {
-	.container88x31 {
-		display: flex;
-		justify-content: flex-start;
-	}
+	image-rendering: pixelated;
 }
 
 .container88x31 img {
