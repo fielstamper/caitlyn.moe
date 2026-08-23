@@ -1,6 +1,10 @@
+export interface AnilistResponse {
+	data?: { Page?: { activities?: AnilistActivity[] } };
+}
+
 export interface AnilistActivity {
-	status: string;
-	progress: string;
+	status?: string;
+	progress?: string;
 	media: {
 		siteUrl: string;
 		coverImage: {

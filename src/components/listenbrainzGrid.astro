@@ -5,42 +5,43 @@ import ScrollingGrid from "@components/scrollingGrid.astro";
 <ScrollingGrid id="listenbrainz-grid" />
 
 <script>
-	import { LISTENBRAINZ_USER } from "../constants.ts";
-	import { ListenBrainz } from "listenbrainz.js";
-	const client = new ListenBrainz();
-	// this library doesn't export Listen
-	type Listen = Awaited<ReturnType<typeof client.get_listens>>[0];
+import { ListenBrainz } from "listenbrainz.js";
 
-	function truncate(str: string, maxLength: number): string {
-		if (str.length <= maxLength) return str;
-		return str.slice(0, maxLength) + "...";
+import { LISTENBRAINZ_USER } from "../constants.ts";
+const client = new ListenBrainz();
+// this library doesn't export Listen
+type Listen = Awaited<ReturnType<typeof client.get_listens>>[0];
+
+function truncate(str: string, maxLength: number): string {
+	if (str.length <= maxLength) return str;
+	return str.slice(0, maxLength) + "...";
+}
+
+function makeDisplayFromTrack(listen: Listen): HTMLAnchorElement {
+	const container = document.createElement("a");
+	const art = document.createElement("img");
+	const title = document.createElement("p");
+	const artist = document.createElement("sub");
+
+	if (listen.recording_mbid) {
+		container.href = `https://listenbrainz.org/track/${listen.recording_mbid}`;
 	}
+	art.src = `https://coverartarchive.org/release-group/${listen.release_group_mbid}/front-500`;
+	title.textContent = truncate(listen.track_name, 27);
+	artist.textContent = truncate(listen.artist_name, 15);
 
-	function makeDisplayFromTrack(listen: Listen): HTMLAnchorElement {
-		const container = document.createElement("a");
-		const art = document.createElement("img");
-		const title = document.createElement("p");
-		const artist = document.createElement("sub");
+	container.append(art, title, artist);
+	return container;
+}
 
-		if (listen.recording_mbid) {
-			container.href = `https://listenbrainz.org/track/${listen.recording_mbid}`;
-		}
-		art.src = `https://coverartarchive.org/release-group/${listen.release_group_mbid}/front-500`;
-		title.textContent = truncate(listen.track_name, 27);
-		artist.textContent = truncate(listen.artist_name, 15);
-
-		container.append(art, title, artist);
-		return container;
-	}
-
-	document.addEventListener("astro:page-load", async () => {
-		const grid = document.getElementById("listenbrainz-grid");
-		if (!grid) return;
-		const listens = await client.get_listens(LISTENBRAINZ_USER, {
-			count: 5,
-		});
-		listens
-			.map(makeDisplayFromTrack)
-			.forEach((track) => grid.append(track));
+document.addEventListener("astro:page-load", async () => {
+	const grid = document.getElementById("listenbrainz-grid");
+	if (!grid) return;
+	const listens = await client.get_listens(LISTENBRAINZ_USER, {
+		count: 5,
 	});
+	listens
+		.map(makeDisplayFromTrack)
+		.forEach(track => grid.append(track));
+});
 </script>

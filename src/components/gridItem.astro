@@ -1,13 +1,16 @@
 ---
 import ExternalIcon from "@assets/icons/external.svg";
+
 import Card from "./card.astro";
+
 interface Props {
 	link?: string;
 	icon?: string;
 	title?: string;
 	description?: string;
 }
-const { link, icon, title, description = "" } = Astro.props as Props;
+
+const { link, icon, title, description } = Astro.props as Props;
 ---
 
 <Card
@@ -25,7 +28,7 @@ const { link, icon, title, description = "" } = Astro.props as Props;
 		<span class="grid-title">{title ?? "n/a"}</span>
 		<ExternalIcon aria-hidden />
 	</div>
-	{description}
+	{description && description}
 </Card>
 <style>
 	.grid-item {

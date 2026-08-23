@@ -12,7 +12,6 @@ const { model } = Astro.props;
 </style>
 <script define:vars={{ model }}>
 	import * as THREE from "three";
-	import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 	import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 	const scene = new THREE.Scene();
 	const camera = new THREE.PerspectiveCamera(
@@ -58,8 +57,6 @@ const { model } = Astro.props;
 			console.error(error);
 		},
 	);
-
-	const controls = new OrbitControls(camera, renderer.domElement);
 
 	function animate() {
 		renderer.render(scene, camera);

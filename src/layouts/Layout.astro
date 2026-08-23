@@ -1,14 +1,15 @@
 ---
 import "@styles/global.css";
+
+import CherryBlossom from "@assets/cherryblossom.png";
 import Header from "@components/header.astro";
 import HeaderItem from "@components/headerItem.astro";
-import { ClientRouter } from "astro:transitions";
 import ProfilePicture from "@components/profilePicture.astro";
-import CherryBlossom from "@assets/cherryblossom.png";
 import ThemeSelector from "@components/themeSelector.astro";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
-	title: string;
+	title?: string;
 	subtitle?: string;
 	showAvatar?: boolean;
 }
@@ -38,10 +39,9 @@ const { title, subtitle, showAvatar = true } = Astro.props as Props;
 		/>
 		<meta name="robots" content="index, follow" />
 		<meta name="theme-color" content="#FFE0F9" />
-		<meta name="twitter:image" /><meta
-			content="caitlyn"
-			name="twitter:title"
-		/><meta content="loser" name="twitter:description" />
+		<meta name="twitter:image" />
+		<meta name="twitter:title" content="caitlyn" />
+		<meta name="twitter:description" content="loser" />
 		<title>caitlyn</title>
 		<link rel="icon" href={CherryBlossom.src} />
 
@@ -53,15 +53,17 @@ const { title, subtitle, showAvatar = true } = Astro.props as Props;
 			<div>
 				<Header>
 					<HeaderItem title="Home" href="/" />
-                    <HeaderItem title="Music" href="https://lb.caitlyn.moe" />
+					<HeaderItem title="Music" href="https://lb.caitlyn.moe" />
 					<HeaderItem title="About" href="/about" />
 					<HeaderItem title="Contact" href="/contacts" />
 					<ThemeSelector />
 				</Header>
-				<div>
-					<h2 set:html={title} />
-					<sub set:html={subtitle} />
-				</div>
+				{(title || subtitle) && (
+					<div>
+						{title && <h2 set:html={title} />}
+						{subtitle && <sub set:html={subtitle} />}
+					</div>
+				)}
 			</div>
 			{showAvatar && <ProfilePicture />}
 		</div>
@@ -74,7 +76,8 @@ const { title, subtitle, showAvatar = true } = Astro.props as Props;
 				margin-bottom: 1rem;
 			}
 		</style>
-	</body><script>
+	</body>
+	<script>
 		document.addEventListener("astro:page-load", () => {
 			const THEME_KEY = "theme";
 			const themeSystem = document.getElementById(
