@@ -1,0 +1,23 @@
+{
+	"languages": {
+		"Astro": {
+			"language_servers": [
+				"eslint",
+				"typescript-language-server",
+				"astro-language-server",
+				"!deno",
+				"!vtsls",
+			],
+			"formatter": [{ "code_action": "source.fixAll.eslint" }],
+		},
+		"TypeScript": {
+			"language_servers": [
+				"eslint",
+				"typescript-language-server",
+				"!deno",
+				"!vtsls",
+			],
+			"formatter": [{ "code_action": "source.fixAll.eslint" }],
+		},
+	},
+}
