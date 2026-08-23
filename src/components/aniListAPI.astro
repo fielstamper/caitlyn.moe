@@ -1,8 +1,12 @@
 ---
 import ScrollingGrid from "@components/scrollingGrid.astro";
+import Spinner from "@components/spinner.astro";
 ---
 
-<ScrollingGrid height="14rem" id="anilist-grid" />
+<ScrollingGrid height="14rem" id="anilist-grid">
+	<Spinner id="anilist-spinner" />
+</ScrollingGrid>
+<noscript>enable javascript mate</noscript>
 
 <script>
 import { gql } from "graphql-tag";
@@ -30,7 +34,8 @@ function makeDisplayFromActivity(
 
 document.addEventListener("astro:page-load", async () => {
 	const grid = document.getElementById("anilist-grid");
-	if (!grid) return;
+	const spinner = document.getElementById("anilist-spinner");
+	if (!grid || !spinner) return;
 	const query = gql`query ($userId: Int) {
 		Page(perPage: 5) {
 			activities(
@@ -61,6 +66,7 @@ document.addEventListener("astro:page-load", async () => {
 		}),
 	};
 	try {
+		spinner.style.display = "block";
 		const response = await fetch("https://graphql.anilist.co", request);
 
 		if (!response.ok) {
@@ -82,6 +88,8 @@ document.addEventListener("astro:page-load", async () => {
 		const text = document.createElement("p");
 		text.textContent = `failed to reach anilist mate: ${e}`;
 		grid.append(text);
+	} finally {
+		spinner.style.display = "none";
 	}
 });
 </script>

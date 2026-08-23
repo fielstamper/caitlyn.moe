@@ -1,8 +1,12 @@
 ---
 import ScrollingGrid from "@components/scrollingGrid.astro";
+import Spinner from "@components/spinner.astro";
 ---
 
-<ScrollingGrid id="listenbrainz-grid" />
+<ScrollingGrid id="listenbrainz-grid">
+	<Spinner id="listenbrainz-spinner" />
+</ScrollingGrid>
+<noscript>enable javascript mate</noscript>
 
 <script>
 import { ListenBrainz } from "listenbrainz.js";
@@ -36,8 +40,10 @@ function makeDisplayFromTrack(listen: Listen): HTMLAnchorElement {
 
 document.addEventListener("astro:page-load", async () => {
 	const grid = document.getElementById("listenbrainz-grid");
-	if (!grid) return;
+	const spinner = document.getElementById("listenbrainz-spinner");
+	if (!grid || !spinner) return;
 	try {
+		spinner.style.display = "block";
 		const listens = await client.get_listens(LISTENBRAINZ_USER, { count: 5 });
 		listens
 			.map(makeDisplayFromTrack)
@@ -47,6 +53,8 @@ document.addEventListener("astro:page-load", async () => {
 		const text = document.createElement("p");
 		text.textContent = `failed to reach listenbrainz mate: ${e}`;
 		grid.append(text);
+	} finally {
+		spinner.style.display = "none";
 	}
 });
 </script>

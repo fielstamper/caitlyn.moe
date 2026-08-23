@@ -2,7 +2,9 @@
 const { height = "7.813rem", id, ...props } = Astro.props;
 ---
 
-<div id={id} {...props}></div>
+<div id={id} {...props}>
+	<slot />
+</div>
 <style define:vars={{ height }}>
 	div {
 		display: flex;
