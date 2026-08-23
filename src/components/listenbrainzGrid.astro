@@ -37,11 +37,16 @@ function makeDisplayFromTrack(listen: Listen): HTMLAnchorElement {
 document.addEventListener("astro:page-load", async () => {
 	const grid = document.getElementById("listenbrainz-grid");
 	if (!grid) return;
-	const listens = await client.get_listens(LISTENBRAINZ_USER, {
-		count: 5,
-	});
-	listens
-		.map(makeDisplayFromTrack)
-		.forEach(track => grid.append(track));
+	try {
+		const listens = await client.get_listens(LISTENBRAINZ_USER, { count: 5 });
+		listens
+			.map(makeDisplayFromTrack)
+			.forEach(track => grid.append(track));
+	} catch (e) {
+		console.error(e);
+		const text = document.createElement("p");
+		text.textContent = `failed to reach listenbrainz mate: ${e}`;
+		grid.append(text);
+	}
 });
 </script>
