@@ -1,0 +1,24 @@
+---
+import { Font } from "astro:assets";
+import { ClientRouter } from "astro:transitions";
+
+import CherryBlossom from "~/assets/cherryblossom.png";
+---
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="darkreader-lock" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="description" content="loser" />
+	<link rel="canonical" href="https://caitlyn.moe" />
+	<meta name="robots" content="index, follow" />
+	<meta name="theme-color" content="#FFE0F9" />
+	<meta name="twitter:image" />
+	<meta name="twitter:title" content="caitlyn" />
+	<meta name="twitter:description" content="loser" />
+	<title>caitlyn</title>
+	<link rel="icon" href={CherryBlossom.src} />
+	<Font cssVariable="--font-dm-sans" />
+	<Font cssVariable="--font-nunito" />
+	<ClientRouter />
+</head>

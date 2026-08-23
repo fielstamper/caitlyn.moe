@@ -1,10 +1,7 @@
 ---
 import "~/styles/global.css";
 
-import { Font } from "astro:assets";
-import { ClientRouter } from "astro:transitions";
-
-import CherryBlossom from "~/assets/cherryblossom.png";
+import Head from "~/components/Head.astro";
 import Header from "~/components/header.astro";
 import HeaderItem from "~/components/headerItem.astro";
 import ProfilePicture from "~/components/profilePicture.astro";
@@ -21,24 +18,7 @@ const { title, subtitle, showAvatar = true } = Astro.props as Props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="darkreader-lock" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="loser" />
-		<link rel="canonical" href="https://caitlyn.moe" />
-		<meta name="robots" content="index, follow" />
-		<meta name="theme-color" content="#FFE0F9" />
-		<meta name="twitter:image" />
-		<meta name="twitter:title" content="caitlyn" />
-		<meta name="twitter:description" content="loser" />
-		<title>caitlyn</title>
-		<link rel="icon" href={CherryBlossom.src} />
-
-		<Font cssVariable="--font-dm-sans" />
-		<Font cssVariable="--font-nunito" />
-		<ClientRouter />
-	</head>
+	<Head />
 
 	<body>
 		<div id="header-box">
@@ -69,39 +49,6 @@ const { title, subtitle, showAvatar = true } = Astro.props as Props;
 			}
 		</style>
 	</body>
-	<script>
-		document.addEventListener("astro:page-load", () => {
-			const THEME_KEY = "theme";
-			const themeSystem = document.getElementById(
-				"theme-system",
-			) as HTMLInputElement;
-			const themeLight = document.getElementById(
-				"theme-light",
-			) as HTMLInputElement;
-			const themeDark = document.getElementById(
-				"theme-dark",
-			) as HTMLInputElement;
 
-			const themes: Record<string, HTMLInputElement> = {
-				dark: themeDark,
-				light: themeLight,
-				system: themeSystem,
-			};
-
-			function updateTheme(theme: string | null) {
-				if (theme) localStorage.setItem(THEME_KEY, theme);
-				else localStorage.removeItem(THEME_KEY);
-				(themes[theme ?? "system"] ?? themeSystem).checked = true;
-			}
-
-			Object.entries(themes).forEach(([key, input]) => {
-				input.addEventListener("change", () => {
-					if (input.checked)
-						updateTheme(key === "system" ? null : key);
-				});
-			});
-
-			updateTheme(localStorage.getItem(THEME_KEY));
-		});
-	</script>
+	<script src="~/scripts/themes.ts" />
 </html>
