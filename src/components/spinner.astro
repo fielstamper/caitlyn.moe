@@ -1,0 +1,47 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"div">;
+
+const { class: className, ...props } = Astro.props as Props;
+---
+
+<div
+	class:list={["spinner-wrapper", className]}
+	{...props}
+>
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width={24}
+		height={24}
+		viewBox="0 0 24 24"
+		fill="none"
+		class="spinner"
+		stroke="currentColor"
+		stroke-width={2}
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+		<path d="M12 3a9 9 0 1 0 9 9" />
+	</svg>
+</div>
+
+<style>
+	.spinner-wrapper {
+		width: 40px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-self: center;
+		justify-self: center;
+		flex: 1;
+	}
+	.spinner {
+		animation: spinner 1s linear infinite;
+	}
+	@keyframes spinner {
+		to { transform: rotate(360deg); }
+	}
+</style>

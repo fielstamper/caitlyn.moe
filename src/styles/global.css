@@ -1,18 +1,6 @@
-@font-face {
-	font-family: "Nunito";
-	src: local("Nunito"), url("/assets/fonts/Nunito.ttf");
-	font-display: swap;
-}
-
-@font-face {
-	font-family: "DMSans";
-	src: local("DM Sans"), url("/assets/fonts/DMSans.ttf");
-	font-display: swap;
-}
-
 :root {
 	color-scheme: light dark;
-	font-family: "Nunito", system-ui;
+	font-family: var(--font-nunito), system-ui;
 	-webkit-font-smoothing: antialiased;
 
 	--grey-1: light-dark(#fcfcfc, #181818);
@@ -107,7 +95,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: "DMSans", system-ui;
+	font-family: var(--font-dm-sans), system-ui;
 }
 
 h1,

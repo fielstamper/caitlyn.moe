@@ -1,14 +1,15 @@
 ---
-import Tabris from "@assets/1tabris.webp";
-import April from "@assets/april.webp";
-import AniListAPI from "@components/aniListAPI.astro";
-import Friend from "@components/friend.astro";
-import Friends from "@components/friends.astro";
-import ListenBrainzGrid from "@components/listenbrainzGrid.astro";
-import Layout from "@layouts/Layout.astro";
-import Grid from "@components/grid.astro";
-import GridItem from "@components/gridItem.astro";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
+
+import Tabris from "~/assets/1tabris.webp";
+import April from "~/assets/april.webp";
+import AniListAPI from "~/components/aniListAPI.astro";
+import Friend from "~/components/friend.astro";
+import Friends from "~/components/friends.astro";
+import Grid from "~/components/grid.astro";
+import GridItem from "~/components/gridItem.astro";
+import ListenBrainzGrid from "~/components/listenbrainzGrid.astro";
+import Layout from "~/layouts/Layout.astro";
 ---
 
 <Layout
@@ -23,22 +24,12 @@ import Image from "astro/components/Image.astro";
 	<section>
 		<h3>Library Updates</h3>
 		<AniListAPI />
-		<sub>
-			You can find more on my
-			<a class="link" href="https://anilist.co/user/aussieauntie/"
-				> AniList</a
-			>
-		</sub>
+		<sub>You can find more on my <a class="link" href="https://anilist.co/user/aussieauntie/">AniList</a></sub>
 	</section>
 	<section>
 		<h3>Recent Tracks</h3>
 		<ListenBrainzGrid />
-		<sub>
-			You can find more on my
-			<a class="link" href="https://listenbrainz.org/user/caitlyn/"
-				> Listenbrainz</a
-			>
-		</sub>
+		<sub>You can find more on my <a class="link" href="https://listenbrainz.org/user/caitlyn/">Listenbrainz</a></sub>
 	</section>
 
 	<Grid title="Projects">
@@ -67,8 +58,7 @@ import Image from "astro/components/Image.astro";
 	</Grid>
 	<h3>Cute Entities</h3>
 	<sub style="padding-bottom: 8px;">
-		You can add my <a class="link" href="/88x31.png">88x31</a> if we are close
-		:)
+		You can add my <a class="link" href="/88x31.png">88x31</a> if we are close :)
 	</sub>
 	<div class="container88x31">
 		<a href="/88x31.png">
@@ -214,7 +204,7 @@ setInterval`x+=u${166}y+=v,z=x<=0||x>=20,w=y<=0||y>=67
 z&&w?c=(c+3)%6-1:0,u^=-z-z,v^=-w-w
 d.background='hwb('+60*c+' 0 0)'
 d.top=x+'px',d.left=y+'px'`&quot;bgcolor=#000><a href=https://github.com/rniii target=_blank><img id=d src=data:image/gif;base64,R0lGODdhFQALAHcAACH5BAkKAAAALAAAAAAVAAsAgAAAAAAAAAInDI4Xa6m8EkNQPQtivnvuH3mc1pSlU3EUxJrtC8eig851Q2daTjMFADs>"
-		></iframe>
+		/>
 		<a href="https://acpi.at/">
 			<Image
 				src="/livia88x31.gif"
@@ -278,7 +268,7 @@ d.top=x+'px',d.left=y+'px'`&quot;bgcolor=#000><a href=https://github.com/rniii t
 				alt="ruuuuuuuushie"
 			/>
 		</a>
-	<a href="https://key.w10.site/" rel="nofollow">
+		<a href="https://key.w10.site/" rel="nofollow">
 			<img
 				src="https://key.w10.site/assets/buttons/keiran.gif"
 				width="88"
@@ -356,13 +346,12 @@ d.top=x+'px',d.left=y+'px'`&quot;bgcolor=#000><a href=https://github.com/rniii t
 	<hr />
 	<div id="footer">
 		<p>
-			Site licensed under <a
-				href="https://github.com/fielstamper/caitlyn.moe/blob/main/LICENSE"
-				class="link">AGPL v3</a
-			>∙<a href="https://github.com/fielstamper/caitlyn.moe" class="link"
-				>Source Code</a
-			>
+			Site licensed under
+			{" "}
+			<a href="https://github.com/fielstamper/caitlyn.moe/blob/main/LICENSE" class="link">AGPL v3</a>
+			∙
+			<a href="https://github.com/fielstamper/caitlyn.moe" class="link">Source Code</a>
+			{" 🌸"}
 		</p>
-		<p>🌸</p>
 	</div>
 </Layout>

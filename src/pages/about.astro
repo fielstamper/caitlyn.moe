@@ -1,31 +1,35 @@
 ---
-import Beimax from "@assets/beimax.webp";
-import Heartstrings from "@assets/heartstrings.webp";
-import Interstates from "@assets/interstates.webp";
-import LifeInAVaccum from "@assets/life in a vaccum.webp";
-import MrMorale from "@assets/mr morale.webp";
-import Tetsuo from "@assets/tetsuo.webp";
-import Tpab from "@assets/tpab.webp";
-import Album from "@components/album.astro";
-import Albums from "@components/albums.astro";
-import Card from "@components/card.astro";
-import Layout from "@layouts/Layout.astro";
+import Beimax from "~/assets/beimax.webp";
+import Heartstrings from "~/assets/heartstrings.webp";
+import Interstates from "~/assets/interstates.webp";
+import LifeInAVaccum from "~/assets/life in a vaccum.webp";
+import MrMorale from "~/assets/mr morale.webp";
+import Tetsuo from "~/assets/tetsuo.webp";
+import Tpab from "~/assets/tpab.webp";
+import Album from "~/components/album.astro";
+import Albums from "~/components/albums.astro";
+import Card from "~/components/card.astro";
+import Layout from "~/layouts/Layout.astro";
 ---
 
 <Layout title="<mark>About Me</mark>" subtitle="20 years old, Australia">
 	<Card variant="border">
-		New to any sort of programming, so please bear with me as I try to
-		figure out what I'm doing. I hope to get better at Javascript
-		specifically. <br /><br />
-		I'm a huge music nerd and love discovering and listening to new music constantly,
-		it's one of my biggest hobbies. Some of my favorite artists include: Default(缺省),
-		Marjorie -W.C.Sinclair, Kendrick Lamar, lexycat, Sampha & Linkin Park! <br
-		/>
-		<br />
-		I'm also quite into manga, light novels and anime. You can check out my favourites on
-		<a href="https://anilist.co/user/aussieauntie/" class="link">
-			AniList
-		</a> :)
+		<p>
+			New to any sort of programming, so please bear with me as I try to figure
+			out what I'm doing. I hope to get better at Javascript specifically.
+		</p>
+		<br /><br />
+		<p>
+			I'm a huge music nerd and love discovering and listening to new music
+			constantly, it's one of my biggest hobbies. Some of my favorite artists
+			include: Default(缺省), Marjorie -W.C.Sinclair, Kendrick Lamar, lexycat,
+			Sampha & Linkin Park!
+		</p>
+		<br /><br />
+		<p>
+			I'm also quite into manga, light novels and anime. You can check out my favourites
+			on <a href="https://anilist.co/user/aussieauntie/" class="link">AniList</a> :)
+		</p>
 	</Card>
 	<br />
 	<h3>Favorite Albums</h3>
@@ -61,9 +65,6 @@ import Layout from "@layouts/Layout.astro";
 	</Albums>
 	<br />
 	<section>
-		<sub>
-			You can find more on my
-			<a class="link" href="https://ibb.co/rCq9b3t">Topster</a>
-		</sub>
+		<sub>You can find more on my <a class="link" href="https://ibb.co/rCq9b3t">Topster</a></sub>
 	</section>
 </Layout>

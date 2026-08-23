@@ -9,10 +9,8 @@ const currentPage = Astro.url.pathname;
 	padding="0.5em 0.8em"
 	href={currentPage !== href && href}
 	hoverable
-	clickable
 	draggable={false}
 	variant={currentPage == href ? "accent" : "border"}
 >
 	{title}
 </Card>
-

@@ -1,14 +1,14 @@
 ---
-import "@styles/global.css";
-import Header from "@components/header.astro";
-import HeaderItem from "@components/headerItem.astro";
-import { ClientRouter } from "astro:transitions";
-import ProfilePicture from "@components/profilePicture.astro";
-import CherryBlossom from "@assets/cherryblossom.png";
-import ThemeSelector from "@components/themeSelector.astro";
+import "~/styles/global.css";
+
+import Head from "~/components/Head.astro";
+import Header from "~/components/header.astro";
+import HeaderItem from "~/components/headerItem.astro";
+import ProfilePicture from "~/components/profilePicture.astro";
+import ThemeSelector from "~/components/themeSelector.astro";
 
 interface Props {
-	title: string;
+	title?: string;
 	subtitle?: string;
 	showAvatar?: boolean;
 }
@@ -18,50 +18,24 @@ const { title, subtitle, showAvatar = true } = Astro.props as Props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="darkreader-lock" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="loser" />
-		<link rel="canonical" href="https://caitlyn.moe" />
-		<link
-			rel="preload"
-			href="/assets/fonts/Nunito.ttf"
-			crossorigin="anonymous"
-			as="font"
-		/>
-		<link
-			rel="preload"
-			href="/assets/fonts/DMSans.ttf"
-			crossorigin="anonymous"
-			as="font"
-		/>
-		<meta name="robots" content="index, follow" />
-		<meta name="theme-color" content="#FFE0F9" />
-		<meta name="twitter:image" /><meta
-			content="caitlyn"
-			name="twitter:title"
-		/><meta content="loser" name="twitter:description" />
-		<title>caitlyn</title>
-		<link rel="icon" href={CherryBlossom.src} />
-
-		<ClientRouter />
-	</head>
+	<Head />
 
 	<body>
 		<div id="header-box">
 			<div>
 				<Header>
 					<HeaderItem title="Home" href="/" />
-                    <HeaderItem title="Music" href="https://lb.caitlyn.moe" />
+					<HeaderItem title="Music" href="https://lb.caitlyn.moe" />
 					<HeaderItem title="About" href="/about" />
 					<HeaderItem title="Contact" href="/contacts" />
 					<ThemeSelector />
 				</Header>
-				<div>
-					<h2 set:html={title} />
-					<sub set:html={subtitle} />
-				</div>
+				{(title || subtitle) && (
+					<div>
+						{title && <h2 set:html={title} />}
+						{subtitle && <sub set:html={subtitle} />}
+					</div>
+				)}
 			</div>
 			{showAvatar && <ProfilePicture />}
 		</div>
@@ -74,39 +48,7 @@ const { title, subtitle, showAvatar = true } = Astro.props as Props;
 				margin-bottom: 1rem;
 			}
 		</style>
-	</body><script>
-		document.addEventListener("astro:page-load", () => {
-			const THEME_KEY = "theme";
-			const themeSystem = document.getElementById(
-				"theme-system",
-			) as HTMLInputElement;
-			const themeLight = document.getElementById(
-				"theme-light",
-			) as HTMLInputElement;
-			const themeDark = document.getElementById(
-				"theme-dark",
-			) as HTMLInputElement;
+	</body>
 
-			const themes: Record<string, HTMLInputElement> = {
-				dark: themeDark,
-				light: themeLight,
-				system: themeSystem,
-			};
-
-			function updateTheme(theme: string | null) {
-				if (theme) localStorage.setItem(THEME_KEY, theme);
-				else localStorage.removeItem(THEME_KEY);
-				(themes[theme ?? "system"] ?? themeSystem).checked = true;
-			}
-
-			Object.entries(themes).forEach(([key, input]) => {
-				input.addEventListener("change", () => {
-					if (input.checked)
-						updateTheme(key === "system" ? null : key);
-				});
-			});
-
-			updateTheme(localStorage.getItem(THEME_KEY));
-		});
-	</script>
+	<script src="~/scripts/themes.ts" />
 </html>
