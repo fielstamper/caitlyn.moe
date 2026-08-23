@@ -30,7 +30,7 @@ function makeDisplayFromTrack(listen: Listen): HTMLAnchorElement {
 	if (listen.recording_mbid) {
 		container.href = `https://listenbrainz.org/track/${listen.recording_mbid}`;
 	}
-	art.src = `https://coverartarchive.org/release-group/${listen.release_group_mbid}/front-500`;
+	art.src = `https://coverartarchive.org/release-group/${listen.release_group_mbid}/front-250`;
 	title.textContent = truncate(listen.track_name, 27);
 	artist.textContent = truncate(listen.artist_name, 15);
 
