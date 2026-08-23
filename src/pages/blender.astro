@@ -2,28 +2,21 @@
 import Layout from "@layouts/Layout.astro";
 ---
 
-<script src="@components/blenderScript.ts"></script>
-<Layout>
-	<div slot="below-header">
-		<h2>Blender Projects</h2>
-	</div>
-
-	{
-		/* <modelView
-		model="zutomayo.glb"
-	/> */
-	}
+<Layout title="Blender Projects">
 	<br /><br />
-	<div id="blender-container"></div>
+	<div data-model="/assets/models/zutomayo.glb" />
 </Layout>
+<script src="../scripts/three.ts" />
 <style>
-	#blender-container {
+	[data-model] {
 		height: 30em;
 		width: 46.875em;
+		border-radius: 8px;
+		overflow: clip;
 	}
 
 	@media (max-width: 768px) {
-		#blender-container {
+		[data-model] {
 			height: 20em;
 			width: 100%;
 		}
