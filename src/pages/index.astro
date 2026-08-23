@@ -4,12 +4,11 @@ import April from "@assets/april.webp";
 import AniListAPI from "@components/aniListAPI.astro";
 import Friend from "@components/friend.astro";
 import Friends from "@components/friends.astro";
-import LastFMGrid from "@components/lastFMGrid.astro";
+import ListenBrainzGrid from "@components/listenbrainzGrid.astro";
 import Layout from "@layouts/Layout.astro";
 import Grid from "@components/grid.astro";
 import GridItem from "@components/gridItem.astro";
 import Image from "astro/components/Image.astro";
-import Biboo from "@assets/biboo.webp";
 ---
 
 <Layout
@@ -33,7 +32,7 @@ import Biboo from "@assets/biboo.webp";
 	</section>
 	<section>
 		<h3>Recent Tracks</h3>
-		<LastFMGrid />
+		<ListenBrainzGrid />
 		<sub>
 			You can find more on my
 			<a class="link" href="https://listenbrainz.org/user/caitlyn/"
