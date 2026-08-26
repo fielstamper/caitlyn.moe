@@ -1,6 +1,6 @@
 :root {
 	color-scheme: light dark;
-	font-family: var(--font-nunito), system-ui;
+	font-family: var(--font-dm-sans), system-ui;
 	-webkit-font-smoothing: antialiased;
 
 	--grey-1: light-dark(#fcfcfc, #181818);
