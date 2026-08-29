@@ -154,6 +154,9 @@ export const GET = (async () => {
 	return new Response(JSON.stringify(cachedBooks), {
 		status: 200,
 		statusText: "OK",
-		headers: { "Content-Type": "application/json" },
+		headers: {
+			"Content-Type": "application/json",
+			"Cache-Control": "max-age=3600",
+		},
 	});
 }) satisfies APIRoute;
