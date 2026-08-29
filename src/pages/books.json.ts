@@ -102,18 +102,18 @@ async function fetchFromAnilist(): Promise<AnilistActivity[]> {
 // MARK: - converters
 function convertHardcoverActivity(original: HardcoverActivity): Book {
 	// replace status phrases to make them consistent w anilist phrases
-	const status = original.user_book_status.status
-		.replace("Currently Reading", "Read Page")
-		.replace("Want to Read", "Plans To Read")
-		.replace("Read", "Completed");
+	const status = original.user_book_status.status;
+	const statusFormatted = status == "Read"
+		? "Completed"
+		: status.replace("Currently Reading", "Read Page").replace("Want to Read", "Plans To Read");
 	// only include progress for page reads
 	const page = original.user_book_reads.at(0)?.progress_pages;
-	const progress = status == "Read Page" ? `${page}` : undefined;
+	const progress = statusFormatted == "Read Page" ? `${page}` : undefined;
 	return {
 		url: `https://hardcover.app/books/${original.book.slug}`,
 		title: original.book.title,
 		image: original.book.editions.at(0)?.image?.url,
-		status,
+		status: statusFormatted,
 		progress,
 		updatedAt: Date.parse(original.updated_at),
 	};
