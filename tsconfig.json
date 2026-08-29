@@ -6,6 +6,6 @@
 		"paths": {
 			"~/*": ["src/*"],
 		},
-		"types": ["node", "worker-configuration.d.ts"]
+		"types": ["node"]
 	},
 }
