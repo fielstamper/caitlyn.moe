@@ -1,9 +1,10 @@
-import cloudflare from "@astrojs/cloudflare";
+import node from "@astrojs/node";
 import { defineConfig, envField, fontProviders } from "astro/config";
 
 export default defineConfig({
+	site: "https://caitlyn.moe/",
+	adapter: node({ mode: "standalone" }),
 	trailingSlash: "never",
-	output: "server",
 	image: {
 		domains: ["github.com", "codeberg.org", "x.com", "avatars.githubusercontent.com"],
 	},
@@ -24,6 +25,4 @@ export default defineConfig({
 			HARDCOVER_TOKEN: envField.string({ context: "server", access: "secret" }),
 		},
 	},
-	site: "https://caitlyn.moe/",
-	adapter: cloudflare({ imageService: "compile" }),
 });
