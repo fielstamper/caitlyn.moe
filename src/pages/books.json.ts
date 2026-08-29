@@ -156,7 +156,7 @@ export const GET = (async () => {
 		statusText: "OK",
 		headers: {
 			"Content-Type": "application/json",
-			"Cache-Control": "max-age=3600",
+			"Cache-Control": "max-age=300",
 		},
 	});
 }) satisfies APIRoute;
