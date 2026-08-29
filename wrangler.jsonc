@@ -1,0 +1,16 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "caitlyn-moe",
+	"main": "@astrojs/cloudflare/entrypoints/server",
+	"compatibility_date": "2026-08-29",
+	"compatibility_flags": ["nodejs_compat"],
+	"preview_urls": false,
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist",
+		"not_found_handling": "404-page",
+	},
+	"observability": {
+		"enabled": true,
+	},
+}
