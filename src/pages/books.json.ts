@@ -104,7 +104,8 @@ function convertHardcoverActivity(original: HardcoverActivity): Book {
 	// replace status phrases to make them consistent w anilist phrases
 	const status = original.user_book_status.status
 		.replace("Currently Reading", "Read Page")
-		.replace("Want to Read", "Plans To Read");
+		.replace("Want to Read", "Plans To Read")
+		.replace("Read", "Completed");
 	// only include progress for page reads
 	const page = original.user_book_reads.at(0)?.progress_pages;
 	const progress = status == "Read Page" ? `${page}` : undefined;
