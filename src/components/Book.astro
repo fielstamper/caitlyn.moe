@@ -1,0 +1,21 @@
+---
+import type { Book } from "~/types";
+
+interface Props {
+	book: Book;
+}
+
+const { book } = Astro.props as Props;
+---
+
+<a href={book.url} target="_blank" rel="nofollow">
+	<img class="cover" src={book.image} />
+	<p class="progress">{[book.status, book.progress].filter(i => i).join(" ")}</p>
+	<sub class="title">{book.title}</sub>
+</a>
+
+<style>
+	.progress {
+		text-transform: capitalize;
+	}
+</style>

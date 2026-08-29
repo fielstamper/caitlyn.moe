@@ -1,0 +1,12 @@
+services:
+    website:
+        build: https://github.com/fielstamper/caitlyn.moe.git
+        container_name: website
+        restart: on-failure
+        user: 1000:1000
+        env_file: .env
+        environment:
+            PUID: 1000
+            PGID: 1000
+        ports:
+            - 8000:8000

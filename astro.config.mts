@@ -1,4 +1,5 @@
-import { defineConfig, fontProviders } from "astro/config";
+import node from "@astrojs/node";
+import { defineConfig, envField, fontProviders } from "astro/config";
 
 export default defineConfig({
 	trailingSlash: "never",
@@ -17,4 +18,10 @@ export default defineConfig({
 			cssVariable: "--font-nunito",
 		},
 	],
+	env: {
+		schema: {
+			HARDCOVER_TOKEN: envField.string({ context: "server", access: "secret" }),
+		},
+	},
+	adapter: node({ mode: "standalone" }),
 });
