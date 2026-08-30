@@ -69,7 +69,7 @@ async function fetchFromAnilist(): Promise<AnilistActivity[]> {
 					... on ListActivity {
 						media {
 							siteUrl
-							title { romaji }
+							title { native }
 							coverImage { extraLarge }
 							type
 						}
@@ -122,7 +122,7 @@ function convertHardcoverActivity(original: HardcoverActivity): Book {
 function convertAnilistActivity(original: AnilistActivity): Book {
 	return {
 		url: original.media.siteUrl,
-		title: original.media.title.romaji,
+		title: original.media.title.native,
 		image: original.media.coverImage.extraLarge,
 		status: original.status,
 		progress: original.progress,

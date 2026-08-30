@@ -7,15 +7,50 @@ interface Props {
 
 const { book } = Astro.props as Props;
 ---
+		<a href={book.url} target="_blank" rel="nofollow">
+			<div class="truncate truncate--line-clamped">
+				<div class="truncate__inner">
+					<img class="cover" src={book.image} />
+					<p class="progress">{[book.status, book.progress].filter(i => i).join(" ")}</p>
 
-<a href={book.url} target="_blank" rel="nofollow">
-	<img class="cover" src={book.image} />
-	<p class="progress">{[book.status, book.progress].filter(i => i).join(" ")}</p>
-	<sub class="title">{book.title}</sub>
-</a>
+					<sub class="title">{book.title}
+					</sub>
+				</div>
+			</div>
+		</a>
 
 <style>
 	.progress {
 		text-transform: capitalize;
 	}
 </style>
+
+<script>
+document.querySelectorAll(".truncate").forEach((truncateEl) => {
+	const truncateInnerEl = truncateEl.querySelector(".truncate__inner")!;
+	document.querySelector(".truncate__inner");
+	const truncateRect = truncateEl.getBoundingClientRect();
+	let truncateInnerRect = truncateInnerEl.getBoundingClientRect();
+
+	truncateEl.style.setProperty("--truncate-height", `${truncateRect.height}px`);
+
+	truncateEl.addEventListener("mouseenter", () => { open(); });
+	truncateEl.addEventListener("mouseleave", () => { close(); });
+
+	function open() {
+		truncateEl.classList.remove("truncate--line-clamped");
+		window.requestAnimationFrame(() => {
+			truncateInnerRect = truncateInnerEl.getBoundingClientRect();
+			truncateEl.style.setProperty("--truncate-height-expanded", `${truncateInnerRect.height}px`);
+			truncateEl.classList.add("truncate--expanded");
+		});
+	}
+
+	function close() {
+		truncateEl.classList.remove("truncate--expanded");
+		setTimeout(() => {
+			truncateEl.classList.add("truncate--line-clamped");
+		}, 200);
+	}
+});
+</script>

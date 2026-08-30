@@ -9,7 +9,7 @@ export interface AnilistActivity {
 	media: {
 		siteUrl: string;
 		coverImage: { extraLarge: string };
-		title: { romaji: string };
+		title: { english: string };
 	};
 }
 
