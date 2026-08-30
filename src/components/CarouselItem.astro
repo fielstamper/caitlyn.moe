@@ -1,0 +1,39 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+const props = Astro.props as HTMLAttributes<"a">;
+---
+
+<a class:list={["carousel-item", props.class]} {...props}>
+	<slot />
+</a>
+
+<style>
+	.carousel-item {
+		text-decoration: none;
+		align-items: center;
+		flex: 0 0 20%;
+		opacity: 100%;
+		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+		text-shadow: var(--shadow-low);
+	}
+	.carousel-item:hover {
+		opacity: 40%;
+	}
+	.carousel-item :global(img) {
+		width: 7.813rem;
+		height: 7.813rem;
+		border-radius: 8px;
+		box-shadow: var(--shadow-low);
+		object-fit: cover;
+	}
+	.carousel-item :global(sub) {
+		color: var(--text-secondary);
+		font-size: 0.8rem;
+	}
+	@media (max-width: 700px) {
+		.carousel-item {
+			flex: 0 0 33.333%;
+		}
+	}
+</style>

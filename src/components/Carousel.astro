@@ -1,0 +1,76 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import Card from "./card.astro";
+
+const { class: bodyClassName, ...bodyProps } = Astro.props as HTMLAttributes<"div">;
+---
+
+<div class="carousel-container">
+	<div {...bodyProps} class:list={["carousel-body", bodyClassName]}>
+		<slot />
+	</div>
+	<div class="carousel-buttons">
+		<div class="carousel-label"><slot name="carousel-label" /></div>
+		<Card hoverable className="carousel-prev">&lt;</Card>
+		<Card hoverable className="carousel-next">&gt;</Card>
+	</div>
+</div>
+<script>
+document.addEventListener("astro:page-load", () => {
+	document.querySelectorAll(".carousel-container").forEach((container) => {
+		const body = container.querySelector(".carousel-body")!;
+		const prevButton = container.querySelector(".carousel-prev")!;
+		const nextButton = container.querySelector(".carousel-next")!;
+		let lastClick = Date.now();
+
+		function handleCarouselMove(positive = true) {
+			if ((Date.now() - lastClick) < 300) return;
+			lastClick = Date.now();
+			const slideWidth = body.firstElementChild!.clientWidth * 2;
+			body.scrollLeft = positive ? body.scrollLeft + slideWidth : body.scrollLeft - slideWidth;
+		}
+
+		prevButton.addEventListener("click", () => handleCarouselMove(false));
+		nextButton.addEventListener("click", () => handleCarouselMove());
+	});
+});
+</script>
+<style>
+	.carousel-container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.carousel-body {
+		display: flex;
+		justify-content: space-between;
+		text-align: center;
+		overflow-x: hidden;
+		scroll-behavior: smooth;
+	}
+
+	.carousel-buttons {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		height: 2rem !important;
+		gap: 4px;
+	}
+
+	.carousel-prev, .carousel-next {
+		cursor: pointer;
+		user-select: none;
+		width: 2rem !important;
+		height: 2rem !important;
+		padding: 0 !important;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.carousel-label {
+		flex: 1;
+	}
+</style>

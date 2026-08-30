@@ -1,0 +1,24 @@
+---
+import type { Listen } from "~/types";
+import { truncateString } from "~/utils";
+
+import CarouselItem from "./CarouselItem.astro";
+
+interface Props {
+	listen: Listen;
+}
+
+const { listen } = Astro.props as Props;
+---
+
+<CarouselItem
+	href={`https://listenbrainz.org/track/${listen.track_metadata.additional_info.recording_mbid}`}
+	target="_blank"
+	rel="nofollow"
+>
+	<img
+		src={`https://coverartarchive.org/release-group/${listen.track_metadata.additional_info.release_group_mbid}/front-250`}
+	/>
+	<p>{truncateString(listen.track_metadata.track_name, 27)}</p>
+	<sub>{truncateString(listen.track_metadata.artist_name, 15)}</sub>
+</CarouselItem>

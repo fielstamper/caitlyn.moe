@@ -1,0 +1,68 @@
+---
+import type { Activity } from "~/types";
+
+import CarouselItem from "./CarouselItem.astro";
+
+interface Props {
+	activity: Activity;
+}
+
+const { activity } = Astro.props as Props;
+---
+
+<CarouselItem href={activity.url} target="_blank" rel="nofollow">
+	<div class="truncate truncate--line-clamped">
+		<div class="truncate__inner">
+			<img class="cover" src={activity.image} />
+			<p class="progress">{[activity.status, activity.progress].filter(i => i).join(" ")}</p>
+			<sub class="title">{activity.title}
+			</sub>
+		</div>
+	</div>
+</CarouselItem>
+
+<style>
+	.cover {
+		height: 14rem !important;
+	}
+	.progress {
+		text-transform: capitalize;
+	}
+</style>
+
+<script>
+document.addEventListener("astro:page-load", () => {
+	document.querySelectorAll(".truncate").forEach((truncateEl) => {
+		const truncateInnerEl = truncateEl.querySelector(".truncate__inner")!;
+
+		(truncateEl as HTMLElement).style.setProperty(
+			"--truncate-height",
+			`${truncateEl.getBoundingClientRect().height}px`,
+		);
+		truncateEl.addEventListener("mouseenter", () => expand());
+		truncateEl.addEventListener("mouseleave", () => collapse());
+
+		let clampTimeout: number | undefined = undefined;
+
+		function expand() {
+			clearTimeout(clampTimeout);
+			truncateEl.classList.remove("truncate--line-clamped");
+			window.requestAnimationFrame(() => {
+				(truncateEl as HTMLElement).style.setProperty(
+					"--truncate-height-expanded",
+					`${truncateInnerEl.getBoundingClientRect().height}px`,
+				);
+				truncateEl.classList.add("truncate--expanded");
+			});
+		}
+
+		function collapse() {
+			truncateEl.classList.remove("truncate--expanded");
+			clearTimeout(clampTimeout);
+			clampTimeout = setTimeout(() => {
+				truncateEl.classList.add("truncate--line-clamped");
+			}, 200, []);
+		}
+	});
+});
+</script>

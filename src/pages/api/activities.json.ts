@@ -5,11 +5,11 @@ import { HARDCOVER_TOKEN } from "astro:env/server";
 import gql from "graphql-tag";
 
 import { ANILIST_USER } from "~/constants";
-import type { AnilistActivity, AnilistResponse, Book, HardcoverActivity, HardcoverResponse } from "~/types";
+import type { Activity, AnilistActivity, AnilistResponse, HardcoverActivity, HardcoverResponse } from "~/types";
 
 const CACHE_AGE = 20_000; // 24h / 5000 requests = 17s + 3s to be safe
 
-let cachedBooks: Book[] = [];
+let cachedBooks: Activity[] = [];
 let cacheTime = Date.now();
 
 // MARK: - fetchers
@@ -100,7 +100,7 @@ async function fetchFromAnilist(): Promise<AnilistActivity[]> {
 }
 
 // MARK: - converters
-function convertHardcoverActivity(original: HardcoverActivity): Book {
+function convertHardcoverActivity(original: HardcoverActivity): Activity {
 	// replace status phrases to make them consistent w anilist phrases
 	const status = original.user_book_status.status;
 	const statusFormatted = status == "Read"
@@ -119,7 +119,7 @@ function convertHardcoverActivity(original: HardcoverActivity): Book {
 	};
 }
 
-function convertAnilistActivity(original: AnilistActivity): Book {
+function convertAnilistActivity(original: AnilistActivity): Activity {
 	return {
 		url: original.media.siteUrl,
 		title: original.media.title.native,
@@ -133,7 +133,7 @@ function convertAnilistActivity(original: AnilistActivity): Book {
 // MARK: - endpoint
 export const GET = (async () => {
 	if (cachedBooks.length == 0 || (Date.now() - cacheTime) > CACHE_AGE) {
-		console.log("caching response");
+		console.log("caching activities");
 		try {
 			const [hardcoverActivities, anilistActivities] = await Promise.all([
 				fetchFromHardcover(),
@@ -142,7 +142,7 @@ export const GET = (async () => {
 			const books = [
 				...hardcoverActivities.map(convertHardcoverActivity),
 				...anilistActivities.map(convertAnilistActivity),
-			].sort((a, b) => b.updatedAt - a.updatedAt).slice(0, 5);
+			].sort((a, b) => b.updatedAt - a.updatedAt);
 
 			cachedBooks = books;
 			cacheTime = Date.now();

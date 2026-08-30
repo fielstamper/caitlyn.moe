@@ -5,20 +5,24 @@ import { Image } from "astro:assets";
 
 import Tabris from "~/assets/1tabris.webp";
 import April from "~/assets/april.webp";
-import Book from "~/components/Book.astro";
+import ActivityDisplay from "~/components/ActivityDisplay.astro";
+import Carousel from "~/components/Carousel.astro";
 import Friend from "~/components/friend.astro";
 import Friends from "~/components/friends.astro";
 import Grid from "~/components/grid.astro";
 import GridItem from "~/components/gridItem.astro";
-import ListenBrainzGrid from "~/components/listenbrainzGrid.astro";
-import ScrollingGrid from "~/components/scrollingGrid.astro";
+import ListenDisplay from "~/components/ListenDisplay.astro";
 import Layout from "~/layouts/Layout.astro";
-import type { Book as BookType } from "~/types";
+import type { Activity, Listen } from "~/types";
 
-import { GET as getBooks } from "./books.json";
+import { GET as getActivities } from "./api/activities.json";
+import { GET as getListens } from "./api/listens.json";
 
-const booksResponse = await getBooks();
-const books: BookType[] = await booksResponse.json();
+const activitiesResponse = await getActivities();
+const activities: Activity[] = await activitiesResponse.json();
+
+const listensResponse = await getListens();
+const listens: Listen[] = await listensResponse.json();
 ---
 
 <Layout
@@ -32,16 +36,27 @@ const books: BookType[] = await booksResponse.json();
 	<hr />
 	<section>
 		<h3>Library Updates</h3>
-		<ScrollingGrid height="14rem">
-
-			{books.map(book => <Book book={book} />)}
-		</ScrollingGrid>
-		<sub>You can find more on my <a class="link" href="https://anilist.co/user/aussieauntie/">AniList</a> & <a class="link" href="https://hardcover.app/@_alice">Hardcover</a></sub>
+		<Carousel>
+			{activities.map(activity => <ActivityDisplay activity={activity} />)}
+			<sub slot="carousel-label">
+				You can find more on my
+				{" "}
+				<a class="link" href="https://anilist.co/user/aussieauntie/">AniList</a>
+				{" & "}
+				<a class="link" href="https://hardcover.app/@_alice">Hardcover</a>
+			</sub>
+		</Carousel>
 	</section>
 	<section>
 		<h3>Recent Tracks</h3>
-		<ListenBrainzGrid />
-		<sub>You can find more on my <a class="link" href="https://listenbrainz.org/user/caitlyn/">Listenbrainz</a></sub>
+		<Carousel>
+			{listens.map(listen => <ListenDisplay listen={listen} />)}
+			<sub slot="carousel-label">
+				You can find more on my
+				{" "}
+				<a class="link" href="https://listenbrainz.org/user/caitlyn/">ListenBrainz</a>
+			</sub>
+		</Carousel>
 	</section>
 
 	<Grid title="Projects">
