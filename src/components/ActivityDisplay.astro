@@ -22,18 +22,47 @@ const { activity } = Astro.props as Props;
 </CarouselItem>
 
 <style>
+.cover {
+	height: 14rem !important;
+}
+@media (max-width: 600px) {
 	.cover {
-		height: 14rem !important;
+		width: calc(7.813rem * 0.9) !important;
+		height: calc(14rem * 0.9) !important;
 	}
-	@media (max-width: 600px) {
-		.cover {
-			width: calc(7.813rem * 0.9) !important;
-			height: calc(14rem * 0.9) !important;
-		}
+}
+.progress {
+	text-transform: capitalize;
+}
+
+.truncate {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	max-height: var(--truncate-height, auto);
+	max-width: 550px;
+	margin: 0 auto;
+	overflow: hidden;
+	transition: max-height 0.3s ease;
+}
+
+.truncate--line-clamped {
+	line-clamp: 4;
+	-webkit-line-clamp: 4;
+}
+
+@media (max-width: 768px) {
+	.truncate--line-clamped {
+		line-clamp: 30;
+		-webkit-line-clamp: 30;
 	}
-	.progress {
-		text-transform: capitalize;
+	.truncate {
+		max-height: 100%;
 	}
+}
+
+.truncate--expanded {
+	max-height: var(--truncate-height-expanded, auto);
+}
 </style>
 
 <script>

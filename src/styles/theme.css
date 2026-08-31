@@ -1,0 +1,65 @@
+/*
+rules & variables for colours and theming
+*/
+
+:root {
+	color-scheme: light dark;
+
+	--grey-1: light-dark(#fcfcfc, #181818);
+	--grey-2: light-dark(#f8f8f8, #1e1e1e);
+	--grey-3: light-dark(#eaeaea, #272727);
+
+	--text: light-dark(#191919, #c3c3c3);
+	--text-secondary: light-dark(#272727, #8f8f8f);
+	--text-tertiary: light-dark(#272727, #505050);
+	--text-inverse: light-dark(white, black);
+
+	--accent: light-dark(#ff8c9e, #f7cdf7);
+	--accent-secondary: light-dark(#a75360, #cb93cb);
+
+	--selection: light-dark(var(--grey-2));
+	--selection-primary: light-dark(var(--grey-3));
+
+	--shadow-low: 2px 2px 5px light-dark(#0000000f, #0000005b);
+}
+
+body,
+:root {
+	background-color: var(--grey-1);
+	color: var(--text);
+}
+
+:root:has(#theme-dark:checked) {
+	color-scheme: dark;
+}
+
+:root:has(#theme-light:checked) {
+	color-scheme: light;
+}
+
+hr {
+	background-color: var(--grey-3);
+	height: 1px;
+	border: 0;
+}
+
+.link {
+	text-decoration: underline;
+	text-decoration-style: wavy;
+	text-decoration-color: transparent;
+	color: var(--accent);
+	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+}
+
+.link:hover {
+	text-decoration-color: var(--accent);
+}
+
+sub {
+	color: var(--text-secondary);
+}
+
+::selection {
+	background: var(--accent);
+	color: var(--text-inverse);
+}

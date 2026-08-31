@@ -1,0 +1,18 @@
+/*
+rules to "reset" dumb default behaviour in CSS, like
+box-sizing not being border-box by default
+*/
+
+*,
+:after,
+:before {
+	box-sizing: border-box;
+}
+
+sub {
+	all: inherit;
+}
+
+p {
+	margin: 0;
+}
