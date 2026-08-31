@@ -8,8 +8,8 @@ export interface AnilistActivity {
 	createdAt: number;
 	media: {
 		siteUrl: string;
-		coverImage: { extraLarge: string };
-		title: { english: string };
+		coverImage: { large: string };
+		title: { native: string };
 	};
 }
 

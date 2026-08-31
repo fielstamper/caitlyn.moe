@@ -70,7 +70,7 @@ async function fetchFromAnilist(): Promise<AnilistActivity[]> {
 						media {
 							siteUrl
 							title { native }
-							coverImage { extraLarge }
+							coverImage { large }
 							type
 						}
 						status
@@ -112,7 +112,7 @@ function convertHardcoverActivity(original: HardcoverActivity): Activity {
 	return {
 		url: `https://hardcover.app/books/${original.book.slug}`,
 		title: original.book.title,
-		image: original.book.editions.at(0)?.image?.url,
+		image: `https://production-img.hardcover.app/crop?width=230&height=327&type=webp&url=${original.book.editions.at(0)?.image?.url}`,
 		status: statusFormatted,
 		progress,
 		updatedAt: Date.parse(original.updated_at),
@@ -123,7 +123,7 @@ function convertAnilistActivity(original: AnilistActivity): Activity {
 	return {
 		url: original.media.siteUrl,
 		title: original.media.title.native,
-		image: original.media.coverImage.extraLarge,
+		image: original.media.coverImage.large,
 		status: original.status,
 		progress: original.progress,
 		updatedAt: original.createdAt * 1000,

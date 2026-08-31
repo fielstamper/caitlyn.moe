@@ -6,7 +6,7 @@ export default defineConfig({
 	adapter: node({ mode: "standalone" }),
 	trailingSlash: "never",
 	image: {
-		domains: ["github.com", "codeberg.org", "x.com", "avatars.githubusercontent.com"],
+		domains: ["github.com", "codeberg.org", "x.com", "avatars.githubusercontent.com", "production-img.hardcover.app", "anilist.co"],
 	},
 	fonts: [
 		{
