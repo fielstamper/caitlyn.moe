@@ -105,7 +105,7 @@ function convertHardcoverActivity(original: HardcoverActivity): Activity {
 	const status = original.user_book_status.status;
 	const statusFormatted = status == "Read"
 		? "Completed"
-		: status.replace("Currently Reading", "Read Page").replace("Want to Read", "Plans To Read");
+		: status.replace("Currently Reading", "Read Page").replace("Want to Read", "Plans To Read").replace("Did Not Finish", "Dropped");
 	// only include progress for page reads
 	const page = original.user_book_reads.at(0)?.progress_pages;
 	const progress = statusFormatted == "Read Page" ? `${page}` : undefined;
