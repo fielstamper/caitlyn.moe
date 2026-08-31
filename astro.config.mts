@@ -1,5 +1,7 @@
 import node from "@astrojs/node";
 import { defineConfig, envField, fontProviders } from "astro/config";
+import browserslist from "browserslist";
+import { browserslistToTargets } from "lightningcss";
 
 export default defineConfig({
 	site: "https://caitlyn.moe/",
@@ -23,6 +25,14 @@ export default defineConfig({
 	env: {
 		schema: {
 			HARDCOVER_TOKEN: envField.string({ context: "server", access: "secret" }),
+		},
+	},
+	vite: {
+		css: {
+			transformer: "lightningcss",
+			lightningcss: {
+				targets: browserslistToTargets(browserslist(">= 0.1%")),
+			},
 		},
 	},
 });
