@@ -25,6 +25,12 @@ const { activity } = Astro.props as Props;
 	.cover {
 		height: 14rem !important;
 	}
+	@media (max-width: 600px) {
+		.cover {
+			width: calc(7.813rem * 0.9) !important;
+			height: calc(14rem * 0.9) !important;
+		}
+	}
 	.progress {
 		text-transform: capitalize;
 	}
