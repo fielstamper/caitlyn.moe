@@ -36,11 +36,9 @@ const links = [
 		{
 			links.map(({ href, title, icon: Icon }) => (
 				<Card
-					padding="0.4rem 1.4rem"
+					as="a"
 					href={`https://${href}`}
 					title={title}
-					hoverable
-					draggable={false}
 				>
 					<Icon
 						width={30}

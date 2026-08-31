@@ -1,90 +1,81 @@
 ---
-import type { HTMLAttributes } from "astro/types";
+import type { HTMLTag, Polymorphic } from "astro/types";
 
-interface Props extends Omit<HTMLAttributes<"div">, "class"> {
-	variant?: "primary" | "border" | "accent";
-	padding?: string;
-	hoverable?: boolean;
+type Props<Tag extends HTMLTag = HTMLTag> = Polymorphic<{
+	as: Tag;
 	disabled?: boolean;
-	href?: string;
-	className?: string;
-}
+	variant?: "filled" | "bordered" | "accented";
+	elevation?: "low" | null;
+}>;
 
 const {
-	variant = "primary",
-	padding = "0.7rem",
-	hoverable = false,
+	as: Tag = "div",
 	disabled = false,
-	href,
-	className,
+	variant = "filled",
+	elevation = variant == "filled" ? "low" : undefined,
+	class: className,
 	...props
-} = Astro.props as Props;
-const classes = [
-	"card",
-	variant,
-	hoverable && "hoverable",
-	disabled && "disabled",
-	className,
-]
-	.filter(c => c)
-	.join(" ");
+} = Astro.props;
 ---
 
-{
-	href
-		? (
-				<a href={href} class={classes} {...props}>
-					<slot />
-				</a>
-			)
-		: (
-				<div class={classes} {...props}>
-					<slot />
-				</div>
-			)
+<Tag
+	class:list={[
+		"card",
+		variant,
+		elevation && `elevation-${elevation}`,
+		disabled && "disabled",
+		className,
+	]}
+	{...props}
+>
+	<slot />
+</Tag>
+
+<style>
+.card {
+	--border-color: transparent;
+	--background-color: transparent;
+	border: 1px solid var(--border-color);
+	background-color: var(--background-color);
+	border-radius: 8px;
+	padding: 0.7em;
+	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+	color: var(--text-secondary);
+	overflow: hidden;
+	font-family: inherit;
+	display: flex;
 }
-<style define:vars={{ padding }}>
-	.card {
-		border-radius: 8px;
-		border: 1px solid var(--grey-3);
-		padding: var(--padding);
-		transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
-		color: var(--text-secondary);
-		overflow: hidden;
-	}
+.card.filled, .card.bordered {
+	--border-color: var(--grey-3);
+}
+.card.filled {
+	--background-color: var(--grey-2);
+}
+.card.accented {
+	--border-color: light-dark(var(--accent-secondary), var(--grey-3));
+	--background-color: light-dark(var(--accent), var(--grey-2));
+	color: light-dark(black, var(--text-secondary));
+}
+a.card:not(.disabled):focus-visible, button.card:not(.disabled):focus-visible,
+a.card:not(.disabled):hover, button.card:not(.disabled):hover {
+	cursor: pointer;
+	background-color: var(--border-color);
+}
 
-	.card::selection {
-		background: var(--accent);
-		color: var(--text-inverse);
-	}
-	.card.hoverable:hover {
-		background: var(--grey-3);
-	}
-	.card.clickable.hoverable:hover:active {
-		transform: scale(0.9);
-	}
-	.card.primary {
-		background: var(--grey-2);
-		box-shadow: var(--shadow-low);
-		height: 44.78px;
-	}
-	.card.accent {
-		background: light-dark(var(--accent), var(--grey-2));
-		border: 1px solid light-dark(transparent, inherit);
-		color: light-dark(black, var(--text));
-	}
-	.card.accent.hoverable:hover {
-		background: light-dark(var(--accent-secondary), var(--grey-2));
-	}
-	.card.disabled,
-	.card.disabled :global(*) {
-		opacity: 0%;
-	}
+a.card, a.button {
+	user-select: none;
+	padding: 0.5em 0.8em;
+}
+a.card:not(.disabled):active, button.card:not(.disabled):active {
+	scale: 0.95;
+	border-radius: 6px;
+}
 
-	@media (max-width: 768px) {
-		.card.disabled,
-		.card.disabled :global(*) {
-			display: none;
-		}
-	}
+.card.disabled {
+	opacity: 0.5;
+}
+
+.card.elevation-low {
+	box-shadow: var(--shadow-low);
+}
 </style>

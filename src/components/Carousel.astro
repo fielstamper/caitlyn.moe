@@ -12,8 +12,8 @@ const { class: bodyClassName, ...bodyProps } = Astro.props as HTMLAttributes<"di
 	</div>
 	<div class="carousel-buttons">
 		<div class="carousel-label"><slot name="carousel-label" /></div>
-		<Card hoverable className="carousel-prev">&lt;</Card>
-		<Card hoverable className="carousel-next">&gt;</Card>
+		<Card as="button" class="carousel-prev">&lt;</Card>
+		<Card as="button" class="carousel-next">&gt;</Card>
 	</div>
 </div>
 <script>

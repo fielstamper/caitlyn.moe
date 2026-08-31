@@ -4,14 +4,21 @@ import LightIcon from "~/assets/icons/theme_light.svg";
 import SystemIcon from "~/assets/icons/theme_system.svg";
 ---
 
-<input type="radio" name="theme" value="system" id="theme-system" />
-<input type="radio" name="theme" value="light" id="theme-light" />
-<input type="radio" name="theme" value="dark" id="theme-dark" />
-<label for="theme-system"> <SystemIcon /> </label>
-<label for="theme-light"> <LightIcon /> </label>
-<label for="theme-dark"> <DarkIcon /> </label>
+<div class="theme-buttons">
+	<input type="radio" name="theme" value="system" id="theme-system" />
+	<input type="radio" name="theme" value="light" id="theme-light" />
+	<input type="radio" name="theme" value="dark" id="theme-dark" />
+	<label for="theme-system"><SystemIcon /></label>
+	<label for="theme-light"><LightIcon /></label>
+	<label for="theme-dark"><DarkIcon /></label>
+</div>
 
 <style>
+	.theme-buttons {
+		display: flex;
+		flex-wrap: nowrap;
+		gap: 6px;
+	}
 	label {
 		align-self: center;
 		display: flex;

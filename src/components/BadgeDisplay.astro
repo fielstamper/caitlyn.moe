@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+
+import type { Badge } from "~/types";
+
+interface Props {
+	badge: Badge;
+	width?: number;
+	height?: number;
+	round?: boolean;
+}
+
+const { badge, width = 88, height = 31, round = false } = Astro.props;
+---
+
+<a href={badge.href} class:list={[round && "round"]} target="_blank" rel="nofollow">
+	<Image src={badge.src} title={badge.title} alt={badge.title} width={width} height={height} />
+</a>
+
+<style>
+a {
+	display: flex;
+	box-shadow:
+		inset 0px 0px 0px 1px light-dark(#3c3c3c1f, #ffffff1f),
+		var(--shadow-low);
+	transition: all 0.25s cubic-bezier(0.17, 0.85, 0.29, 0.95);
+	overflow: hidden;
+}
+
+a:hover {
+	box-shadow: 0 0 9px var(--accent-secondary);
+	scale: 1.05;
+}
+
+a:active {
+	scale: 0.9;
+}
+
+a.round {
+	border-radius: 4px;
+}
+</style>

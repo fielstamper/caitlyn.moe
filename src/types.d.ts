@@ -1,3 +1,16 @@
+export interface Project {
+	title: string;
+	description: string;
+	href: string;
+	icon: string;
+}
+
+export interface Badge {
+	title: string;
+	href: string;
+	src: string;
+}
+
 export interface AnilistResponse {
 	data?: { Page?: { activities?: AnilistActivity[] } };
 }

@@ -1,17 +1,14 @@
 ---
 export const prerender = false;
 
-import { Image } from "astro:assets";
-
-import Tabris from "~/assets/1tabris.webp";
-import April from "~/assets/april.webp";
 import ActivityDisplay from "~/components/ActivityDisplay.astro";
+import BadgeDisplay from "~/components/BadgeDisplay.astro";
+import Card from "~/components/Card.astro";
 import Carousel from "~/components/Carousel.astro";
-import Friend from "~/components/Friend.astro";
-import Friends from "~/components/Friends.astro";
 import Grid from "~/components/Grid.astro";
-import GridItem from "~/components/GridItem.astro";
 import ListenDisplay from "~/components/ListenDisplay.astro";
+import ProjectCard from "~/components/ProjectCard.astro";
+import { BADGES, FRIEND_AVATARS, FRIEND_BADGES, MISC_PROJECTS, PROJECTS } from "~/constants";
 import Layout from "~/layouts/Layout.astro";
 import type { Activity, Listen } from "~/types";
 
@@ -29,372 +26,106 @@ const listens: Listen[] = await listensResponse.json();
 	title="hi, i'm <mark>caitlyn!</mark>"
 	subtitle="20 years old, Australia"
 >
-	<sub style="padding: 0;">
+	<sub>
 		A woman who can't program but can do some other stuff decently well. You
 		can find me around the web.
 	</sub>
 	<hr />
-	<section>
-		<h3>Library Updates</h3>
-		<Carousel>
-			{activities.map(activity => <ActivityDisplay activity={activity} />)}
-			<sub slot="carousel-label">
-				You can find more on my
-				{" "}
-				<a class="link" href="https://anilist.co/user/aussieauntie/">AniList</a>
-				{" & "}
-				<a class="link" href="https://hardcover.app/@_alice">Hardcover</a>
-			</sub>
-		</Carousel>
-	</section>
-	<section>
-		<h3>Recent Tracks</h3>
-		<Carousel>
-			{listens.map(listen => <ListenDisplay listen={listen} />)}
-			<sub slot="carousel-label">
-				You can find more on my
-				{" "}
-				<a class="link" href="https://listenbrainz.org/user/caitlyn/">ListenBrainz</a>
-			</sub>
-		</Carousel>
-	</section>
 
-	<Grid title="Projects">
-		<GridItem
-			title="This website"
-			description="This poorly built site."
-			icon="/avatar.png"
-			link="https://github.com/fielstamper/caitlyn.moe"
-		/>
-		<GridItem
-			title="kosuka.dev"
-			description="My first (now down) site."
-			icon="/old_avatar.jpg"
-			link="https://github.com/fielstamper/kosuka.dev"
-		/>
+	<h3>Library Updates</h3>
+	<Carousel>
+		{activities.map(activity => <ActivityDisplay activity={activity} />)}
+		<sub slot="carousel-label">
+			You can find more on my
+			{" "}
+			<a class="link" href="https://anilist.co/user/aussieauntie/">AniList</a>
+			{" & "}
+			<a class="link" href="https://hardcover.app/@_alice">Hardcover</a>
+		</sub>
+	</Carousel>
+
+	<h3>Recent Tracks</h3>
+	<Carousel>
+		{listens.map(listen => <ListenDisplay listen={listen} />)}
+		<sub slot="carousel-label">
+			You can find more on my
+			{" "}
+			<a class="link" href="https://listenbrainz.org/user/caitlyn/">ListenBrainz</a>
+		</sub>
+	</Carousel>
+
+	<h3>Projects</h3>
+	<Grid>
+		{PROJECTS.map(project => <ProjectCard {project} />)}
 	</Grid>
 
-	<Grid title="Miscellaneous Creations">
-		<GridItem
-			title="Nira Zutomayo 3D Model"
-			description="My first self-made model on Blender."
-			icon="/nira_chan_by_chelliopee.jpg"
-			link="/blender"
-		/>
-		<GridItem />
+	<h3>Miscellaneous Creations</h3>
+	<Grid>
+		{MISC_PROJECTS.map(project => <ProjectCard {project} />)}
+		<ProjectCard project={undefined} />
 	</Grid>
+
 	<h3>Cute Entities</h3>
-	<sub style="padding-bottom: 8px;">
+	<sub>
 		You can add my <a class="link" href="/88x31.png">88x31</a> if we are close :)
 	</sub>
-	<div class="container88x31">
-		<a href="/88x31.png">
-			<Image src="/88x31.png" alt="my 88x31" width="88" height="31" />
-		</a>
-		<a href="https://www.fedoraproject.org/">
-			<Image
-				src="/fedora88x31.gif"
-				alt="fedora 88x31"
-				width="88"
-				height="31"
-				title="fedora"
-			/>
-		</a>
-		<a href="https://www.half-life.com/en/home/">
-			<Image
-				src="/halflife88x31.gif"
-				alt="half life 88x31"
-				width="88"
-				height="31"
-				title="half life"
-			/>
-		</a>
-		<a href="https://frieren-manga.com/">
-			<Image
-				src="/frieren88x31.png"
-				alt="friren 88x31"
-				width="88"
-				height="31"
-				title="art by panart_08 on instagram"
-			/>
-		</a>
-		<a href="https://www.slsknet.org/news/">
-			<Image
-				src="/slskd88x31.gif"
-				alt="soulseek 88x31"
-				width="88"
-				height="31"
-				title="soulseek"
-			/>
-		</a>
-		<a href="https://listenbrainz.org/">
-			<Image
-				src="/listenbrainz88x31.png"
-				alt="listenbrainz 88x31"
-				width="88"
-				height="31"
-				title="listenbrainz"
-			/>
-		</a>
-		<a href="https://vencord.dev/">
-			<Image
-				src="/vencord88x31.webp"
-				alt="vencord 88x31"
-				width="88"
-				height="31"
-				title="vencord"
-			/>
-		</a>
-	</div>
 
-	<br />
-	<div class="container88x31">
-		<a href="https://vendicated.dev/">
-			<Image
-				src="/ven88x31.gif"
-				alt="vee"
-				width="88"
-				height="31"
-				title="vee"
-			/>
-		</a>
-		<a href="https://uncutified.moe" rel="nofollow">
-			<img
-				src="https://uncutified.moe/88x31.gif"
-				width="88"
-				height="31"
-				title="lexy"
-				alt="lexy"
-			/>
-		</a>
-		<a href="https://claration.dev/">
-			<Image
-				src="/samara88x31.png"
-				alt="samara"
-				width="88"
-				height="31"
-				title="samara"
-			/>
-		</a>
-		<a href="https://wearr.dev/">
-			<Image
-				src="/wear88x31.gif"
-				alt="wearr"
-				width="88"
-				height="31"
-				title="wearr"
-			/>
-		</a>
-		<a href="https://worf.win/">
-			<Image
-				src="/worf88x31.gif"
-				alt="worf"
-				width="88"
-				height="31"
-				title="worf"
-			/>
-		</a>
-		<a href="https://amy.rip/">
-			<Image
-				src="/amy88x31.png"
-				alt="amy"
-				width="88"
-				height="31"
-				title="amy"
-			/>
-		</a>
-		<a href="https://nin0.dev" rel="nofollow">
-			<img
-				src="https://files.nin0.dev/88x31.png"
-				width="88"
-				height="31"
-				title="nin0"
-			/>
-		</a>
-		<a href="https://mugman.tech/">
-			<Image
-				src="/mugman88x31.gif"
-				alt="mugman"
-				width="88"
-				height="31"
-				title="mugman"
-			/>
-		</a>
-		<iframe
-			width="88"
-			height="31"
-			style="border:none"
-			title="rini"
-			sandbox="allow-scripts allow-popups"
-			srcdoc="<!doctype html><body onload=&quot;d=d.style,d.position=`absolute`,x=0,y=Math.random()*66|0,u=v=1,c=3
-setInterval`x+=u${166}y+=v,z=x<=0||x>=20,w=y<=0||y>=67
-z&&w?c=(c+3)%6-1:0,u^=-z-z,v^=-w-w
-d.background='hwb('+60*c+' 0 0)'
-d.top=x+'px',d.left=y+'px'`&quot;bgcolor=#000><a href=https://github.com/rniii target=_blank><img id=d src=data:image/gif;base64,R0lGODdhFQALAHcAACH5BAkKAAAALAAAAAAVAAsAgAAAAAAAAAInDI4Xa6m8EkNQPQtivnvuH3mc1pSlU3EUxJrtC8eig851Q2daTjMFADs>"
-		/>
-		<a href="https://acpi.at/">
-			<Image
-				src="/livia88x31.gif"
-				alt="livia"
-				width="88"
-				height="31"
-				title="livia"
-			/>
-		</a>
-		<a href="https://github.com/puhboo">
-			<Image
-				src="/puhbu88x31.gif"
-				alt="puhbu"
-				width="88"
-				height="31"
-				title="puhbu"
-			/>
-		</a>
-		<a href="https://paige.moe/" style="width: 88px; height: 31px;">
-			<img
-				src="https://paige.moe/88x31.gif"
-				width="88"
-				height="31"
-				style="image-rendering:pixelated"
-			/>
-		</a>
-		<a href="https://lumina0machina.github.io/">
-			<Image
-				src="/lumina88x31.png"
-				alt="lumina"
-				width="88"
-				height="31"
-				title="lumina"
-			/>
-		</a>
-		<a href="https://lewisakura.moe/">
-			<Image
-				src="https://lewisakura.moe/88x31.png"
-				alt="lewisakura"
-				width="88"
-				height="31"
-				title="lewisakura"
-			/>
-		</a>
-		<a href="https://zt64.dev" rel="nofollow">
-			<img
-				src="/zoot88x31.png"
-				width="88"
-				height="31"
-				title="zoot"
-				alt="zoot"
-			/>
-		</a>
-		<a href="https://rushii.dev" rel="nofollow">
-			<img
-				src="https://github.com/rushiiMachine/rushii.dev/blob/master/public/88x31/rushii.webp?raw=true"
-				width="88"
-				height="31"
-				title="ruuuuuuuushie"
-				alt="ruuuuuuuushie"
-			/>
-		</a>
-		<a href="https://key.w10.site/" rel="nofollow">
-			<img
-				src="https://key.w10.site/assets/buttons/keiran.gif"
-				width="88"
-				height="31"
-				title="key why ess"
-			/>
-		</a>
-		<a href="https://iamw.ing/" rel="nofollow">
-			<img
-				src="https://iamw.ing/88x31/badge.gif"
-				width="88"
-				height="31"
-				title="worlde demon"
-				alt="wing"
-			/>
-		</a>
-		<a href="https://mayu.amy.rip" rel="nofollow">
-			<img
-				src="https://mayu.amy.rip/img/88x31/mayu.png"
-				width="88"
-				height="31"
-				title="mayura"
-				alt="mayu"
-			/>
-		</a>
-		<a href="https://boni.moe/">
-			<img
-				src="https://boobies.shiver.mom/88x31.gif"
-				alt="boniboniboni"
-				width="88"
-				height="31"
-			/>
-		</a>
-	</div>
+	<Card class="badge-grid" elevation={null}>
+		{BADGES.map(badge => <BadgeDisplay {badge} />)}
+	</Card>
 
-	<Friends>
-		<Friend
-			title="peipoipai"
-			href="https://paige.moe/"
-			pfp="https://codeberg.org/paige.png"
-			alt="paige"
-		/>
-		<Friend
-			title="my favorite chud"
-			href="https://vendicated.dev/"
-			pfp="https://github.com/Vendicated.png"
-			alt="vee"
-		/>
-		<Friend
-			title="alyalyalyalyalyalyalyalyalya"
-			href="https://www.ankle.lol/"
-			pfp={April}
-			alt="april"
-		/>
-		<Friend
-			title="I just kept on retyping something to get a name which sounded good to me"
-			href="https://claration.dev/"
-			pfp="https://avatars.githubusercontent.com/u/97859147?v=4"
-			alt="samara"
-		/>
-		<Friend
-			title="-# the :rini:"
-			href="https://github.com/rniii"
-			pfp="https://github.com/rniii.png"
-			alt="rini"
-		/>
-		<Friend
-			title="6k hours tf2"
-			href="https://x.com/1tabris"
-			pfp={Tabris}
-			alt="rylee"
-		/>
-		<Friend
-			title="cutie"
-			href="https://uncutified.moe"
-			pfp="https://github.com/uncutified.png"
-			alt="lexy"
-		/>
-		<Friend
-			title="loomly"
-			href="https://lumina0machina.github.io/"
-			pfp="https://avatars.githubusercontent.com/u/225609388?v=4"
-			alt="lumina"
-		/>
-		<Friend
-			title="my sugar mommy"
-			href="https://github.com/zaysei"
-			pfp="https://avatars.githubusercontent.com/u/58285923?v=4"
-			alt="rosie"
-		/>
-	</Friends>
-	<hr />
-	<div id="footer">
-		<p>
-			Site licensed under
-			{" "}
-			<a href="https://github.com/fielstamper/caitlyn.moe/blob/main/LICENSE" class="link">AGPL v3</a>
-			∙
-			<a href="https://github.com/fielstamper/caitlyn.moe" class="link">Source Code</a>
-			{" 🌸"}
-		</p>
-	</div>
+	<Card class="badge-grid" elevation={null}>
+		{FRIEND_BADGES.map((badge) => {
+			if (badge === "fish") {
+				return (
+					<iframe
+						width="88"
+						height="31"
+						style="border:none"
+						title="rini"
+						sandbox="allow-scripts allow-popups"
+						src="https://paige.moe/fish.html"
+					/>
+				);
+			} else {
+				return <BadgeDisplay {badge} />;
+			}
+		})}
+	</Card>
+
+	<Card id="friends-grid" elevation={null}>
+		{FRIEND_AVATARS.map(badge => <BadgeDisplay {badge} width={50} height={50} round />)}
+	</Card>
 </Layout>
+
+<script>
+const friends = document.getElementById("friends-grid")!;
+
+for (let i = friends.children.length; i > 1; i--) {
+	friends.appendChild(friends.children[(Math.random() * (i - 0)) | 0]);
+}
+</script>
+
+<style>
+.badge-grid {
+	display: grid;
+	place-items: center;
+	grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+	gap: 0.5rem;
+	padding: 0.5em;
+	image-rendering: pixelated;
+	margin-top: 1rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+#friends-grid {
+	display: grid;
+	place-items: center;
+	gap: 0.5rem;
+	grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+	padding: 0.5em;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+</style>

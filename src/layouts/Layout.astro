@@ -1,6 +1,7 @@
 ---
 import "~/styles/global.css";
 
+import Footer from "~/components/Footer.astro";
 import Head from "~/components/Head.astro";
 import Header from "~/components/Header.astro";
 import HeaderItem from "~/components/HeaderItem.astro";
@@ -29,9 +30,7 @@ const { title, subtitle, showAvatar = true } = Astro.props as Props;
 					<HeaderItem title="Music" href="https://lb.caitlyn.moe" />
 					<HeaderItem title="Blog" href="https://blog.caitlyn.moe" />
 					<HeaderItem title="Contact" href="/contacts" />
-					<br />
 					<ThemeSelector />
-
 				</Header>
 				{(title || subtitle) && (
 					<div>
@@ -43,6 +42,8 @@ const { title, subtitle, showAvatar = true } = Astro.props as Props;
 			{showAvatar && <ProfilePicture />}
 		</div>
 		<slot />
+		<hr />
+		<Footer />
 		<style>
 			#header-box {
 				display: flex;

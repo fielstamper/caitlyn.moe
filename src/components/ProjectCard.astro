@@ -1,0 +1,48 @@
+---
+import ExternalIcon from "~/assets/icons/external.svg";
+import type { Project } from "~/types";
+
+import Card from "./Card.astro";
+
+interface Props {
+	project?: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<Card
+	as="a"
+	href={project?.href}
+	disabled={!project}
+	aria-hidden={!project}
+	class="project-card"
+>
+	<div class="title">
+		{project?.icon && <img aria-hidden width={24} height={24} src={project.icon} />}
+		<span>{project?.title ?? "n/a"}</span>
+		<ExternalIcon aria-hidden />
+	</div>
+	{project?.description && project.description}
+</Card>
+
+<style>
+.project-card {
+	min-height: 4.5rem;
+	flex-direction: column;
+	gap: 8px;
+}
+img {
+	border-radius: 9999px;
+}
+.title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.title span {
+	flex: 1;
+	color: var(--text);
+	font-weight: 450;
+}
+</style>
