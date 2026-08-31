@@ -8,7 +8,7 @@ import LastFm from "~/assets/icons/brands/lastdotfm.svg";
 import Osu from "~/assets/icons/brands/osu.svg";
 import Steam from "~/assets/icons/brands/steam.svg";
 import Card from "~/components/Card.astro";
-import Layout from "~/layouts/Layout.astro";
+import MainLayout from "~/layouts/MainLayout.astro";
 
 const links = [
 	{ href: "osu.ppy.sh/users/38439190", title: "osu!", icon: Osu },
@@ -31,7 +31,7 @@ const links = [
 ];
 ---
 
-<Layout title="<mark>Find Me</mark>" subtitle="Check me out on other places">
+<MainLayout title="<mark>Find Me</mark>" subtitle="Check me out on other places">
 	<div>
 		{
 			links.map(({ href, title, icon: Icon }) => (
@@ -49,7 +49,7 @@ const links = [
 			))
 		}
 	</div>
-</Layout>
+</MainLayout>
 <style>
 	div {
 		display: flex;

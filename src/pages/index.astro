@@ -9,7 +9,7 @@ import Grid from "~/components/Grid.astro";
 import ListenDisplay from "~/components/ListenDisplay.astro";
 import ProjectCard from "~/components/ProjectCard.astro";
 import { BADGES, FRIEND_AVATARS, FRIEND_BADGES, MISC_PROJECTS, PROJECTS } from "~/constants";
-import Layout from "~/layouts/Layout.astro";
+import MainLayout from "~/layouts/MainLayout.astro";
 import type { Activity, Listen } from "~/types";
 
 import { GET as getActivities } from "./api/activities.json";
@@ -22,7 +22,7 @@ const listensResponse = await getListens();
 const listens: Listen[] = await listensResponse.json();
 ---
 
-<Layout
+<MainLayout
 	title="hi, i'm <mark>caitlyn!</mark>"
 	subtitle="20 years old, Australia"
 >
@@ -96,7 +96,7 @@ const listens: Listen[] = await listensResponse.json();
 	<Card id="friends-grid" elevation={null}>
 		{FRIEND_AVATARS.map(badge => <BadgeDisplay {badge} width={50} height={50} round />)}
 	</Card>
-</Layout>
+</MainLayout>
 
 <script>
 const friends = document.getElementById("friends-grid")!;
