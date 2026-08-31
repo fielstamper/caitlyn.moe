@@ -17,8 +17,17 @@ const { listen } = Astro.props as Props;
 	rel="nofollow"
 >
 	<img
+		class="cover"
 		src={`https://coverartarchive.org/release-group/${listen.track_metadata.additional_info.release_group_mbid}/front-250`}
 	/>
 	<p>{truncateString(listen.track_metadata.track_name, 27)}</p>
 	<sub>{truncateString(listen.track_metadata.artist_name, 15)}</sub>
 </CarouselItem>
+<style>
+	@media (max-width: 600px) {
+		.cover {
+			width: calc(7.813rem * 0.9) !important;
+			height: calc(7.813rem * 0.9) !important;
+		}
+	}
+</style>
