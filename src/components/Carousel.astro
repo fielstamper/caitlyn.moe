@@ -27,7 +27,7 @@ document.addEventListener("astro:page-load", () => {
 		function handleCarouselMove(positive = true) {
 			if ((Date.now() - lastClick) < 300) return;
 			lastClick = Date.now();
-			const slideWidth = body.firstElementChild!.clientWidth * 2;
+			const slideWidth = body.firstElementChild!.clientWidth * 4;
 			body.scrollLeft = positive ? body.scrollLeft + slideWidth : body.scrollLeft - slideWidth;
 		}
 

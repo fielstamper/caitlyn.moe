@@ -19,7 +19,7 @@ async function fetchFromHardcover(): Promise<HardcoverActivity[]> {
 			me {
 				user_books(
 					order_by: { updated_at: desc }
-					limit: 5
+					limit: 20
 				) {
 					updated_at
 					user_book_reads(order_by: { id: desc }, limit: 1) {
