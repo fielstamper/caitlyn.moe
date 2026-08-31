@@ -17,6 +17,32 @@ const { class: bodyClassName, ...bodyProps } = Astro.props as HTMLAttributes<"di
 	</div>
 </div>
 <script>
+const scrollDuration = 250;
+
+function animateScrollLeft(
+	element: Element,
+	scrollPx: number,
+	// cubic i think idk
+	easing = (t: number) => 1 - Math.pow(1 - t, 3),
+) {
+	const startScrollLeft = element.scrollLeft;
+	const distance = scrollPx - startScrollLeft;
+	let startTime: number | null = null;
+
+	function frame(currentTime: number) {
+		if (!startTime) startTime = currentTime;
+
+		const elapsed = currentTime - startTime;
+		const progress = Math.min(elapsed / scrollDuration, 1);
+		const easedProgress = easing(progress);
+		element.scrollLeft = startScrollLeft + distance * easedProgress;
+
+		if (progress < 1) requestAnimationFrame(frame);
+	}
+
+	requestAnimationFrame(frame);
+}
+
 document.addEventListener("astro:page-load", () => {
 	document.querySelectorAll(".carousel-container").forEach((container) => {
 		const body = container.querySelector(".carousel-body")!;
@@ -24,15 +50,16 @@ document.addEventListener("astro:page-load", () => {
 		const nextButton = container.querySelector(".carousel-next")!;
 		let lastClick = Date.now();
 
-		function handleCarouselMove(positive = true) {
-			if ((Date.now() - lastClick) < 300) return;
-			lastClick = Date.now();
+		function handleCarouselMove(direction: number) {
+			if ((Date.now() - lastClick) < scrollDuration) return;
 			const slideWidth = body.firstElementChild!.clientWidth * 4;
-			body.scrollLeft = positive ? body.scrollLeft + slideWidth : body.scrollLeft - slideWidth;
+			const scrollPx = body.scrollLeft + slideWidth * direction;
+			animateScrollLeft(body, scrollPx);
+			lastClick = Date.now();
 		}
 
-		prevButton.addEventListener("click", () => handleCarouselMove(false));
-		nextButton.addEventListener("click", () => handleCarouselMove());
+		prevButton.addEventListener("click", () => handleCarouselMove(-1));
+		nextButton.addEventListener("click", () => handleCarouselMove(1));
 	});
 });
 </script>
@@ -47,7 +74,6 @@ document.addEventListener("astro:page-load", () => {
 		justify-content: space-between;
 		text-align: center;
 		overflow-x: hidden;
-		scroll-behavior: smooth;
 	}
 
 	.carousel-buttons {
