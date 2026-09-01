@@ -29,13 +29,9 @@ async function fetchFromHardcover(): Promise<HardcoverActivity[]> {
 					book {
 						title
 						slug
-						editions(
-							where: {reading_format_id: {_eq: 1}, image: {url: {_is_null: false}}}
-							limit: 1
-							order_by: {users_count: desc}
-						) {
-							image { url }
-						}
+					}
+					edition {
+						image {url}
 					}
 				}
 			}
@@ -112,7 +108,7 @@ function convertHardcoverActivity(original: HardcoverActivity): Activity {
 	return {
 		url: `https://hardcover.app/books/${original.book.slug}`,
 		title: original.book.title,
-		image: `https://production-img.hardcover.app/crop?width=230&height=327&type=webp&url=${original.book.editions.at(0)?.image?.url}`,
+		image: `https://production-img.hardcover.app/crop?width=230&height=327&type=webp&url=${original.edition.image.url}`,
 		status: statusFormatted,
 		progress,
 		updatedAt: Date.parse(original.updated_at),

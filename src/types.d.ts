@@ -37,8 +37,8 @@ export interface HardcoverActivity {
 	book: {
 		title: string;
 		slug: string;
-		editions: { image: { url: string } }[];
 	};
+	edition: { image: { url: string } }[];
 }
 
 /**
