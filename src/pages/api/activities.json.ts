@@ -19,7 +19,7 @@ async function fetchFromHardcover(): Promise<HardcoverActivity[]> {
 			me {
 				user_books(
 					order_by: { updated_at: desc }
-					limit: 20
+					limit: 13
 				) {
 					updated_at
 					user_book_reads(order_by: { id: desc }, limit: 1) {
@@ -60,7 +60,7 @@ async function fetchFromHardcover(): Promise<HardcoverActivity[]> {
 async function fetchFromAnilist(): Promise<AnilistActivity[]> {
 	const query = gql`
 		query ($userId: Int) {
-			Page(perPage: 5) {
+			Page(perPage: 12) {
 				activities(
 					userId: $userId
 					type: MEDIA_LIST
